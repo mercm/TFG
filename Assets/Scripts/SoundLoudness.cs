@@ -13,7 +13,7 @@ public class SoundLoudness : MonoBehaviour
 
     int _sampleWindow = 1024;
     private List<float> results;
-    private bool collect = false;
+    private bool collect;
 
     float actTime;
 
@@ -34,7 +34,7 @@ public class SoundLoudness : MonoBehaviour
         //Results.gameObject.SetActive(false);
 
         results = new List<float>();
-        collect = false;
+        //collect = true;
         actTime = Time.realtimeSinceStartup;
         secCounter = 0;
         silenceCounter = 0;
@@ -44,14 +44,14 @@ public class SoundLoudness : MonoBehaviour
     {
         collect = true;
     }*/
-    void OnDisable()
+    /*void OnDisable()
     {
         collect = false;
-    }
-    void OnEnable()
+    }*/
+    /*void OnEnable()
     {
         collect = true;
-    }
+    }*/
     public float[] GetData()
     {
         return results.ToArray();
@@ -98,7 +98,7 @@ public class SoundLoudness : MonoBehaviour
 
     void Update()
     {
-        if (!collect) return;
+        //if (!collect) return;
         float aux = -100f;
         UpdateSilencesTexts();
         //Destroy(Preparation);

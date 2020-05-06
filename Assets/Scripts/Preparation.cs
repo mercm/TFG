@@ -15,12 +15,14 @@ public class Preparation : MonoBehaviour
     private bool spacePressed;
     private int choosenSpeech;
 
-    public GameObject SoundLoudness;
+    //public GameObject SoundLoudness;
+    public GameObject Manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        SoundLoudness.gameObject.SetActive(false);
+        //SoundLoudness.gameObject.SetActive(false);
+        //Manager.gameObject.SetActive(false);
         choosenSpeech = -1;
         spacePressed = false;
 
@@ -76,7 +78,9 @@ public class Preparation : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Space))
         {
-            SoundLoudness.gameObject.SetActive(true);
+            //SoundLoudness.gameObject.SetActive(true);
+            preparationText.gameObject.SetActive(false);
+            Manager.gameObject.SetActive(true);
             Destroy(this.gameObject);
         }
         else if(Input.GetKeyDown(KeyCode.LeftArrow))
@@ -91,7 +95,7 @@ public class Preparation : MonoBehaviour
     string CreateSilencesText(int silences, int longSilences)
     {
         return "For this speech, you will need to do " + silences + " silences (between 1.5 and 2.5 seconds) and " + longSilences +
-            " long silences (between 2.5 and 3.5 seconds). \n\nPress space to see the speech. Practice it as many times as you" +
-            "need and hit the space button to start presenting.";
+            @" long silences (between 2.5 and 3.5 seconds). \n\nPress space to see the speech. Practice it as many times as you
+            need and hit the space button to start presenting.";
     }
 }

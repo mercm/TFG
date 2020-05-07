@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Preparation : MonoBehaviour
 {
-    public Text preparationText;
+    public TextMeshPro preparationText;
 
     //List<string> speeches = new List<string>(); //contains the speeches the user can select.
     //List<string> instructions = new List<string>(); //contains the specific instructions for starting the game.
@@ -14,6 +15,8 @@ public class Preparation : MonoBehaviour
 
     private bool spacePressed;
     private int choosenSpeech;
+    public static int silencesNeeded;
+    public static int longSilencesNeeded;
 
     //public GameObject SoundLoudness;
     public GameObject Manager;
@@ -47,7 +50,7 @@ public class Preparation : MonoBehaviour
 
         preparationText.text =
             "Welcome! It is time to practice the silences of your speech. Select an speech from 1 to " +
-            speeches.Length + " and practice it. Press space when you are ready to present. press the left arrow to return.";
+            speeches.Length + " and practice it. \n\nPress space when you are ready to present. Press the left arrow to return.";
     }
 
     // Update is called once per frame
@@ -60,14 +63,20 @@ public class Preparation : MonoBehaviour
                 case "1":
                     choosenSpeech = 0;
                     preparationText.text = instructions[choosenSpeech];
+                    silencesNeeded = 2;
+                    longSilencesNeeded = 2;
                     break;
                 case "2":
                     choosenSpeech = 1;
                     preparationText.text = instructions[choosenSpeech];
+                    silencesNeeded = 3;
+                    longSilencesNeeded = 1;
                     break;
                 case "3":
                     choosenSpeech = 2;
                     preparationText.text = instructions[choosenSpeech];
+                    silencesNeeded = 3;
+                    longSilencesNeeded = 0;
                     break;
             }
         }
@@ -88,14 +97,14 @@ public class Preparation : MonoBehaviour
             choosenSpeech = -1;
             spacePressed = false;
             preparationText.text =
-                "Select an speech from 1 to " + speeches.Length + " and practice it. Press space when you are ready to present.";
+                "Select an speech from 1 to " + speeches.Length + " and practice it. \n\nPress space when you are ready to present.";
         }
     }
 
     string CreateSilencesText(int silences, int longSilences)
     {
         return "For this speech, you will need to do " + silences + " silences (between 1.5 and 2.5 seconds) and " + longSilences +
-            @" long silences (between 2.5 and 3.5 seconds). \n\nPress space to see the speech. Practice it as many times as you
-            need and hit the space button to start presenting.";
+            " long silences (between 2.5 and 3.5 seconds)." + 
+            "\n\nPress space to see the speech. Practice it as many times as you need and hit the space button to start presenting.";
     }
 }

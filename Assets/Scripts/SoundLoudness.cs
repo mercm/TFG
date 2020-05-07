@@ -13,13 +13,13 @@ public class SoundLoudness : MonoBehaviour
 
     int _sampleWindow = 1024;
     private List<float> results;
-    private bool collect;
+    public static bool collect;
 
     float actTime;
 
     private int secCounter = 0;
-    private int silenceCounter;
-    private int longSilenceCounter;
+    public static int silenceCounter;
+    public static int longSilenceCounter;
 
     public Text silencesText;
     public Text longSilencesText;
@@ -40,18 +40,18 @@ public class SoundLoudness : MonoBehaviour
         silenceCounter = 0;
         longSilenceCounter = 0;
     }
-    /*void startCollecting()
+    public void changeCollecting(bool change)
     {
-        collect = true;
-    }*/
+        collect = change;
+    }
     /*void OnDisable()
     {
         collect = false;
     }*/
-    /*void OnEnable()
+    void OnEnable()
     {
         collect = true;
-    }*/
+    }
     public float[] GetData()
     {
         return results.ToArray();
@@ -98,7 +98,12 @@ public class SoundLoudness : MonoBehaviour
 
     void Update()
     {
-        //if (!collect) return;
+        if (!collect)
+        {
+            silencesText.text = "Silences";
+            longSilencesText.text = "Long silences";
+            return;
+        }
         float aux = -100f;
         UpdateSilencesTexts();
         //Destroy(Preparation);

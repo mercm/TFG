@@ -15,9 +15,9 @@ public class Manager : MonoBehaviour
 
     //private bool started;
 
-    //public GameObject Results;
+    public GameObject Results;
     //public GameObject Preparation;
-    public GameObject SoundLoudness;
+    public GameObject SoundLoudnessGO;
 
 
     //Sound
@@ -42,8 +42,8 @@ public class Manager : MonoBehaviour
 
         countDownText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
-        //timerText.gameObject.SetActive(false);
-        SoundLoudness.gameObject.SetActive(false);
+        //Results.gameObject.SetActive(false);
+        SoundLoudnessGO.gameObject.SetActive(false);
 
         this.gameObject.SetActive(false);
     }
@@ -73,7 +73,7 @@ public class Manager : MonoBehaviour
         {
             countDown = 0;
             countDownText.gameObject.SetActive(false);
-            SoundLoudness.gameObject.SetActive(true);
+            SoundLoudnessGO.gameObject.SetActive(true);
         }
         else
         {
@@ -84,8 +84,9 @@ public class Manager : MonoBehaviour
             {
                 //started = false;
                 timerText.gameObject.SetActive(false);
-                //Activas resultados resultados.setActive(true);
-                //Results.SetActive(true);
+                Results.gameObject.SetActive(true);
+                //SoundLoudness.gameObject.SetActive(false);
+                SoundLoudness.collect = false;
             }
             else
             {

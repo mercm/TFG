@@ -130,7 +130,7 @@ public class SoundLoudness : MonoBehaviour
             {
                 silenceCounter++;
             }
-            else if (secCounter > 5)
+            else if (secCounter > 5 && secCounter <= 7)//if the silence has a duration between 2.5 and 3.5 seconds.
             {
                 longSilenceCounter++;
             }

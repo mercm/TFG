@@ -25,7 +25,7 @@ public class SoundLoudness : MonoBehaviour
     public Text longSilencesText;
 
     public GameObject Results;
-    public GameObject Preparation;
+    //public GameObject PreparationGO;
 
     //mic initialization
 
@@ -141,7 +141,7 @@ public class SoundLoudness : MonoBehaviour
 
     void UpdateSilencesTexts()
     {
-        silencesText.text = "Silences: " + silenceCounter.ToString();
-        longSilencesText.text = "Long silences: " + longSilenceCounter.ToString();
+        silencesText.text = "Silences: " + silenceCounter.ToString() + " /" + Preparation.silencesNeeded;
+        longSilencesText.text = "Long silences: " + longSilenceCounter.ToString() + " /" + Preparation.longSilencesNeeded;
     }
 }

@@ -19,7 +19,7 @@ public class Preparation : MonoBehaviour
     public static int longSilencesNeeded;
 
     //public GameObject SoundLoudness;
-    public GameObject Manager;
+    public GameObject ManagerGO;
 
     // Start is called before the first frame update
     void Start()
@@ -87,9 +87,9 @@ public class Preparation : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Space))
         {
-            //SoundLoudness.gameObject.SetActive(true);
+            Manager.speech = preparationText.text;
             preparationText.gameObject.SetActive(false);
-            Manager.gameObject.SetActive(true);
+            ManagerGO.gameObject.SetActive(true);
             Destroy(this.gameObject);
         }
         else if(Input.GetKeyDown(KeyCode.LeftArrow))

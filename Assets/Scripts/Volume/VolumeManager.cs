@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Manager : MonoBehaviour
+public class VolumeManager : MonoBehaviour
 {
     //public static DataManager instance = null;
 
@@ -12,6 +12,8 @@ public class Manager : MonoBehaviour
     public TextMeshPro timerText;//Ascendent timer Text
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
+    public static string speech = "";
+    public Text speechText;//Ascendent timer Text
 
     //private bool started;
 
@@ -42,6 +44,7 @@ public class Manager : MonoBehaviour
 
         countDownText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
+        speechText.gameObject.SetActive(false);
         //Results.gameObject.SetActive(false);
         SoundLoudnessGO.gameObject.SetActive(false);
 
@@ -49,8 +52,11 @@ public class Manager : MonoBehaviour
     }
     private void OnEnable()
     {
+        speechText.text = speech;
+
         timerText.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(true);
+        speechText.gameObject.SetActive(true);
     }
     /*public void SetStart()
     {
@@ -69,7 +75,7 @@ public class Manager : MonoBehaviour
             countDown -= Time.deltaTime;
             countDownText.text = "" + (int)countDown;
         }
-        else if(countDown < 1 && countDown > 0)//SetSctive the texts only ones
+        else if (countDown < 1 && countDown > 0)//SetSctive the texts only ones
         {
             countDown = 0;
             countDownText.gameObject.SetActive(false);
@@ -77,7 +83,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            
+
 
             timer += Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.Space))

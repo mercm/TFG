@@ -41,8 +41,8 @@ public class VolumeSoundLoudness : MonoBehaviour
         secCounter = 0;
 
         //Set physical thresholds and pointer
-        lowerThreshold = 0.1f;
-        upperThreshold = 0.3f;
+        lowerThreshold = 0.09f;
+        upperThreshold = 0.2f;
         float height = upperThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
         upperThresholdGO.transform.position = new Vector3(upperThresholdGO.transform.position.x, height, upperThresholdGO.transform.position.z);
         height = lowerThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;

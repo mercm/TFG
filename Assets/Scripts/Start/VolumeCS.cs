@@ -7,6 +7,6 @@ public class VolumeCS : MonoBehaviour
 {
     public void ChangeScene()
     {
-        SceneManager.LoadScene("Start Volume Levels");
+        SceneManager.LoadScene("Volume");
     }
 }

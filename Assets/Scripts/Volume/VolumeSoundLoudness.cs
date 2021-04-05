@@ -20,14 +20,18 @@ public class VolumeSoundLoudness : MonoBehaviour
     public GameObject upperThresholdGO;
     public GameObject lowerThresholdGO;
 
+    private List<float> ambiente = new List<float>();
+
 
     int _sampleWindow = 1024;
-    private List<float> results;
+    //private List<float> results;
     public static bool collect;
 
     float actTime;
 
-    private int secCounter = 0;
+    public static int correctSecCounter = 0;
+    public static int upIncorrectSecCounter;
+    public static int lowIncorrectSecCounter;
 
     //mic initialization
 
@@ -38,7 +42,9 @@ public class VolumeSoundLoudness : MonoBehaviour
         //results = new List<float>();
         //collect = false;
         actTime = Time.realtimeSinceStartup;
-        secCounter = 0;
+        correctSecCounter = 0;
+        upIncorrectSecCounter = 0;
+        lowIncorrectSecCounter = 0;
 
         //Set physical thresholds and pointer
         lowerThreshold = 0.09f;
@@ -49,6 +55,7 @@ public class VolumeSoundLoudness : MonoBehaviour
         lowerThresholdGO.transform.position = new Vector3(lowerThresholdGO.transform.position.x, height, lowerThresholdGO.transform.position.z);
         height = ((upperThreshold + lowerThreshold) / 2) * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
         pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
+        //this.gameObject.SetActive(false);
     }
     public void ChangeCollecting(bool change)
     {
@@ -62,10 +69,10 @@ public class VolumeSoundLoudness : MonoBehaviour
     {
         collect = true;
     }
-    public float[] GetData()
+    /*public float[] GetData()
     {
         return results.ToArray();
-    }
+    }*/
     /// <summary>
     /// Obtiene el valor medio cuadrático de 1024 muestras obtenidas en el instante.
     /// Con ese valor, calcula el valor en decibelios de la muestra. 
@@ -116,9 +123,9 @@ public class VolumeSoundLoudness : MonoBehaviour
         if (Time.realtimeSinceStartup - actTime > step)
         {
             aux = GetLoudness();
+            Debug.Log(aux);
             CheckVolume(aux);
             //results.Add(aux);
-            // Debug.Log(aux);
             //if (DataManager.instance != null) DataManager.instance.AddSound(aux);
             actTime = Time.realtimeSinceStartup;
         }
@@ -131,19 +138,21 @@ public class VolumeSoundLoudness : MonoBehaviour
             //Pintar la raya verde entre los márgenes dependiendo de aux. Contar el tiempo que lo ha hecho bien.
             pointerMaterial.color = Color.green;
             thresholdMaterial.color = Color.white;
-            secCounter++;
+            correctSecCounter++;
         }
-        else if(aux >= upperThreshold) //Incorrect volume upper
+        else if(aux > upperThreshold) //Incorrect volume (too loud)
         {
             //Puntar la raya roja por encima de las marcas. Mandar mensaje "lower the volume"
             pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
+            upIncorrectSecCounter++;
         }
-        else//Incorrect volume lower
+        else
         {
-            //Pintar la raya roja por debajo de las marcas. Mandar mensaje "raise the volume"
+            //Puntar la raya roja por encima de las marcas. Mandar mensaje "raise the volume"
             pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
+            lowIncorrectSecCounter++;
         }
         //Actualizar los dibujos
         float height = aux * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;

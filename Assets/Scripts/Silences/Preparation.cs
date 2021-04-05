@@ -49,7 +49,7 @@ public class Preparation : MonoBehaviour
 
         preparationText.text =
             "Welcome! It is time to practice the silences of your speech. Select an speech from 1 to " +
-            speeches.Length + " and practice it. \n\nPress space when you are ready to present. Press the left arrow to choose another speech.";
+            speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";
     }
 
     private void OnEnable()
@@ -61,7 +61,7 @@ public class Preparation : MonoBehaviour
         Manager.speech = "";
         preparationText.text =
             "Welcome! It is time to practice the silences of your speech. Select an speech from 1 to " +
-            speeches.Length + " and practice it. \n\nPress space when you are ready to present. Press the left arrow to choose another speech.";
+            speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";
         preparationText.gameObject.SetActive(true);
         //ManagerGO.gameObject.SetActive(false);
     }
@@ -112,7 +112,7 @@ public class Preparation : MonoBehaviour
             choosenSpeech = -1;
             spacePressed = false;
             preparationText.text =
-                "Select an speech from 1 to " + speeches.Length + " and practice it. \n\nPress space when you are ready to present.";
+                "Select an speech from 1 to " + speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present.";
         }
     }
 
@@ -120,6 +120,6 @@ public class Preparation : MonoBehaviour
     {
         return "For this speech, you will need to do " + silences + " silences (between 1.5 and 2.5 seconds) and " + longSilences +
             " long silences (between 2.5 and 3.5 seconds)." + 
-            "\n\nPress space to see the speech. Practice it as many times as you need and hit the space button to start presenting.";
+            "\n\nPress space to see the speech. Practice it as many times as you need and press SPACE to start presenting.";
     }
 }

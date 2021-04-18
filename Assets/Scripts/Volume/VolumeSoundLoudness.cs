@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 
 public class VolumeSoundLoudness : MonoBehaviour
 {
+    private const int MAX_VOLUME = 100;
 
     public static float step = 0.5f;//half a second
     public static float upperThreshold;//Upper threshold 
@@ -26,8 +28,8 @@ public class VolumeSoundLoudness : MonoBehaviour
     int _sampleWindow = 1024;
     //private List<float> results;
     public static bool collect;
-
     float actTime;
+    public TextMeshPro correctionText;
 
     public static int correctSecCounter = 0;
     public static int upIncorrectSecCounter;
@@ -45,16 +47,18 @@ public class VolumeSoundLoudness : MonoBehaviour
         correctSecCounter = 0;
         upIncorrectSecCounter = 0;
         lowIncorrectSecCounter = 0;
+        correctionText.text = "";
 
         //Set physical thresholds and pointer
-        lowerThreshold = 0.09f;
-        upperThreshold = 0.2f;
-        float height = upperThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
-        upperThresholdGO.transform.position = new Vector3(upperThresholdGO.transform.position.x, height, upperThresholdGO.transform.position.z);
-        height = lowerThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
-        lowerThresholdGO.transform.position = new Vector3(lowerThresholdGO.transform.position.x, height, lowerThresholdGO.transform.position.z);
-        height = ((upperThreshold + lowerThreshold) / 2) * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+        lowerThreshold = 1.0f;
+        upperThreshold = 6.0f;
+        //float height = upperThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+        //upperThresholdGO.transform.position = new Vector3(upperThresholdGO.transform.position.x, height, upperThresholdGO.transform.position.z);
+        //height = lowerThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+        //lowerThresholdGO.transform.position = new Vector3(lowerThresholdGO.transform.position.x, height, lowerThresholdGO.transform.position.z);
+        float height = ((upperThreshold + lowerThreshold) / 2) * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
         pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
+        //correctionText.gameObject.SetActive(false);
         //this.gameObject.SetActive(false);
     }
     public void ChangeCollecting(bool change)
@@ -68,6 +72,7 @@ public class VolumeSoundLoudness : MonoBehaviour
     void OnEnable()
     {
         collect = true;
+        //correctionText.gameObject.SetActive(true);
     }
     /*public float[] GetData()
     {
@@ -123,7 +128,8 @@ public class VolumeSoundLoudness : MonoBehaviour
         if (Time.realtimeSinceStartup - actTime > step)
         {
             aux = GetLoudness();
-            Debug.Log(aux);
+            aux = aux * MAX_VOLUME;
+            //Debug.Log(aux);
             CheckVolume(aux);
             //results.Add(aux);
             //if (DataManager.instance != null) DataManager.instance.AddSound(aux);
@@ -139,6 +145,10 @@ public class VolumeSoundLoudness : MonoBehaviour
             pointerMaterial.color = Color.green;
             thresholdMaterial.color = Color.white;
             correctSecCounter++;
+            correctionText.text = "";
+            float aux1 = (aux - lowerThreshold) / (upperThreshold - lowerThreshold);
+            float height = aux1 * (upperThresholdGO.transform.position.y - lowerThresholdGO.transform.position.y) + lowerThresholdGO.transform.position.y;
+            pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
         else if(aux > upperThreshold) //Incorrect volume (too loud)
         {
@@ -146,6 +156,10 @@ public class VolumeSoundLoudness : MonoBehaviour
             pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
             upIncorrectSecCounter++;
+            correctionText.text = "Lower down the volume";
+            float aux2 = (aux - upperThreshold) / (MAX_VOLUME - upperThreshold);
+            float height = aux2 * (topPointerGO.transform.position.y - upperThresholdGO.transform.position.y) + upperThresholdGO.transform.position.y;
+            pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
         else
         {
@@ -153,10 +167,11 @@ public class VolumeSoundLoudness : MonoBehaviour
             pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
             lowIncorrectSecCounter++;
+            correctionText.text = "Raise up the volume";
+            float aux3 = (aux - lowerThreshold) / lowerThreshold;
+            float height = aux3 * (lowerThresholdGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+            pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
-        //Actualizar los dibujos
-        float height = aux * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
-        pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
 
         Debug.Log(aux);
     }

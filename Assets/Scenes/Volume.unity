@@ -1869,8 +1869,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 5
-  m_fontSizeBase: 5
+  m_fontSize: 3.6
+  m_fontSizeBase: 3.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2037,6 +2037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countDownText: {fileID: 1582334224}
   speechText: {fileID: 974933973}
+  correctionsText: {fileID: 1260974640}
   resultsText: {fileID: 105408889}
   again: {fileID: 627061209}
   returnButton: {fileID: 825930374}

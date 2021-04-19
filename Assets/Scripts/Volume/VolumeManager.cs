@@ -10,7 +10,8 @@ public class VolumeManager : MonoBehaviour
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
     public static string speech = "";
-    public TextMeshPro speechText;//Ascendent timer Text
+    public TextMeshPro speechText;
+    public TextMeshPro correctionsText;
     public Text resultsText;//Results Text
     public Button again;//Restart the game
     public Button returnButton;
@@ -56,9 +57,11 @@ public class VolumeManager : MonoBehaviour
         speechText.text = speech;
         countDown = 4;
         countDownText.text = "" + (int)countDown;
+        correctionsText.text = "";
 
         countDownText.gameObject.SetActive(true);
         speechText.gameObject.SetActive(true);
+        correctionsText.gameObject.SetActive(true);
     }
     /*public void SetStart()
     {
@@ -111,7 +114,8 @@ public class VolumeManager : MonoBehaviour
             {
                 percentage = 0;
             }
-
+            speechText.gameObject.SetActive(false);
+            correctionsText.gameObject.SetActive(false);
             panel.gameObject.SetActive(true);
             resultsText.text = "You have done " + percentage + "% correct!";
             resultsText.gameObject.SetActive(true);

@@ -13,11 +13,11 @@ public class Manager : MonoBehaviour
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
     public static string speech = "";
-    public Text speechText;//Speech Text
+    public TextMeshPro speechText;//Speech Text
 
     //private bool started;
 
-    public GameObject Results;
+    public GameObject resultsGO;
     //public GameObject Preparation;
     public GameObject SoundLoudnessGO;
 
@@ -37,11 +37,6 @@ public class Manager : MonoBehaviour
     {
         //started = false;
 
-        timer = 0.0f;
-        timerText.text = "" + (int)timer;
-        countDown = 4;
-        countDownText.text = "" + (int)countDown;
-
         countDownText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         speechText.gameObject.SetActive(false);
@@ -53,6 +48,10 @@ public class Manager : MonoBehaviour
     private void OnEnable()
     {
         speechText.text = speech;
+        timer = 0.0f;
+        timerText.text = "" + (int)timer;
+        countDown = 4;
+        countDownText.text = "" + (int)countDown;
 
         timerText.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(true);
@@ -92,9 +91,10 @@ public class Manager : MonoBehaviour
                 //started = false;
                 timerText.gameObject.SetActive(false);
                 speechText.gameObject.SetActive(false);
-                Results.gameObject.SetActive(true);
-                //SoundLoudness.gameObject.SetActive(false);
-                SoundLoudness.collect = false;
+                resultsGO.gameObject.SetActive(true);
+                SoundLoudnessGO.gameObject.SetActive(false);
+                //SoundLoudness.collect = false;
+                this.gameObject.SetActive(false);
             }
             else
             {

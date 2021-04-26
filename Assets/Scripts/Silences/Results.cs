@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class Results : MonoBehaviour
 {
 
-    public TextMeshPro resultsText;
+    public Text resultsText;
     public Button returnButton;
-    public Preparation start;
+    public GameObject preparation;
+    public GameObject panel;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class Results : MonoBehaviour
     {
         resultsText.gameObject.SetActive(true);
         returnButton.gameObject.SetActive(true);
+        panel.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -46,10 +48,10 @@ public class Results : MonoBehaviour
                 " and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
         }
 
-        resultsText.text += "Press space to practice again.";
+        resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            start.gameObject.SetActive(true);
+            preparation.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
         }
     }

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class Preparation : MonoBehaviour
 {
-    public TextMeshPro preparationText;
+    public Text preparationText;
+    public GameObject panel;
 
     //List<string> speeches = new List<string>(); //contains the speeches the user can select.
     //List<string> instructions = new List<string>(); //contains the specific instructions for starting the game.
@@ -27,6 +28,7 @@ public class Preparation : MonoBehaviour
     {
         //SoundLoudness.gameObject.SetActive(false);
         //Manager.gameObject.SetActive(false);
+        panel.gameObject.SetActive(true);
 
         instructions[0] = CreateSilencesText(2, 2);
         instructions[1] = CreateSilencesText(3, 1);
@@ -102,6 +104,7 @@ public class Preparation : MonoBehaviour
         {
             Manager.speech = preparationText.text;
             preparationText.gameObject.SetActive(false);
+            panel.gameObject.SetActive(false);
             ManagerGO.gameObject.SetActive(true);
             returnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);

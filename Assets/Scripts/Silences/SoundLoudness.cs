@@ -35,23 +35,26 @@ public class SoundLoudness : MonoBehaviour
 
         results = new List<float>();
         //collect = true;
-        actTime = Time.realtimeSinceStartup;
-        secCounter = 0;
-        silenceCounter = 0;
-        longSilenceCounter = 0;
         this.gameObject.SetActive(false);
     }
     public void changeCollecting(bool change)
     {
         collect = change;
     }
-    /*void OnDisable()
+    void OnDisable()
     {
         collect = false;
-    }*/
+        silencesText.text = "Silences";
+        longSilencesText.text = "Long silences";
+    }
     void OnEnable()
     {
         collect = true;
+        UpdateSilencesTexts();
+        actTime = Time.realtimeSinceStartup;
+        secCounter = 0;
+        silenceCounter = 0;
+        longSilenceCounter = 0;
     }
     public float[] GetData()
     {
@@ -101,8 +104,6 @@ public class SoundLoudness : MonoBehaviour
     {
         if (!collect)
         {
-            silencesText.text = "Silences";
-            longSilencesText.text = "Long silences";
             return;
         }
         float aux = -100f;
@@ -111,9 +112,10 @@ public class SoundLoudness : MonoBehaviour
         if (Time.realtimeSinceStartup - actTime > step)
         {
             aux = getLoudness();
+            aux = aux * 100;
             CheckSilences(aux);
             //results.Add(aux);
-            // Debug.Log(aux);
+            Debug.Log(aux);
             //if (DataManager.instance != null) DataManager.instance.AddSound(aux);
             actTime = Time.realtimeSinceStartup;
         }

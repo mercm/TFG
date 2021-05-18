@@ -11,12 +11,20 @@ public class Results : MonoBehaviour
     public Button returnButton;
     public GameObject preparation;
     public GameObject panel;
+    private bool resultsReady;
+    public Button again;//Restart the game
 
     // Start is called before the first frame update
     void Start()
     {
+        resultsReady = false;
         resultsText.gameObject.SetActive(false);
+        again.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
+    }
+    public void setReady(bool ready)
+    {
+        resultsReady = ready;
     }
     void OnEnable()
     {
@@ -24,35 +32,52 @@ public class Results : MonoBehaviour
         returnButton.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
     }
+    void OnDisable()
+    {
+        resultsReady = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Preparation.silencesNeeded == SoundLoudness.silenceCounter)
+
+        if (!resultsReady)
         {
-            resultsText.text = "Great job! You did the exact number of silences for this speech! \n\n";
+            resultsText.text = "Calculating the results. Please, wait...";
         }
         else
         {
-            resultsText.text = "You need a little more practice. You did " + SoundLoudness.silenceCounter +
-                " silences and the speech needed " + Preparation.silencesNeeded + ". \n\n";
+            again.gameObject.SetActive(true);
+
+            if (Preparation.silencesNeeded == SoundLoudness.silenceCounter)
+            {
+                resultsText.text = "Great job! You did the exact number of silences for this speech! \n\n";
+            }
+            else
+            {
+                resultsText.text = "You need a little more practice. You did " + SoundLoudness.silenceCounter +
+                    " silences and the speech needed " + Preparation.silencesNeeded + ". \n\n";
+            }
+
+            if (Preparation.longSilencesNeeded == SoundLoudness.longSilenceCounter)
+            {
+                resultsText.text += "Excellent! You did the necessary long silences! \n\n\n";
+            }
+            else
+            {
+                resultsText.text += "You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
+                    " and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
+            }
+
+            //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
         }
 
-        if (Preparation.longSilencesNeeded == SoundLoudness.longSilenceCounter)
-        {
-            resultsText.text += "Excellent! You did the necessary long silences! \n\n\n";
-        }
-        else
-        {
-            resultsText.text += "You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
-                " and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
-        }
+        
 
-        resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))//Restart the game
         {
             preparation.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
-        }
+        }*/
     }
 }

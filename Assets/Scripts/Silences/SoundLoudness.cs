@@ -8,12 +8,13 @@ public class SoundLoudness : MonoBehaviour
 {
 
     public static float step = 0.5f;//half a second
-    public static float silenceThreshold = 0.02f;//Calculate value depending on microphone and place
+    public static float silenceThreshold = 1.0f;//Calculate value depending on microphone and place
 
 
     int _sampleWindow = 1024;
     private List<float> results;
     public static bool collect;
+    public bool startedTalking;//Not taking into consideration the first silence
 
     float actTime;
 
@@ -24,7 +25,10 @@ public class SoundLoudness : MonoBehaviour
     public Text silencesText;
     public Text longSilencesText;
 
+    private Dictation dictation;
+
     public GameObject Results;
+    public GameObject DictationGO;
     //public GameObject PreparationGO;
 
     //mic initialization
@@ -34,6 +38,7 @@ public class SoundLoudness : MonoBehaviour
         //Results.gameObject.SetActive(false);
 
         results = new List<float>();
+        dictation = DictationGO.GetComponent<Dictation>();
         //collect = true;
         this.gameObject.SetActive(false);
     }
@@ -44,6 +49,7 @@ public class SoundLoudness : MonoBehaviour
     void OnDisable()
     {
         collect = false;
+        startedTalking = false;
         silencesText.text = "Silences";
         longSilencesText.text = "Long silences";
     }
@@ -113,7 +119,14 @@ public class SoundLoudness : MonoBehaviour
         {
             aux = getLoudness();
             aux = aux * 100;
-            CheckSilences(aux);
+            if(!startedTalking && aux >= silenceThreshold)//Make sure the first silence is not taken into consideration
+            {
+                startedTalking = true;
+            }
+            if (startedTalking)
+            {
+                CheckSilences(aux);
+            }
             //results.Add(aux);
             Debug.Log(aux);
             //if (DataManager.instance != null) DataManager.instance.AddSound(aux);
@@ -125,17 +138,19 @@ public class SoundLoudness : MonoBehaviour
     {
         if (aux <= silenceThreshold)//if the user is in silence
         {
-            secCounter++;
+            secCounter++;//mid seconds counter
         }
         else//if the user starts talking again
         {
             if (secCounter >= 3 && secCounter <= 5)//if the silence has a duration between 1.5 and 2.5 seconds.
             {
                 silenceCounter++;
+                dictation.addSilence();
             }
             else if (secCounter > 5 && secCounter <= 7)//if the silence has a duration between 2.5 and 3.5 seconds.
             {
                 longSilenceCounter++;
+                dictation.addLongSilence();
             }
             UpdateSilencesTexts();
             secCounter = 0;

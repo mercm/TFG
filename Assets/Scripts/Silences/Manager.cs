@@ -14,12 +14,14 @@ public class Manager : MonoBehaviour
     public Text countDownText;//Countdown to start Text
     public static string speech = "";
     public TextMeshPro speechText;//Speech Text
+    private Dictation dictation;
 
     //private bool started;
 
     public GameObject resultsGO;
     //public GameObject Preparation;
     public GameObject SoundLoudnessGO;
+    public GameObject DictationGO;
 
 
     //Sound
@@ -40,6 +42,7 @@ public class Manager : MonoBehaviour
         countDownText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         speechText.gameObject.SetActive(false);
+        dictation = DictationGO.GetComponent<Dictation>();
         //Results.gameObject.SetActive(false);
         //SoundLoudnessGO.gameObject.SetActive(false);
 
@@ -80,6 +83,7 @@ public class Manager : MonoBehaviour
             countDownText.gameObject.SetActive(false);
             //speechText.gameObject.SetActive(true);
             SoundLoudnessGO.gameObject.SetActive(true);
+            dictation.enableDictation();
         }
         else
         {
@@ -91,8 +95,8 @@ public class Manager : MonoBehaviour
                 //started = false;
                 timerText.gameObject.SetActive(false);
                 speechText.gameObject.SetActive(false);
-                resultsGO.gameObject.SetActive(true);
                 SoundLoudnessGO.gameObject.SetActive(false);
+                resultsGO.gameObject.SetActive(true);
                 //SoundLoudness.collect = false;
                 this.gameObject.SetActive(false);
             }

@@ -18,7 +18,7 @@ public class SoundLoudness : MonoBehaviour
 
     float actTime;
 
-    private int secCounter = 0;
+    private float secCounter = 0f;
     public static int silenceCounter;
     public static int longSilenceCounter;
 
@@ -58,7 +58,7 @@ public class SoundLoudness : MonoBehaviour
         collect = true;
         UpdateSilencesTexts();
         actTime = Time.realtimeSinceStartup;
-        secCounter = 0;
+        secCounter = 0f;
         silenceCounter = 0;
         longSilenceCounter = 0;
     }
@@ -128,7 +128,7 @@ public class SoundLoudness : MonoBehaviour
                 CheckSilences(aux);
             }
             //results.Add(aux);
-            Debug.Log(aux);
+            //Debug.Log(aux);
             //if (DataManager.instance != null) DataManager.instance.AddSound(aux);
             actTime = Time.realtimeSinceStartup;
         }
@@ -138,16 +138,19 @@ public class SoundLoudness : MonoBehaviour
     {
         if (aux <= silenceThreshold)//if the user is in silence
         {
-            secCounter++;//mid seconds counter
+            secCounter += 0.5f;//mid seconds counter
+            //Debug.Log(secCounter);
         }
         else//if the user starts talking again
         {
-            if (secCounter >= 3 && secCounter <= 5)//if the silence has a duration between 1.5 and 2.5 seconds.
+
+            Debug.Log(secCounter);
+            if (secCounter >= 0.5 && secCounter <= 0.9)
             {
                 silenceCounter++;
                 dictation.addSilence();
             }
-            else if (secCounter > 5 && secCounter <= 7)//if the silence has a duration between 2.5 and 3.5 seconds.
+            else if (secCounter > 0.9 && secCounter <= 2)
             {
                 longSilenceCounter++;
                 dictation.addLongSilence();

@@ -20,23 +20,26 @@ public class Dictation : MonoBehaviour
     private float countDown;
     private Results results;
     public GameObject ResultsGO;
+    private Manager manager;
+    public GameObject ManagerGO;
 
     // Start is called before the first frame update
     void Start()
     {
         dictationRecognizer = new DictationRecognizer();
-        dictationRecognizer.InitialSilenceTimeoutSeconds = 500;//Pensar si este valor tiene sentido
-        dictationRecognizer.AutoSilenceTimeoutSeconds = 800;//Pensar si este valor tiene sentido
+        dictationRecognizer.InitialSilenceTimeoutSeconds = 7f;//Pensar si este valor tiene sentido
+        dictationRecognizer.AutoSilenceTimeoutSeconds = 3.5f;//Pensar si este valor tiene sentido
 
         dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
         dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
         dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
         dictationRecognizer.DictationError += DictationRecognizer_DictationError;
 
-        enable = false;
-        finish = false;
+        //enable = false;
+        //finish = false;
 
-        results = ResultsGO.GetComponent<Results>();
+        //results = ResultsGO.GetComponent<Results>();
+        manager = ManagerGO.GetComponent<Manager>();
 
         //PhraseRecognitionSystem.Shutdown();//Lo necesito?
         //dictationRecognizer.Start();
@@ -51,7 +54,12 @@ public class Dictation : MonoBehaviour
 
     private void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
     {
-        //Aquí iba lo que está en OnDisable
+        //results.setReady(true);
+        manager.setStop(true);
+        dictationRecognizer.Stop();
+        StreamWriter outputFile = new StreamWriter(@"C:\Users\esthe\Documents\Universidad\TFG\Repo\TFG\Assets\Outputs\output.txt");
+        outputFile.WriteLine(resultText);
+        outputFile.Close();
     }
 
     private void DictationRecognizer_DictationHypothesis(string text)
@@ -80,10 +88,10 @@ public class Dictation : MonoBehaviour
     {
        // PhraseRecognitionSystem.Shutdown();//Lo necesito?
         dictationRecognizer.Start();
-        enable = true;
+        //enable = true;
         //finish = false;
         resultText = "";
-        countDown = 5;
+        //countDown = 5;
     }
 
     public void addSilence()
@@ -99,7 +107,8 @@ public class Dictation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enable && Input.GetKeyDown(KeyCode.Space))
+        UnityEngine.Debug.Log("DICTATOR STATUS: " + dictationRecognizer.Status);
+        /*if (enable && Input.GetKeyDown(KeyCode.Space))
         {
             enable = false;
             finish = true;
@@ -120,6 +129,6 @@ public class Dictation : MonoBehaviour
             {
                 countDown -= Time.deltaTime;
             }
-        }
+        }*/
     }
 }

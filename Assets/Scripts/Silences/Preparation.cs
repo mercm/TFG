@@ -11,8 +11,8 @@ public class Preparation : MonoBehaviour
 
     //List<string> speeches = new List<string>(); //contains the speeches the user can select.
     //List<string> instructions = new List<string>(); //contains the specific instructions for starting the game.
-    private string[] speeches = new string[3];
-    private string[] instructions = new string[3];
+    private string[] speeches = new string[6];
+    private string[] instructions = new string[6];
 
     private bool spacePressed;
     private int choosenSpeech;
@@ -33,6 +33,9 @@ public class Preparation : MonoBehaviour
         instructions[0] = CreateSilencesText(2, 2);
         instructions[1] = CreateSilencesText(3, 1);
         instructions[2] = CreateSilencesText(3, 0);
+        instructions[3] = CreateSilencesText(6, 1);
+        instructions[4] = CreateSilencesText(6, 1);
+        instructions[5] = CreateSilencesText(6, 1);
 
         speeches[0] =
             @"La vida es lo mas preciado que posee el hombre, a el se le otorga una sola vez y debe saber vivirla de forma tal, 
@@ -48,8 +51,28 @@ public class Preparation : MonoBehaviour
             escribir con moderación. ¡No! ¡No! Decid a un hombre que su casa está en llamas para no darle una alarma moderada;
             decidle que rescate a su esposa de manos del raptor; decidle a una madre, que libere poco a poco a su hijo del fuego
             en que ha caído; pero no me animéis a emplear la moderación en la lucha por una causa tan justa como la presente.";
+        speeches[3] =
+            @"Con diez cañones por banda,
+            viento en popa a toda vela,
+            no corta el mar, sino vuela
+            un velero bergantín;
 
-        preparationText.text =
+            bajel pirata que llaman,
+            por su bravura, el Temido,
+            en todo mar conocido
+            del uno al otro confín.";
+        speeches[4] =
+            @"Martina despertó a las ocho, como todas las mañanas. No le costaba madrugar, pero lo que sí le molestaba era salir de 
+            la cama en invierno: odiaba el frío. Sin embargo, al abrir los ojos aquel día, no pensó en lo húmedas que iban a estar la 
+            ropa y las zapatillas para ir al colegio —todo ya preparado por ella misma sobre su escritorio, la noche anterior—. Tenía 
+            una sensación rara en el estómago, como si allí dentro hubiese algo… que no solía estar allí.";
+        speeches[5] =
+            @"Aparte del vaso de zumo, Martina bebió su acostumbrado vaso de leche y se comió el huevo, tres galletas y terminó la ensalada. 
+            Durante todo el tiempo que estuvo comiendo, su madre no le quitó ojo de encima; no daba crédito.Por su parte, Martina mantuvo la 
+            mirada fija en los alimentos que iba engullendo.Cuando terminó se levantó de la silla, miró a su madre y al reloj colgado en la cocina. 
+            ¡Se había hecho tarde y no iba a llegar a coger el autobús!Su madre se dio cuenta de la cara de susto de Martina y miró también hacia el reloj.";
+
+     preparationText.text =
             "Welcome! It is time to practice the silences of your speech. Select an speech from 1 to " +
             speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";
     }
@@ -92,6 +115,24 @@ public class Preparation : MonoBehaviour
                     preparationText.text = instructions[choosenSpeech];
                     silencesNeeded = 3;
                     longSilencesNeeded = 0;
+                    break;
+                case "4":
+                    choosenSpeech = 3;
+                    preparationText.text = instructions[choosenSpeech];
+                    silencesNeeded = 6;
+                    longSilencesNeeded = 1;
+                    break;
+                case "5":
+                    choosenSpeech = 4;
+                    preparationText.text = instructions[choosenSpeech];
+                    silencesNeeded = 6;
+                    longSilencesNeeded = 1;
+                    break;
+                case "6":
+                    choosenSpeech = 5;
+                    preparationText.text = instructions[choosenSpeech];
+                    silencesNeeded = 6;
+                    longSilencesNeeded = 1;
                     break;
             }
         }

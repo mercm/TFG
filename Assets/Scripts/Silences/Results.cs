@@ -22,15 +22,16 @@ public class Results : MonoBehaviour
         again.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
-    public void setReady(bool ready)
+    /*public void setReady(bool ready)
     {
         resultsReady = ready;
-    }
+    }*/
     void OnEnable()
     {
         resultsText.gameObject.SetActive(true);
         returnButton.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
+        resultsReady = true;
     }
     void OnDisable()
     {

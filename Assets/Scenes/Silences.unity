@@ -2864,6 +2864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResultsGO: {fileID: 2079801556}
+  ManagerGO: {fileID: 1843480322}
 --- !u!4 &1922320928
 Transform:
   m_ObjectHideFlags: 0

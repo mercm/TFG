@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour
     public TextMeshPro speechText;//Speech Text
     private Dictation dictation;
 
-    //private bool started;
+    private bool stop;
 
     public GameObject resultsGO;
     //public GameObject Preparation;
@@ -55,6 +55,7 @@ public class Manager : MonoBehaviour
         timerText.text = "" + (int)timer;
         countDown = 4;
         countDownText.text = "" + (int)countDown;
+        stop = false;
 
         timerText.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(true);
@@ -66,6 +67,11 @@ public class Manager : MonoBehaviour
         timerText.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(true);
     }*/
+
+    public void setStop(bool set)
+    {
+        stop = set;
+    }
 
     // Update is called once per frame
     private void Update()
@@ -90,9 +96,9 @@ public class Manager : MonoBehaviour
 
 
             timer += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
+            //if (Input.GetKeyDown(KeyCode.Space))
+            if(stop)
             {
-                //started = false;
                 timerText.gameObject.SetActive(false);
                 speechText.gameObject.SetActive(false);
                 SoundLoudnessGO.gameObject.SetActive(false);

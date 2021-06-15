@@ -12,44 +12,40 @@ public class SoundLoudness : MonoBehaviour
 
 
     int _sampleWindow = 1024;
-    private List<float> results;
+    //private List<float> results;
     public static bool collect;
-    public bool startedTalking;//Not taking into consideration the first silence
+    //public bool startedTalking;//Not taking into consideration the first silence
+    private float volume;
 
     float actTime;
 
     private float secCounter = 0f;
     public static int silenceCounter;
     public static int longSilenceCounter;
+    private string lastSilence;
 
     public Text silencesText;
     public Text longSilencesText;
 
-    private Dictation dictation;
+    //private Dictation dictation;
 
     public GameObject Results;
-    public GameObject DictationGO;
+    //public GameObject DictationGO;
     //public GameObject PreparationGO;
 
     //mic initialization
 
     void Start()
     {
-        //Results.gameObject.SetActive(false);
-
-        results = new List<float>();
-        dictation = DictationGO.GetComponent<Dictation>();
+        //results = new List<float>();
+        //dictation = DictationGO.GetComponent<Dictation>();
         //collect = true;
         this.gameObject.SetActive(false);
-    }
-    public void changeCollecting(bool change)
-    {
-        collect = change;
     }
     void OnDisable()
     {
         collect = false;
-        startedTalking = false;
+        //startedTalking = false;
         silencesText.text = "Silences";
         longSilencesText.text = "Long silences";
     }
@@ -62,10 +58,10 @@ public class SoundLoudness : MonoBehaviour
         silenceCounter = 0;
         longSilenceCounter = 0;
     }
-    public float[] GetData()
+    /*public float[] GetData()
     {
         return results.ToArray();
-    }
+    }*/
     /// <summary>
     /// Obtiene el valor medio cuadrático de 1024 muestras obtenidas en el instante.
     /// Con ese valor, calcula el valor en decibelios de la muestra. 
@@ -112,29 +108,29 @@ public class SoundLoudness : MonoBehaviour
         {
             return;
         }
-        float aux = -100f;
+        volume = -100f;
         UpdateSilencesTexts();
         //Destroy(Preparation);
         if (Time.realtimeSinceStartup - actTime > step)
         {
-            aux = getLoudness();
-            aux = aux * 100;
-            if(!startedTalking && aux >= silenceThreshold)//Make sure the first silence is not taken into consideration
+            volume = getLoudness();
+            volume = volume * 100;
+            /*if(!startedTalking && aux >= silenceThreshold)//Make sure the first silence is not taken into consideration
             {
                 startedTalking = true;
             }
             if (startedTalking)
             {
                 CheckSilences(aux);
-            }
+            }*/
             //results.Add(aux);
-            //Debug.Log(aux);
+            Debug.Log(volume);
             //if (DataManager.instance != null) DataManager.instance.AddSound(aux);
             actTime = Time.realtimeSinceStartup;
         }
     }
 
-    void CheckSilences(float aux)
+    /*void CheckSilences(float aux)
     {
         if (aux <= silenceThreshold)//if the user is in silence
         {
@@ -144,25 +140,51 @@ public class SoundLoudness : MonoBehaviour
         else//if the user starts talking again
         {
 
-            Debug.Log(secCounter);
+            //Debug.Log(secCounter);
             if (secCounter >= 0.5 && secCounter <= 0.9)
             {
                 silenceCounter++;
-                dictation.addSilence();
+                //dictation.addSilence();
             }
-            else if (secCounter > 0.9 && secCounter <= 2)
+            else if (secCounter > 0.9 && secCounter <= 3.9)
             {
                 longSilenceCounter++;
-                dictation.addLongSilence();
+                //dictation.addLongSilence();
             }
             UpdateSilencesTexts();
-            secCounter = 0;
+            //secCounter = 0;
         }
-    }
+    }*/
 
     void UpdateSilencesTexts()
     {
         silencesText.text = "Silences: " + silenceCounter.ToString() + " /" + Preparation.silencesNeeded;
         longSilencesText.text = "Long silences: " + longSilenceCounter.ToString() + " /" + Preparation.longSilencesNeeded;
+    }
+
+    /*public float GetSecCounter()
+    {
+        return secCounter;
+    }
+    public void setSecCounter(float set)
+    {
+        secCounter = set;
+    }*/
+    public void AddSilence()
+    {
+        silenceCounter++;
+    }
+    public void AddLongSilence()
+    {
+        longSilenceCounter++;
+    }
+
+    public bool StillOnSilence()
+    {
+        if (volume <= silenceThreshold)//if the user is in silence
+        {
+            return true;
+        }
+        return false;
     }
 }

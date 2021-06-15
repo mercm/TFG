@@ -14,32 +14,33 @@ using System.IO;
 public class Dictation : MonoBehaviour
 {
     private DictationRecognizer dictationRecognizer;
+
     private string resultText;
-    private bool enable;
+    private string auxText;
+    private bool enableCount;
     private bool finish;
-    private float countDown;
-    private Results results;
-    public GameObject ResultsGO;
+    private float secCounter;
+
     private Manager manager;
+    private SoundLoudness soundLoudness;
+
     public GameObject ManagerGO;
+    public GameObject SoundLoudnessGO;
 
     // Start is called before the first frame update
     void Start()
     {
         dictationRecognizer = new DictationRecognizer();
-        dictationRecognizer.InitialSilenceTimeoutSeconds = 7f;//Pensar si este valor tiene sentido
-        dictationRecognizer.AutoSilenceTimeoutSeconds = 3.5f;//Pensar si este valor tiene sentido
+        dictationRecognizer.InitialSilenceTimeoutSeconds = 4.0f;
+        dictationRecognizer.AutoSilenceTimeoutSeconds = 0.5f;
 
         dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
         dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
         dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
         dictationRecognizer.DictationError += DictationRecognizer_DictationError;
 
-        //enable = false;
-        //finish = false;
-
-        //results = ResultsGO.GetComponent<Results>();
         manager = ManagerGO.GetComponent<Manager>();
+        soundLoudness = SoundLoudnessGO.GetComponent<SoundLoudness>();
 
         //PhraseRecognitionSystem.Shutdown();//Lo necesito?
         //dictationRecognizer.Start();
@@ -48,13 +49,12 @@ public class Dictation : MonoBehaviour
     //In this method we manage the output text
     private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
     {
-        //dictationRecognizer.Start();
-        resultText += " " + text;
+        resultText += " " + text;//Adds the text said before starting the silence
     }
 
     private void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
     {
-        //results.setReady(true);
+        //Ahora está en Update() en más de 4 segundos
         manager.setStop(true);
         dictationRecognizer.Stop();
         StreamWriter outputFile = new StreamWriter(@"C:\Users\esthe\Documents\Universidad\TFG\Repo\TFG\Assets\Outputs\output.txt");
@@ -87,48 +87,46 @@ public class Dictation : MonoBehaviour
     public void enableDictation()
     {
        // PhraseRecognitionSystem.Shutdown();//Lo necesito?
-        dictationRecognizer.Start();
-        //enable = true;
-        //finish = false;
+
         resultText = "";
-        //countDown = 5;
-    }
+        secCounter = 0.5f;
+        auxText = "";
+        enableCount = false;
+        finish = false;
 
-    public void addSilence()
-    {
-        resultText += " // ";
-    }
-
-    public void addLongSilence()
-    {
-        resultText += " /// ";
+        dictationRecognizer.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Debug.Log("DICTATOR STATUS: " + dictationRecognizer.Status);
-        /*if (enable && Input.GetKeyDown(KeyCode.Space))
+        //if (enableCount && !finish)
+        if (!finish)
         {
-            enable = false;
-            finish = true;
-        }
-        if (finish)//To make sure all the text has been written
-        {
-            if (countDown <= 0)
+            if (!soundLoudness.StillOnSilence())
             {
-                results.setReady(true);
-                dictationRecognizer.Stop();
-                StreamWriter outputFile = new StreamWriter(@"C:\Users\esthe\Documents\Universidad\TFG\Repo\TFG\Assets\Outputs\output.txt");
-                outputFile.WriteLine(resultText);
-                outputFile.Close();
-                finish = false;
-                //PhraseRecognitionSystem.Restart();
+                secCounter += 0.5f;
             }
             else
             {
-                countDown -= Time.deltaTime;
+                if (secCounter >= 0.5 && secCounter <= 0.9)
+                {
+                    soundLoudness.AddSilence();
+                    resultText += " // ";
+                }
+                else if (secCounter > 0.9 && secCounter <= 3.9)
+                {
+                    soundLoudness.AddLongSilence();
+                    resultText += " /// ";
+                }
+                else if(secCounter > 3.9)
+                {
+                    finish = true;
+                }
+                auxText = "";
+                enableCount = false;
+                secCounter = 0.5f;
             }
-        }*/
+        }
     }
 }

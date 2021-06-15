@@ -2863,8 +2863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f591d76758c23449ce715a409aaefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResultsGO: {fileID: 2079801556}
   ManagerGO: {fileID: 1843480322}
+  SoundLoudnessGO: {fileID: 583030218}
 --- !u!4 &1922320928
 Transform:
   m_ObjectHideFlags: 0

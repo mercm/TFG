@@ -3393,6 +3393,11 @@ PrefabInstance:
       propertyPath: DictationGO
       value: 
       objectReference: {fileID: 1922320926}
+    - target: {fileID: 4100599635556610375, guid: d463af684910bd84992c51fdfd75da71,
+        type: 3}
+      propertyPath: startedTalking
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d463af684910bd84992c51fdfd75da71, type: 3}
 --- !u!1001 &7608758275613268661

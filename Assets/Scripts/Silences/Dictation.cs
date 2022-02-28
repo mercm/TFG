@@ -15,6 +15,7 @@ public class Dictation : MonoBehaviour
 {
     private DictationRecognizer dictationRecognizer;
     private string resultText;
+    private string silenceAuxText;
     private bool enable;
     private bool finish;
     private float countDown;
@@ -49,7 +50,8 @@ public class Dictation : MonoBehaviour
     private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
     {
         //dictationRecognizer.Start();
-        resultText += " " + text;
+        resultText += " " + text + " " + silenceAuxText;
+        silenceAuxText = "";
     }
 
     private void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
@@ -91,17 +93,20 @@ public class Dictation : MonoBehaviour
         //enable = true;
         //finish = false;
         resultText = "";
+        silenceAuxText = "";
         //countDown = 5;
     }
 
     public void addSilence()
     {
-        resultText += " // ";
+        silenceAuxText += " // ";
+        dictationRecognizer.Stop();
+        dictationRecognizer.Start();
     }
 
     public void addLongSilence()
     {
-        resultText += " /// ";
+        silenceAuxText += " /// ";
     }
 
     // Update is called once per frame

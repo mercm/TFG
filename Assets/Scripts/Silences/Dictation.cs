@@ -58,7 +58,7 @@ public class Dictation : MonoBehaviour
     {
         //results.setReady(true);
         manager.setStop(true);
-        dictationRecognizer.Stop();
+        //dictationRecognizer.Stop(); //A LO MEJOR HAY QUE DESCOMENTARLO PARA QUE FUNCIONE BIEN
         StreamWriter outputFile = new StreamWriter(@"C:\Users\esthe\Documents\Universidad\TFG\Repo\TFG\Assets\Outputs\output.txt");
         outputFile.WriteLine(resultText);
         outputFile.Close();
@@ -100,8 +100,8 @@ public class Dictation : MonoBehaviour
     public void addSilence()
     {
         silenceAuxText += " // ";
-        dictationRecognizer.Stop();
-        dictationRecognizer.Start();
+        //dictationRecognizer.Stop();
+        //dictationRecognizer.Start();
     }
 
     public void addLongSilence()

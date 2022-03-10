@@ -21,6 +21,7 @@ public class SoundLoudness : MonoBehaviour
     private float secCounter = 0f;
     public static int silenceCounter;
     public static int longSilenceCounter;
+    public static int silence4kw;
 
     public Text silencesText;
     public Text longSilencesText;
@@ -61,6 +62,7 @@ public class SoundLoudness : MonoBehaviour
         secCounter = 0f;
         silenceCounter = 0;
         longSilenceCounter = 0;
+        silence4kw = 0;
     }
     public float[] GetData()
     {
@@ -144,17 +146,18 @@ public class SoundLoudness : MonoBehaviour
         else//if the user starts talking again
         {
 
-            Debug.Log(secCounter);
-            if (secCounter >= 0.5 && secCounter <= 0.9)
+            //Debug.Log(secCounter);
+            if (secCounter >= 0.5 && secCounter <= 1.4)
             {
                 silenceCounter++;
-                dictation.addSilence();
+                //dictation.addSilence();
             }
-            else if (secCounter > 0.9 && secCounter <= 2)
+            else if (secCounter > 1.4 && secCounter <= 2.1)
             {
                 longSilenceCounter++;
-                dictation.addLongSilence();
+                //dictation.addLongSilence();
             }
+            silence4kw++;
             UpdateSilencesTexts();
             secCounter = 0;
         }

@@ -15,6 +15,7 @@ public class Manager : MonoBehaviour
     public static string speech = "";
     public TextMeshPro speechText;//Speech Text
     private Dictation dictation;
+    private Recognizer recognizer;
 
     private bool stop;
 
@@ -22,6 +23,10 @@ public class Manager : MonoBehaviour
     //public GameObject Preparation;
     public GameObject SoundLoudnessGO;
     public GameObject DictationGO;
+    public GameObject RecognizerGO;
+
+    private int points;
+    //enum CategoryPts {Perfect = 5, Good = 1, Bad = -2};
 
 
     //Sound
@@ -43,6 +48,7 @@ public class Manager : MonoBehaviour
         timerText.gameObject.SetActive(false);
         speechText.gameObject.SetActive(false);
         dictation = DictationGO.GetComponent<Dictation>();
+        recognizer = RecognizerGO.GetComponent<Recognizer>();
         //Results.gameObject.SetActive(false);
         //SoundLoudnessGO.gameObject.SetActive(false);
 
@@ -56,6 +62,7 @@ public class Manager : MonoBehaviour
         countDown = 4;
         countDownText.text = "" + (int)countDown;
         stop = false;
+        points = 0;
 
         timerText.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(true);
@@ -71,6 +78,16 @@ public class Manager : MonoBehaviour
     public void setStop(bool set)
     {
         stop = set;
+    }
+
+    public void setPoints(int pt)
+    {
+        points += pt;
+    }
+
+    public int getPoints()
+    {
+        return points;
     }
 
     // Update is called once per frame
@@ -89,20 +106,22 @@ public class Manager : MonoBehaviour
             countDownText.gameObject.SetActive(false);
             //speechText.gameObject.SetActive(true);
             SoundLoudnessGO.gameObject.SetActive(true);
-            dictation.enableDictation();
+            //dictation.enableDictation();
+            recognizer.enableRecognizer();
         }
         else
         {
 
 
             timer += Time.deltaTime;
-            //if (Input.GetKeyDown(KeyCode.Space))
-            if(stop)
+            if (Input.GetKeyDown(KeyCode.Space))
+            //if(stop)
             {
                 timerText.gameObject.SetActive(false);
                 speechText.gameObject.SetActive(false);
                 SoundLoudnessGO.gameObject.SetActive(false);
                 resultsGO.gameObject.SetActive(true);
+                recognizer.disableRecognizer();
                 //SoundLoudness.collect = false;
                 this.gameObject.SetActive(false);
             }

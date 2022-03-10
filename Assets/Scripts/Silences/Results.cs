@@ -13,11 +13,14 @@ public class Results : MonoBehaviour
     public GameObject panel;
     private bool resultsReady;
     public Button again;//Restart the game
+    private Manager manager;
+    public GameObject ManagerGO;
 
     // Start is called before the first frame update
     void Start()
     {
         resultsReady = false;
+        manager = ManagerGO.GetComponent<Manager>();
         resultsText.gameObject.SetActive(false);
         again.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
@@ -70,6 +73,7 @@ public class Results : MonoBehaviour
                     " and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
             }
 
+            resultsText.text += "You have made " + manager.getPoints() + " points!";
             //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
         }
 

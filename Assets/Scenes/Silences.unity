@@ -1174,6 +1174,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797485708}
   m_CullTransparentMesh: 0
+--- !u!1 &919702134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919702136}
+  - component: {fileID: 919702135}
+  m_Layer: 0
+  m_Name: RecognizerGO
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &919702135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919702134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8307ef1d09f408448ee543e4d6692c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ManagerGO: {fileID: 1843480322}
+--- !u!4 &919702136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919702134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.24, y: 2.499, z: 7.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &983986328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,6 +2720,7 @@ MonoBehaviour:
   resultsGO: {fileID: 2079801556}
   SoundLoudnessGO: {fileID: 583030218}
   DictationGO: {fileID: 1922320926}
+  RecognizerGO: {fileID: 919702134}
 --- !u!65 &1843480324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3085,6 +3130,7 @@ MonoBehaviour:
   preparation: {fileID: 0}
   panel: {fileID: 0}
   again: {fileID: 0}
+  ManagerGO: {fileID: 0}
 --- !u!65 &2026406389
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3213,6 +3259,7 @@ MonoBehaviour:
   preparation: {fileID: 1674180594}
   panel: {fileID: 1390364709}
   again: {fileID: 1794753051}
+  ManagerGO: {fileID: 1843480322}
 --- !u!1 &2080773279
 GameObject:
   m_ObjectHideFlags: 0

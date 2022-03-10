@@ -11,13 +11,15 @@ public class Preparation : MonoBehaviour
 
     //List<string> speeches = new List<string>(); //contains the speeches the user can select.
     //List<string> instructions = new List<string>(); //contains the specific instructions for starting the game.
-    private string[] speeches = new string[6];
-    private string[] instructions = new string[6];
+    private string[] speeches = new string[7];
+    //private string[] instructions = new string[7];
+    private List<string> keywords = new List<string>();
 
     private bool spacePressed;
     private int choosenSpeech;
     public static int silencesNeeded;
     public static int longSilencesNeeded;
+    public static List<string> kwordNeeded = new List<string>();
     public Button returnButton;
 
     //public GameObject SoundLoudness;
@@ -30,13 +32,16 @@ public class Preparation : MonoBehaviour
         //Manager.gameObject.SetActive(false);
         panel.gameObject.SetActive(true);
 
-        instructions[0] = CreateSilencesText(2, 2);
+        //Inicialization of the instruction
+        /*instructions[0] = CreateSilencesText(2, 2);
         instructions[1] = CreateSilencesText(3, 1);
         instructions[2] = CreateSilencesText(3, 0);
         instructions[3] = CreateSilencesText(6, 1);
         instructions[4] = CreateSilencesText(6, 1);
         instructions[5] = CreateSilencesText(6, 1);
+        instructions[6] = CreateSilencesText(6, 1);*/
 
+        //Inicialization of the speeches
         speeches[0] =
             @"La vida es lo mas preciado que posee el hombre, a el se le otorga una sola vez y debe saber vivirla de forma tal, 
             que no le cause un dolor torturante por los años pasados en vano; y para que no le remuerda la conciencia, por el ayer 
@@ -71,8 +76,20 @@ public class Preparation : MonoBehaviour
             Durante todo el tiempo que estuvo comiendo, su madre no le quitó ojo de encima; no daba crédito.Por su parte, Martina mantuvo la 
             mirada fija en los alimentos que iba engullendo.Cuando terminó se levantó de la silla, miró a su madre y al reloj colgado en la cocina. 
             ¡Se había hecho tarde y no iba a llegar a coger el autobús!Su madre se dio cuenta de la cara de susto de Martina y miró también hacia el reloj.";
+        speeches[6] =
+            @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con la mayor
+            esperanza en el futuro de España.
 
-     preparationText.text =
+            Una nación forjada a lo largo de siglos de Historia por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio y sin cuya
+            participación no puede entenderse el curso de la Humanidad.";
+
+        /*@"La vida es lo mas preciado que posee el hombre, a el se le otorga una sola vez y debe saber vivirla de forma tal, 
+            que no le cause un dolor torturante por los años pasados en vano; y para que no le remuerda la conciencia, por el ayer 
+            vil y mezquino que no lo supo aprovechar, y para que al morir pueda exclamar que toda su vida y todas sus fuerzas, 
+            lo ha dedicado a lo mas hermoso que posee el mundo, a la lucha por la justicia, la paz y la liberación de la humanidad.";*/
+
+
+        preparationText.text =
             "Welcome! It is time to practice the silences of your speech. Select an speech from 1 to " +
             speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";
     }
@@ -96,44 +113,65 @@ public class Preparation : MonoBehaviour
     {
         if (choosenSpeech == -1)
         {
+            kwordNeeded.Clear();
             switch (Input.inputString)
             {
                 case "1":
                     choosenSpeech = 0;
-                    preparationText.text = instructions[choosenSpeech];
+                    //kwordNeeded = keywords;
                     silencesNeeded = 2;
                     longSilencesNeeded = 2;
+                    kwordNeeded.Add("a el se le otorga");
+                    kwordNeeded.Add("que no le cause un dolor");
+                    kwordNeeded.Add("y para que no le remuerda");
+                    kwordNeeded.Add("y para que al morir");
+                    kwordNeeded.Add("lo mas hermoso");
+                    kwordNeeded.Add("a la lucha");
+                    kwordNeeded.Add("la paz");
+                    kwordNeeded.Add("y la liberación");
                     break;
                 case "2":
                     choosenSpeech = 1;
-                    preparationText.text = instructions[choosenSpeech];
                     silencesNeeded = 3;
                     longSilencesNeeded = 1;
                     break;
                 case "3":
                     choosenSpeech = 2;
-                    preparationText.text = instructions[choosenSpeech];
                     silencesNeeded = 3;
                     longSilencesNeeded = 0;
                     break;
                 case "4":
                     choosenSpeech = 3;
-                    preparationText.text = instructions[choosenSpeech];
                     silencesNeeded = 6;
                     longSilencesNeeded = 1;
                     break;
                 case "5":
                     choosenSpeech = 4;
-                    preparationText.text = instructions[choosenSpeech];
                     silencesNeeded = 6;
                     longSilencesNeeded = 1;
                     break;
                 case "6":
                     choosenSpeech = 5;
-                    preparationText.text = instructions[choosenSpeech];
                     silencesNeeded = 6;
                     longSilencesNeeded = 1;
                     break;
+                case "7":
+                    choosenSpeech = 6;
+                    silencesNeeded = 4;
+                    longSilencesNeeded = 1;
+                    kwordNeeded.Add("consciente de la responsabilidad");
+                    kwordNeeded.Add("y con la mayor esperanza");
+                    kwordNeeded.Add("Una nación forjada");
+                    kwordNeeded.Add("por el trabajo compartido");
+                    kwordNeeded.Add("y sin cuya participación");
+                    break;
+                case "default":
+                    break;
+            }
+            if (choosenSpeech != -1) // Only when a Speech has been selected
+            {
+                //preparationText.text = instructions[choosenSpeech];
+                preparationText.text = CreateSilencesText(silencesNeeded, longSilencesNeeded);
             }
         }
         else if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
@@ -162,8 +200,11 @@ public class Preparation : MonoBehaviour
 
     string CreateSilencesText(int silences, int longSilences)
     {
-        return "For this speech, you will need to do " + silences + " silences (between 1.5 and 2.5 seconds) and " + longSilences +
-            " long silences (between 2.5 and 3.5 seconds)." + 
+        return "For this speech, you will need to do " + silences + " silences (between 0.5 and 1.4 seconds) and " + longSilences +
+            " long silences (between 1.4 and 2.1 seconds)." + 
             "\n\nPress space to see the speech. Practice it as many times as you need and press SPACE to start presenting.";
+        /*return "For this speech, you will need to do " + silences + " silences (between 1.5 and 2.5 seconds) and " + longSilences +
+            " long silences (between 2.5 and 3.5 seconds)." +
+            "\n\nPress space to see the speech. Practice it as many times as you need and press SPACE to start presenting.";*/
     }
 }

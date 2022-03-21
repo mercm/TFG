@@ -200,7 +200,7 @@ public class Preparation : MonoBehaviour
 
     string CreateSilencesText(int silences, int longSilences)
     {
-        return "For this speech, you will need to do " + silences + " silences (between 0.5 and 1.4 seconds) and " + longSilences +
+        return "For this speech, you will need to do " + silences + " silences (between 0.7 and 1.4 seconds) and " + longSilences +
             " long silences (between 1.4 and 2.1 seconds)." + 
             "\n\nPress space to see the speech. Practice it as many times as you need and press SPACE to start presenting.";
         /*return "For this speech, you will need to do " + silences + " silences (between 1.5 and 2.5 seconds) and " + longSilences +

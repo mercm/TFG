@@ -37,23 +37,26 @@ public class Recognizer : MonoBehaviour
             {
                 //action to be performed when this keyword is spoken
                 //if player did a silence before de keyword
-                /*if (soundloudness.silence4kw == 1)
+                if (SoundLoudness.silence4kw == 1)
                 {
-                     manager.setpoints(manager.categorypts.perfect);
-                    manager.setpoints(5);
+                    //manager.setPoints(manager.categorypts.perfect);
+                    manager.setPoints(5);
+                    Debug.Log("5 points");
                 }
                 //if player did more than 1 silence before de keyword
-                else if (soundloudness.silence4kw > 1)
+                else if (SoundLoudness.silence4kw > 1)
                 {
-                    manager.setpoints(1);
+                    manager.setPoints(1);
+                    Debug.Log("1 points");
                 }
                 //if playes did not do any silence before the keyword
                 else
                 {
-                    manager.setpoints(-2);
+                    manager.setPoints(-2);
+                    Debug.Log("-2 points");
                 }
-                soundloudness.silence4kw = 0;*/
-                manager.setPoints(5);
+                SoundLoudness.silence4kw = 0;
+                //manager.setPoints(5);
             });
         }
         if (keywordRecognizer != null)

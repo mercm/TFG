@@ -15,12 +15,15 @@ public class Preparation : MonoBehaviour
     //private string[] instructions = new string[7];
     private List<string> keywords = new List<string>();
 
+    private int level;
     private bool spacePressed;
     private int choosenSpeech;
     public static int silencesNeeded;
     public static int longSilencesNeeded;
     public static List<string> kwordNeeded = new List<string>();
     public Button returnButton;
+    public Button audioButton;
+    public AudioSource audio;
 
     //public GameObject SoundLoudness;
     public GameObject ManagerGO;
@@ -31,6 +34,7 @@ public class Preparation : MonoBehaviour
         //SoundLoudness.gameObject.SetActive(false);
         //Manager.gameObject.SetActive(false);
         panel.gameObject.SetActive(true);
+        level = PlayerPrefs.GetInt("Level");
 
         //Inicialization of the instruction
         /*instructions[0] = CreateSilencesText(2, 2);
@@ -76,12 +80,39 @@ public class Preparation : MonoBehaviour
             Durante todo el tiempo que estuvo comiendo, su madre no le quitó ojo de encima; no daba crédito.Por su parte, Martina mantuvo la 
             mirada fija en los alimentos que iba engullendo.Cuando terminó se levantó de la silla, miró a su madre y al reloj colgado en la cocina. 
             ¡Se había hecho tarde y no iba a llegar a coger el autobús!Su madre se dio cuenta de la cara de susto de Martina y miró también hacia el reloj.";
-        speeches[6] =
-            @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con la mayor
-            esperanza en el futuro de España.
 
-            Una nación forjada a lo largo de siglos de Historia por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio y sin cuya
-            participación no puede entenderse el curso de la Humanidad.";
+        if(level == 1)
+        {
+
+            speeches[6] =
+                @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, (//) consciente de la responsabilidad que comporta (//) y con 
+            la mayor esperanza en el futuro de España. (///)
+
+            Una nación forjada a lo largo de siglos de Historia (//) por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio 
+            (//) y sin cuya participación no puede entenderse el curso de la Humanidad.";
+
+            preparationText.text =
+           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
+           "and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
+        }
+        else if (level == 2 || level == 3)
+        {
+
+            speeches[6] =
+                @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con 
+            la mayor esperanza en el futuro de España.
+
+            Una nación forjada a lo largo de siglos de Historia por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio 
+            y sin cuya participación no puede entenderse el curso de la Humanidad.";
+
+            preparationText.text =
+           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
+           "and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
+        }
+        else
+        {
+            Debug.LogError("Problems with level number.");
+        }
 
         /*@"La vida es lo mas preciado que posee el hombre, a el se le otorga una sola vez y debe saber vivirla de forma tal, 
             que no le cause un dolor torturante por los años pasados en vano; y para que no le remuerda la conciencia, por el ayer 
@@ -89,21 +120,36 @@ public class Preparation : MonoBehaviour
             lo ha dedicado a lo mas hermoso que posee el mundo, a la lucha por la justicia, la paz y la liberación de la humanidad.";*/
 
 
-        preparationText.text =
+        /*preparationText.text =
             "Welcome! It is time to practice the silences of your speech. Select an speech from 1 to " +
-            speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";
+            speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";*/
+       
     }
 
     private void OnEnable()
     {
         choosenSpeech = -1;
         spacePressed = false;
-        returnButton.gameObject.SetActive(true);
+        returnButton.gameObject.SetActive(false);
+        audioButton.gameObject.SetActive(false);
 
         Manager.speech = "";
-        preparationText.text =
+        if(level == 1)
+        {
+            preparationText.text =
+           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
+           "and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
+        }
+        else if (level == 2 || level == 3)
+        {
+            preparationText.text =
+           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
+           "and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
+        }
+        
+        /*preparationText.text =
             "Welcome! It is time to practice the silences of your speech. Select an speech from 1 to " +
-            speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";
+            speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present. Press the LEFT ARROW to choose another speech.";*/
         preparationText.gameObject.SetActive(true);
         //ManagerGO.gameObject.SetActive(false);
     }
@@ -111,7 +157,7 @@ public class Preparation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (choosenSpeech == -1)
+        /*if (choosenSpeech == -1)
         {
             kwordNeeded.Clear();
             switch (Input.inputString)
@@ -195,7 +241,39 @@ public class Preparation : MonoBehaviour
             spacePressed = false;
             preparationText.text =
                 "Select an speech from 1 to " + speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present.";
+        }*/
+
+        if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
+        {
+            choosenSpeech = 6;
+            silencesNeeded = 4;
+            longSilencesNeeded = 1;
+            kwordNeeded.Clear();
+            kwordNeeded.Add("consciente de la responsabilidad");
+            kwordNeeded.Add("y con la mayor esperanza");
+            kwordNeeded.Add("Una nación forjada");
+            kwordNeeded.Add("por el trabajo compartido");
+            kwordNeeded.Add("y sin cuya participación");
+            preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.";
+            spacePressed = true;
+            if (level == 1 || level == 2)
+            {
+                audioButton.gameObject.SetActive(true);
+            }
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            preparationText.text = speeches[choosenSpeech];
+            Manager.speech = preparationText.text;
+            preparationText.gameObject.SetActive(false);
+            panel.gameObject.SetActive(false);
+            ManagerGO.gameObject.SetActive(true);
+            returnButton.gameObject.SetActive(false);
+            audio.Stop();
+            audioButton.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
+
     }
 
     string CreateSilencesText(int silences, int longSilences)

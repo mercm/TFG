@@ -12,6 +12,7 @@ public class VolumePreparation : MonoBehaviour
 
     private bool spacePressed;
     private int neededSilences;
+    private int level;
     //private bool next;
     //private float countDown;//Countdown to start
     //public Text countDownText;//Countdown to start Text
@@ -23,7 +24,8 @@ public class VolumePreparation : MonoBehaviour
     // Start is called before the first frame update
     /*void Start()
     {
-        
+        panel.gameObject.SetActive(true);
+        level = PlayerPrefs.GetInt("Level");
     }*/
 
     private void OnEnable()

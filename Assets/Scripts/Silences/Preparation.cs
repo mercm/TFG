@@ -130,7 +130,7 @@ public class Preparation : MonoBehaviour
     {
         choosenSpeech = -1;
         spacePressed = false;
-        returnButton.gameObject.SetActive(false);
+        returnButton.gameObject.SetActive(false);//Seguro?
         audioButton.gameObject.SetActive(false);
 
         Manager.speech = "";
@@ -254,7 +254,7 @@ public class Preparation : MonoBehaviour
             kwordNeeded.Add("Una nación forjada");
             kwordNeeded.Add("por el trabajo compartido");
             kwordNeeded.Add("y sin cuya participación");
-            preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.";
+            preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
             spacePressed = true;
             if (level == 1 || level == 2)
             {
@@ -263,8 +263,8 @@ public class Preparation : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            preparationText.text = speeches[choosenSpeech];
-            Manager.speech = preparationText.text;
+            //preparationText.text = speeches[choosenSpeech];
+            Manager.speech = speeches[choosenSpeech];//preparationText.text
             preparationText.gameObject.SetActive(false);
             panel.gameObject.SetActive(false);
             ManagerGO.gameObject.SetActive(true);

@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 
-public class VolumeSoundLoudness : MonoBehaviour
+public class PracticeVolumeSoundLoudness : MonoBehaviour
 {
     private const int MAX_VOLUME = 100;
 
@@ -183,7 +183,7 @@ public class VolumeSoundLoudness : MonoBehaviour
             float height = aux2 * (topPointerGO.transform.position.y - upperThresholdGO.transform.position.y) + upperThresholdGO.transform.position.y;
             pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
-        else
+        else //Incorrect volume (too low)
         {
             //Puntar la raya roja por encima de las marcas. Mandar mensaje "raise the volume"
             pointerMaterial.color = Color.red;

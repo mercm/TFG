@@ -6,27 +6,77 @@ using UnityEngine.UI;
 
 public class VolumePreparation : MonoBehaviour
 {
+
+    private const float MAX_VOLUME = 8.0f;
     public Text preparationText;
     private string speech;
     public Button returnButton;
 
     private bool spacePressed;
-    private int neededSilences;
+    //private int neededSilences;
     private int level;
     //private bool next;
     //private float countDown;//Countdown to start
     //public Text countDownText;//Countdown to start Text
+    private float upperThreshold;
+    private float lowerThreshold;
 
     //public GameObject VolumeSoundLoudnessGO;
     public GameObject VolumeManagerGO;
+    public GameObject VolumeSoundLoudnessGO;
     public GameObject panel;
+    public GameObject pointerGO;
+    public GameObject topPointerGO;
+    public GameObject bottomPointerGO;
+    public GameObject upperThresholdGO;
+    public GameObject lowerThresholdGO;
+    //public GameObject speechPanel;
+    private VolumeSoundLoudness volumeSL;
 
     // Start is called before the first frame update
-    /*void Start()
+    void Start()
     {
         panel.gameObject.SetActive(true);
         level = PlayerPrefs.GetInt("Level");
-    }*/
+        volumeSL = VolumeSoundLoudnessGO.GetComponent<VolumeSoundLoudness>();
+        if(level == 1)
+        {
+            preparationText.text =
+            "Welcome! It is time to practice the volume of your speech. You are going to speak in a small scenario so remember not to shout.\n\n" +
+            "Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
+            upperThreshold = 3.5f;
+            lowerThreshold = 0.5f;
+        }
+        else if(level == 2)
+        {
+            preparationText.text =
+            "Welcome! It is time to practice the volume of your speech. You are going to speak in a medium scenario so remember to raise the volume a bit.\n\n" +
+            "Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
+            upperThreshold = 5.0f;
+            lowerThreshold = 3.0f;
+        }
+        else if(level == 3)
+        {
+            preparationText.text =
+            "Welcome! It is time to practice the volume of your speech. You are going to speak in a big scenario so remember to raise the volume but try not to shout.\n\n" +
+            "Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
+            upperThreshold = 6.0f;
+            lowerThreshold = 5.0f;
+        }
+        /*else
+        {
+            upperThreshold = 3.5f;
+            lowerThreshold = 0.5f;
+        }*/
+
+        volumeSL.SetThresholds(upperThreshold, lowerThreshold);
+        /*float height = (upperThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y) / MAX_VOLUME;
+        upperThresholdGO.transform.position = new Vector3(upperThresholdGO.transform.position.x, height, upperThresholdGO.transform.position.z);
+        height = (lowerThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y) / MAX_VOLUME;
+        lowerThresholdGO.transform.position = new Vector3(lowerThresholdGO.transform.position.x, height, lowerThresholdGO.transform.position.z);
+        height = ((upperThreshold + lowerThreshold) / 2) * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+        pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);*/
+    }
 
     private void OnEnable()
     {
@@ -37,12 +87,28 @@ public class VolumePreparation : MonoBehaviour
             "que no le cause un dolor torturante por los años pasados en vano; y para que no le remuerda la conciencia, por el ayer " +
             "vil y mezquino que no lo supo aprovechar, y para que al morir pueda exclamar que toda su vida y todas sus fuerzas, " +
             "lo ha dedicado a lo mas hermoso que posee el mundo, a la lucha por la justicia, la paz y la liberación de la humanidad.";
-        neededSilences = 20;
+        //neededSilences = 20;
 
-        preparationText.text =
+        if(level == 1)
+        {
+            preparationText.text =
             "Welcome! It is time to practice the volume of your speech. You are going to speak in a small scenario so remember not to shout.\n\n" +
             "Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
+        }
+        else if (level == 2)
+        {
+            preparationText.text =
+            "Welcome! It is time to practice the volume of your speech. You are going to speak in a medium scenario so remember to raise the volume a bit.\n\n" +
+            "Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
+        }
+        else //if (level == 3)
+        {
+            preparationText.text =
+            "Welcome! It is time to practice the volume of your speech. You are going to speak in a big scenario so remember to raise the volume but try not to shout.\n\n" +
+            "Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
+        }
 
+        //speechPanel.gameObject.SetActive(false);
         preparationText.gameObject.SetActive(true);
         spacePressed = false;
     }
@@ -52,14 +118,15 @@ public class VolumePreparation : MonoBehaviour
     {
         if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
         {
-            preparationText.text = speech + "\n\nPress SPACE when you are ready to start. Press SPACE again to finish the game.";
+            preparationText.text = speech + "\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
             spacePressed = true;
         }
-        else if (spacePressed && Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
             VolumeManager.speech = speech;
-            VolumeManager.neededSilences = neededSilences;
+            //VolumeManager.neededSilences = neededSilences;
             panel.gameObject.SetActive(false);
+            //speechPanel.gameObject.SetActive(true);
             preparationText.gameObject.SetActive(false);
             VolumeManagerGO.gameObject.SetActive(true);
             returnButton.gameObject.SetActive(false);

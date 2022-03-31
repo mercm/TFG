@@ -4,28 +4,32 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VolumeManager : MonoBehaviour
+public class PracticeVolumeManager : MonoBehaviour
 {
     //public static DataManager instance = null;
+    private float timer;//Ascencent timer
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
+    private int points;
     public static string speech = "";
     public TextMeshPro speechText;
     public TextMeshPro correctionsText;
-    public Text resultsText;//Results Text
+    public TextMeshPro timerText;//Ascendent timer Text
+    //public Text resultsText;//Results Text
     public Button again;//Restart the game
     public Button returnButton;
+
+    private PracticeRecognizer recognizer;
+
     public GameObject panel;
+    public GameObject RecognizerGO;
 
     //private bool started;
 
     //public static int neededSilences;//Seconds of silences the next need to be correct
-    private int correctSecs;//Correct seconds the user has done in the game
-    private int upIncorrectSecs;//Incorrect upper volume seconds the user has done in the game
-    private int lowIncorrectSecs;//Incorrect lower volume seconds the user has done in the game
-    private float percentage;//Percentage of correct seconds in the game
-
-    public GameObject VolumeSoundLoudnessGO;
+    
+    public GameObject SoundLoudnessGO;
+    public GameObject resultsGO;
 
 
     //Sound
@@ -45,10 +49,12 @@ public class VolumeManager : MonoBehaviour
 
         countDownText.gameObject.SetActive(false);
         speechText.gameObject.SetActive(false);
-        resultsText.gameObject.SetActive(false);
+        //resultsText.gameObject.SetActive(false);
         //Results.gameObject.SetActive(false);
-        VolumeSoundLoudnessGO.gameObject.SetActive(false);
+        SoundLoudnessGO.gameObject.SetActive(false);
         again.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
+        recognizer = RecognizerGO.GetComponent<PracticeRecognizer>();
 
         this.gameObject.SetActive(false);
     }
@@ -58,17 +64,32 @@ public class VolumeManager : MonoBehaviour
         countDown = 4;
         countDownText.text = "" + (int)countDown;
         correctionsText.text = "";
+        timer = 0.0f;
+        timerText.text = "" + (int)timer;
+        points = 0;
 
         countDownText.gameObject.SetActive(true);
         speechText.gameObject.SetActive(true);
         correctionsText.gameObject.SetActive(true);
+        timerText.gameObject.SetActive(true);
     }
+
     /*public void SetStart()
     {
         //started = true;
         timerText.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(true);
     }*/
+
+    public void SetPoints(int pt)
+    {
+        points += pt;
+    }
+
+    public int GetPoints()
+    {
+        return points;
+    }
 
     // Update is called once per frame
     private void Update()
@@ -84,58 +105,30 @@ public class VolumeManager : MonoBehaviour
         {
             countDown = 0;
             countDownText.gameObject.SetActive(false);
-            VolumeSoundLoudnessGO.gameObject.SetActive(true);
+            SoundLoudnessGO.gameObject.SetActive(true);
+            recognizer.EnableRecognizer();
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space)) //When game is finished
         {
-            //started = false;
-
-            VolumeSoundLoudnessGO.gameObject.SetActive(false);
-            //SoundLoudness.collect = false;
-
-            //Give the result
-            correctSecs = VolumeSoundLoudness.correctSecCounter;
-            upIncorrectSecs = VolumeSoundLoudness.upIncorrectSecCounter;
-            lowIncorrectSecs = VolumeSoundLoudness.lowIncorrectSecCounter;
-
-            /*if (lowIncorrectSecs <= neededSilences)
-            {
-                lowIncorrectSecs = 0;
-            }
-            else
-            {
-                lowIncorrectSecs = lowIncorrectSecs - neededSilences;
-
-            }*/
-            if (correctSecs + upIncorrectSecs + lowIncorrectSecs != 0)
-            {
-                float total = correctSecs + upIncorrectSecs + lowIncorrectSecs;
-                float points = (correctSecs / total);
-                percentage = points * 100;
-                percentage = Mathf.Round(percentage * 100f) / 100f;
-            }
-            else
-            {
-                percentage = 0;
-            }
+            SoundLoudnessGO.gameObject.SetActive(false);
+            resultsGO.gameObject.SetActive(true);
+            timerText.gameObject.SetActive(false);
             speechText.gameObject.SetActive(false);
-            correctionsText.gameObject.SetActive(false);
-            panel.gameObject.SetActive(true);
-            resultsText.text = "You have used the correct volume the " + percentage + "% of the time!";
-            resultsText.gameObject.SetActive(true);
+            //resultsText.gameObject.SetActive(true);
             again.gameObject.SetActive(true);
             returnButton.gameObject.SetActive(true);
+            correctionsText.gameObject.SetActive(false);
+            panel.gameObject.SetActive(true);
+            recognizer.DisableRecognizer();
+
+            
             this.gameObject.SetActive(false);
         }
+        else
+        {
+            timer += Time.deltaTime;
+            timerText.text = "" + (int)timer;
+            //   Debug.Log(timer);
+        }
     }
-
-    //Sound
-    /* public void AddSound(float x)
-     {
-         if (!finished && started)
-         {
-             Sound.Add(x);
-             Debug.Log("added!");
-         }
-     }*/
 }

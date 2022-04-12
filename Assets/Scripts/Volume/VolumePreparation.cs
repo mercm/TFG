@@ -117,29 +117,54 @@ public class VolumePreparation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
-        //if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRManager.isHmdPresent)// headset connected
         {
-            preparationText.text = speech + "\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
-            spacePressed = true;
+            if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
+            {
+                preparationText.text = speech + "\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
+                spacePressed = true;
+            }
+            else if (OVRInput.GetDown(OVRInput.Button.One))
+            {
+                VolumeManager.speech = speech;
+                //VolumeManager.neededSilences = neededSilences;
+                panel.gameObject.SetActive(false);
+                //speechPanel.gameObject.SetActive(true);
+                preparationText.gameObject.SetActive(false);
+                VolumeManagerGO.gameObject.SetActive(true);
+                //returnButton.gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
+                //Destroy(this.gameObject);
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        //if (OVRInput.GetDown(OVRInput.Button.One))
+        else
         {
-            VolumeManager.speech = speech;
-            //VolumeManager.neededSilences = neededSilences;
-            panel.gameObject.SetActive(false);
-            //speechPanel.gameObject.SetActive(true);
-            preparationText.gameObject.SetActive(false);
-            VolumeManagerGO.gameObject.SetActive(true);
-            //returnButton.gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
-            //Destroy(this.gameObject);
+            if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
+            {
+                preparationText.text = speech + "\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
+                spacePressed = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                VolumeManager.speech = speech;
+                //VolumeManager.neededSilences = neededSilences;
+                panel.gameObject.SetActive(false);
+                //speechPanel.gameObject.SetActive(true);
+                preparationText.gameObject.SetActive(false);
+                VolumeManagerGO.gameObject.SetActive(true);
+                //returnButton.gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
+                //Destroy(this.gameObject);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //if (OVRInput.GetDown(OVRInput.Button.Two))
-        {
-            SceneManager.LoadScene("CinemaStart");
-        }
+        
     }
 }

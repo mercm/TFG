@@ -113,24 +113,43 @@ public class Manager : MonoBehaviour
         }
         else
         {
-
-
             timer += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
-            //if (OVRInput.GetDown(OVRInput.Button.One))
+
+            if (OVRManager.isHmdPresent)// headset connected
             {
-                timerText.gameObject.SetActive(false);
-                speechText.gameObject.SetActive(false);
-                SoundLoudnessGO.gameObject.SetActive(false);
-                resultsGO.gameObject.SetActive(true);
-                recognizer.disableRecognizer();
-                //SoundLoudness.collect = false;
-                this.gameObject.SetActive(false);
+                if (OVRInput.GetDown(OVRInput.Button.One))
+                {
+                    timerText.gameObject.SetActive(false);
+                    speechText.gameObject.SetActive(false);
+                    SoundLoudnessGO.gameObject.SetActive(false);
+                    resultsGO.gameObject.SetActive(true);
+                    recognizer.disableRecognizer();
+                    //SoundLoudness.collect = false;
+                    this.gameObject.SetActive(false);
+                }
+                else
+                {
+                    timerText.text = "" + (int)timer;
+                }
             }
             else
             {
-                timerText.text = "" + (int)timer;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    timerText.gameObject.SetActive(false);
+                    speechText.gameObject.SetActive(false);
+                    SoundLoudnessGO.gameObject.SetActive(false);
+                    resultsGO.gameObject.SetActive(true);
+                    recognizer.disableRecognizer();
+                    //SoundLoudness.collect = false;
+                    this.gameObject.SetActive(false);
+                }
+                else
+                {
+                    timerText.text = "" + (int)timer;
+                }
             }
+                
             //   Debug.Log(timer);
         }
         //}

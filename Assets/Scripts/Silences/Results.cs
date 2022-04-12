@@ -79,17 +79,29 @@ public class Results : MonoBehaviour
             resultsText.text += "You have made " + manager.getPoints() + " points!";
             //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
         }
-        if (Input.GetKeyDown(KeyCode.Space))//Restart the game
-        //if (OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRManager.isHmdPresent)// headset connected
         {
-            preparation.gameObject.SetActive(true);
-            this.gameObject.SetActive(false);
-            //playAgainButton.gameObject.SetActive(false);
+            if (OVRInput.GetDown(OVRInput.Button.One)) //Restart the game
+            {
+                preparation.gameObject.SetActive(true);
+                this.gameObject.SetActive(false);
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        else
         {
-            SceneManager.LoadScene("CinemaStart");
+            if (Input.GetKeyDown(KeyCode.Space))//Restart the game
+            {
+                preparation.gameObject.SetActive(true);
+                this.gameObject.SetActive(false);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
     }
 }

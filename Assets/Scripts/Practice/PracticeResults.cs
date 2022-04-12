@@ -108,16 +108,29 @@ public class PracticeResults : MonoBehaviour
             }
             resultsText.text += "You have used the correct volume the " + percentage + "% of the time!";
         }
-        if (Input.GetKeyDown(KeyCode.Space))//Restart the game
-        //else if (OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRManager.isHmdPresent)// headset connected
         {
-            PreparationGO.gameObject.SetActive(true);
-            this.gameObject.SetActive(false);
+            if (OVRInput.GetDown(OVRInput.Button.One)) //Restart the game
+            {
+                PreparationGO.gameObject.SetActive(true);
+                this.gameObject.SetActive(false);
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        else
         {
-            SceneManager.LoadScene("Start");
+            if (Input.GetKeyDown(KeyCode.Space))//Restart the game
+            {
+                PreparationGO.gameObject.SetActive(true);
+                this.gameObject.SetActive(false);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
     }
 }

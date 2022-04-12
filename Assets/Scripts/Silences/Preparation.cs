@@ -243,43 +243,84 @@ public class Preparation : MonoBehaviour
             preparationText.text =
                 "Select an speech from 1 to " + speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present.";
         }*/
-        //if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
-        if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
+        
+
+        if (OVRManager.isHmdPresent)// headset connected
         {
-            choosenSpeech = 6;
-            silencesNeeded = 4;
-            longSilencesNeeded = 1;
-            kwordNeeded.Clear();
-            kwordNeeded.Add("consciente de la responsabilidad");
-            kwordNeeded.Add("y con la mayor esperanza");
-            kwordNeeded.Add("Una nación forjada");
-            kwordNeeded.Add("por el trabajo compartido");
-            kwordNeeded.Add("y sin cuya participación");
-            preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
-            spacePressed = true;
-            if (level == 1 || level == 2)
+            if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
             {
-                audioButton.gameObject.SetActive(true);
+                choosenSpeech = 6;
+                silencesNeeded = 4;
+                longSilencesNeeded = 1;
+                kwordNeeded.Clear();
+                kwordNeeded.Add("consciente de la responsabilidad");
+                kwordNeeded.Add("y con la mayor esperanza");
+                kwordNeeded.Add("Una nación forjada");
+                kwordNeeded.Add("por el trabajo compartido");
+                kwordNeeded.Add("y sin cuya participación");
+                preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
+                spacePressed = true;
+                if (level == 1 || level == 2)
+                {
+                    audioButton.gameObject.SetActive(true);
+                }
+            }
+            else if (OVRInput.GetDown(OVRInput.Button.One))
+            {
+                //preparationText.text = speeches[choosenSpeech];
+                Manager.speech = speeches[choosenSpeech];//preparationText.text
+                preparationText.gameObject.SetActive(false);
+                panel.gameObject.SetActive(false);
+                ManagerGO.gameObject.SetActive(true);
+                //returnButton.gameObject.SetActive(false);
+                audio.Stop();
+                audioButton.gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                SceneManager.LoadScene("CinemaStart");
             }
         }
-        //else if (OVRInput.GetDown(OVRInput.Button.One))
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else
         {
-            //preparationText.text = speeches[choosenSpeech];
-            Manager.speech = speeches[choosenSpeech];//preparationText.text
-            preparationText.gameObject.SetActive(false);
-            panel.gameObject.SetActive(false);
-            ManagerGO.gameObject.SetActive(true);
-            //returnButton.gameObject.SetActive(false);
-            audio.Stop();
-            audioButton.gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
+            if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
+            {
+                choosenSpeech = 6;
+                silencesNeeded = 4;
+                longSilencesNeeded = 1;
+                kwordNeeded.Clear();
+                kwordNeeded.Add("consciente de la responsabilidad");
+                kwordNeeded.Add("y con la mayor esperanza");
+                kwordNeeded.Add("Una nación forjada");
+                kwordNeeded.Add("por el trabajo compartido");
+                kwordNeeded.Add("y sin cuya participación");
+                preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
+                spacePressed = true;
+                if (level == 1 || level == 2)
+                {
+                    audioButton.gameObject.SetActive(true);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //preparationText.text = speeches[choosenSpeech];
+                Manager.speech = speeches[choosenSpeech];//preparationText.text
+                preparationText.gameObject.SetActive(false);
+                panel.gameObject.SetActive(false);
+                ManagerGO.gameObject.SetActive(true);
+                //returnButton.gameObject.SetActive(false);
+                audio.Stop();
+                audioButton.gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //if (OVRInput.GetDown(OVRInput.Button.Two))
-        {
-            SceneManager.LoadScene("CinemaStart");
-        }
+
+            
     }
 
     string CreateSilencesText(int silences, int longSilences)

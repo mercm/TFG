@@ -109,33 +109,63 @@ public class PracticeVolumeManager : MonoBehaviour
             SoundLoudnessGO.gameObject.SetActive(true);
             recognizer.EnableRecognizer();
         }
-        else if (Input.GetKeyDown(KeyCode.Space)) //When game is finished
-        //else if (OVRInput.GetDown(OVRInput.Button.One))
+        else if (OVRManager.isHmdPresent)// headset connected
         {
-            SoundLoudnessGO.gameObject.SetActive(false);
-            resultsGO.gameObject.SetActive(true);
-            timerText.gameObject.SetActive(false);
-            speechText.gameObject.SetActive(false);
-            //resultsText.gameObject.SetActive(true);
-            //again.gameObject.SetActive(true);
-            //returnButton.gameObject.SetActive(true);
-            correctionsText.gameObject.SetActive(false);
-            panel.gameObject.SetActive(true);
-            recognizer.DisableRecognizer();
+            if (OVRInput.GetDown(OVRInput.Button.One)) //When game is finished
+            {
+                SoundLoudnessGO.gameObject.SetActive(false);
+                resultsGO.gameObject.SetActive(true);
+                timerText.gameObject.SetActive(false);
+                speechText.gameObject.SetActive(false);
+                //resultsText.gameObject.SetActive(true);
+                //again.gameObject.SetActive(true);
+                //returnButton.gameObject.SetActive(true);
+                correctionsText.gameObject.SetActive(false);
+                panel.gameObject.SetActive(true);
+                recognizer.DisableRecognizer();
 
-            
-            this.gameObject.SetActive(false);
+
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                timer += Time.deltaTime;
+                timerText.text = "" + (int)timer;
+                //   Debug.Log(timer);
+            }
+            if (OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
         else
         {
-            timer += Time.deltaTime;
-            timerText.text = "" + (int)timer;
-            //   Debug.Log(timer);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //if (OVRInput.GetDown(OVRInput.Button.Two))
-        {
-            SceneManager.LoadScene("CinemaStart");
+            if (Input.GetKeyDown(KeyCode.Space)) //When game is finished
+            {
+                SoundLoudnessGO.gameObject.SetActive(false);
+                resultsGO.gameObject.SetActive(true);
+                timerText.gameObject.SetActive(false);
+                speechText.gameObject.SetActive(false);
+                //resultsText.gameObject.SetActive(true);
+                //again.gameObject.SetActive(true);
+                //returnButton.gameObject.SetActive(true);
+                correctionsText.gameObject.SetActive(false);
+                panel.gameObject.SetActive(true);
+                recognizer.DisableRecognizer();
+
+
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                timer += Time.deltaTime;
+                timerText.text = "" + (int)timer;
+                //   Debug.Log(timer);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SceneManager.LoadScene("CinemaStart");
+            }
         }
     }
 }

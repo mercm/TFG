@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PracticeResults : MonoBehaviour
 {
 
     public Text resultsText;
-    public Button returnButton;
+    //public Button returnButton;
     private int correctSecs;//Correct seconds the user has done in the game
     private int upIncorrectSecs;//Incorrect upper volume seconds the user has done in the game
     private int lowIncorrectSecs;//Incorrect lower volume seconds the user has done in the game
@@ -16,9 +17,10 @@ public class PracticeResults : MonoBehaviour
     public GameObject preparationGO;
     public GameObject panel;
     private bool resultsReady;
-    public Button again;//Restart the game
+    //public Button again;//Restart the game
     private PracticeVolumeManager manager;
     public GameObject ManagerGO;
+    public GameObject PreparationGO;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,7 @@ public class PracticeResults : MonoBehaviour
         resultsReady = false;
         manager = ManagerGO.GetComponent<PracticeVolumeManager>();
         resultsText.gameObject.SetActive(false);
-        again.gameObject.SetActive(false);
+        //again.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
     /*public void setReady(bool ready)
@@ -36,7 +38,7 @@ public class PracticeResults : MonoBehaviour
     void OnEnable()
     {
         resultsText.gameObject.SetActive(true);
-        returnButton.gameObject.SetActive(true);
+        //returnButton.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
         resultsReady = true;
     }
@@ -54,7 +56,7 @@ public class PracticeResults : MonoBehaviour
         }
         else
         {
-            again.gameObject.SetActive(true);
+            //again.gameObject.SetActive(true);
 
             if (PracticeVolumePreparation.silencesNeeded == PracticeSoundLoudness.silenceCounter)
             {
@@ -106,13 +108,16 @@ public class PracticeResults : MonoBehaviour
             }
             resultsText.text += "You have used the correct volume the " + percentage + "% of the time!";
         }
-
-        
-
-        /*if (Input.GetKeyDown(KeyCode.Space))//Restart the game
+        if (Input.GetKeyDown(KeyCode.Space))//Restart the game
+        //else if (OVRInput.GetDown(OVRInput.Button.One))
         {
-            preparation.gameObject.SetActive(true);
+            PreparationGO.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
-        }*/
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("Start");
+        }
     }
 }

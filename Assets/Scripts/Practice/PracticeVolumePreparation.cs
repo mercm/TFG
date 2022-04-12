@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PracticeVolumePreparation : MonoBehaviour
@@ -10,7 +11,7 @@ public class PracticeVolumePreparation : MonoBehaviour
     private const float MAX_VOLUME = 8.0f;
     public Text preparationText;
     private string speech;
-    public Button returnButton;
+    //public Button returnButton;
 
     private bool spacePressed;
     //private int neededSilences;
@@ -69,7 +70,7 @@ public class PracticeVolumePreparation : MonoBehaviour
 
     private void OnEnable()
     {
-        returnButton.gameObject.SetActive(true);
+        //returnButton.gameObject.SetActive(true);
         preparationText.text =
         "Welcome! It is time to practice every thing you learnt. You are going to do a speech in a medium scenario with 4 silences between 0.7 and 1.4 seconds" +
         "and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
@@ -85,11 +86,13 @@ public class PracticeVolumePreparation : MonoBehaviour
     void Update()
     {
         if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
+        //if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
         {
             preparationText.text = speech + "\n\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
             spacePressed = true;
         }
         else if (Input.GetKeyDown(KeyCode.Space))
+        //else if (OVRInput.GetDown(OVRInput.Button.One))
         {
             PracticeVolumeManager.speech = speech;
             //VolumeManager.neededSilences = neededSilences;
@@ -97,9 +100,14 @@ public class PracticeVolumePreparation : MonoBehaviour
             //speechPanel.gameObject.SetActive(true);
             preparationText.gameObject.SetActive(false);
             VolumeManagerGO.gameObject.SetActive(true);
-            returnButton.gameObject.SetActive(false);
+            //returnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             //Destroy(this.gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("CinemaStart");
         }
     }
 }

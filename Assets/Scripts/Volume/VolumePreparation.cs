@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class VolumePreparation : MonoBehaviour
@@ -10,7 +11,7 @@ public class VolumePreparation : MonoBehaviour
     private const float MAX_VOLUME = 8.0f;
     public Text preparationText;
     private string speech;
-    public Button returnButton;
+    //public Button returnButton;
 
     private bool spacePressed;
     //private int neededSilences;
@@ -80,7 +81,7 @@ public class VolumePreparation : MonoBehaviour
 
     private void OnEnable()
     {
-        returnButton.gameObject.SetActive(true);
+        //returnButton.gameObject.SetActive(true);
 
         Manager.speech = "";
         speech = "La vida es lo mas preciado que posee el hombre, a el se le otorga una sola vez y debe saber vivirla de forma tal, " +
@@ -117,11 +118,13 @@ public class VolumePreparation : MonoBehaviour
     void Update()
     {
         if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
+        //if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
         {
             preparationText.text = speech + "\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
             spacePressed = true;
         }
         else if (Input.GetKeyDown(KeyCode.Space))
+        //if (OVRInput.GetDown(OVRInput.Button.One))
         {
             VolumeManager.speech = speech;
             //VolumeManager.neededSilences = neededSilences;
@@ -129,9 +132,14 @@ public class VolumePreparation : MonoBehaviour
             //speechPanel.gameObject.SetActive(true);
             preparationText.gameObject.SetActive(false);
             VolumeManagerGO.gameObject.SetActive(true);
-            returnButton.gameObject.SetActive(false);
+            //returnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             //Destroy(this.gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("CinemaStart");
         }
     }
 }

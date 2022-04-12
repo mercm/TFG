@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PracticeVolumeManager : MonoBehaviour
@@ -16,8 +17,8 @@ public class PracticeVolumeManager : MonoBehaviour
     public TextMeshPro correctionsText;
     public TextMeshPro timerText;//Ascendent timer Text
     //public Text resultsText;//Results Text
-    public Button again;//Restart the game
-    public Button returnButton;
+    //public Button again;//Restart the game
+    //public Button returnButton;
 
     private PracticeRecognizer recognizer;
 
@@ -52,7 +53,7 @@ public class PracticeVolumeManager : MonoBehaviour
         //resultsText.gameObject.SetActive(false);
         //Results.gameObject.SetActive(false);
         SoundLoudnessGO.gameObject.SetActive(false);
-        again.gameObject.SetActive(false);
+        //again.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         recognizer = RecognizerGO.GetComponent<PracticeRecognizer>();
 
@@ -109,14 +110,15 @@ public class PracticeVolumeManager : MonoBehaviour
             recognizer.EnableRecognizer();
         }
         else if (Input.GetKeyDown(KeyCode.Space)) //When game is finished
+        //else if (OVRInput.GetDown(OVRInput.Button.One))
         {
             SoundLoudnessGO.gameObject.SetActive(false);
             resultsGO.gameObject.SetActive(true);
             timerText.gameObject.SetActive(false);
             speechText.gameObject.SetActive(false);
             //resultsText.gameObject.SetActive(true);
-            again.gameObject.SetActive(true);
-            returnButton.gameObject.SetActive(true);
+            //again.gameObject.SetActive(true);
+            //returnButton.gameObject.SetActive(true);
             correctionsText.gameObject.SetActive(false);
             panel.gameObject.SetActive(true);
             recognizer.DisableRecognizer();
@@ -129,6 +131,11 @@ public class PracticeVolumeManager : MonoBehaviour
             timer += Time.deltaTime;
             timerText.text = "" + (int)timer;
             //   Debug.Log(timer);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("CinemaStart");
         }
     }
 }

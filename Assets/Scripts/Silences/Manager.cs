@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static OVRInput;
 
 public class Manager : MonoBehaviour
 {
@@ -115,7 +117,7 @@ public class Manager : MonoBehaviour
 
             timer += Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.Space))
-            //if(stop)
+            //if (OVRInput.GetDown(OVRInput.Button.One))
             {
                 timerText.gameObject.SetActive(false);
                 speechText.gameObject.SetActive(false);
@@ -132,6 +134,11 @@ public class Manager : MonoBehaviour
             //   Debug.Log(timer);
         }
         //}
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("CinemaStart");
+        }
     }
 
     //Sound

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Preparation : MonoBehaviour
@@ -130,7 +131,7 @@ public class Preparation : MonoBehaviour
     {
         choosenSpeech = -1;
         spacePressed = false;
-        returnButton.gameObject.SetActive(false);//Seguro?
+        //returnButton.gameObject.SetActive(false);//Seguro?
         audioButton.gameObject.SetActive(false);
 
         Manager.speech = "";
@@ -242,7 +243,7 @@ public class Preparation : MonoBehaviour
             preparationText.text =
                 "Select an speech from 1 to " + speeches.Length + " and practice it. \n\nPress SPACE when you are ready to present.";
         }*/
-
+        //if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
         if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
         {
             choosenSpeech = 6;
@@ -261,6 +262,7 @@ public class Preparation : MonoBehaviour
                 audioButton.gameObject.SetActive(true);
             }
         }
+        //else if (OVRInput.GetDown(OVRInput.Button.One))
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             //preparationText.text = speeches[choosenSpeech];
@@ -268,12 +270,16 @@ public class Preparation : MonoBehaviour
             preparationText.gameObject.SetActive(false);
             panel.gameObject.SetActive(false);
             ManagerGO.gameObject.SetActive(true);
-            returnButton.gameObject.SetActive(false);
+            //returnButton.gameObject.SetActive(false);
             audio.Stop();
             audioButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
         }
-
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("CinemaStart");
+        }
     }
 
     string CreateSilencesText(int silences, int longSilences)

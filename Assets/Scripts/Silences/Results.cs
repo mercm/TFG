@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Results : MonoBehaviour
 {
 
     public Text resultsText;
-    public Button returnButton;
+    //public Button returnButton;
+    //public Button playAgainButton;
     public GameObject preparation;
     public GameObject panel;
     private bool resultsReady;
-    public Button again;//Restart the game
+    //public Button again;//Restart the game
     private Manager manager;
     public GameObject ManagerGO;
 
@@ -22,7 +24,7 @@ public class Results : MonoBehaviour
         resultsReady = false;
         manager = ManagerGO.GetComponent<Manager>();
         resultsText.gameObject.SetActive(false);
-        again.gameObject.SetActive(false);
+        //again.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
     /*public void setReady(bool ready)
@@ -32,7 +34,8 @@ public class Results : MonoBehaviour
     void OnEnable()
     {
         resultsText.gameObject.SetActive(true);
-        returnButton.gameObject.SetActive(true);
+        //returnButton.gameObject.SetActive(true);
+        //playAgainButton.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
         resultsReady = true;
     }
@@ -51,7 +54,7 @@ public class Results : MonoBehaviour
         }
         else
         {
-            again.gameObject.SetActive(true);
+            //again.gameObject.SetActive(true);
 
             if (Preparation.silencesNeeded == SoundLoudness.silenceCounter)
             {
@@ -76,13 +79,17 @@ public class Results : MonoBehaviour
             resultsText.text += "You have made " + manager.getPoints() + " points!";
             //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
         }
-
-        
-
-        /*if (Input.GetKeyDown(KeyCode.Space))//Restart the game
+        if (Input.GetKeyDown(KeyCode.Space))//Restart the game
+        //if (OVRInput.GetDown(OVRInput.Button.One))
         {
             preparation.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
-        }*/
+            //playAgainButton.gameObject.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("CinemaStart");
+        }
     }
 }

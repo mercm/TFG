@@ -5,15 +5,27 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Start.unity
     guid: 5cca76515100bea4aac2cee2b3a77246
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Silences.unity
     guid: 21b5f29797a3e644b98d4eaad65b5c94
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Volume.unity
     guid: bf0a25943f80c234691d682efcaf0a09
+  - enabled: 1
+    path: Assets/Scenes/CinemaStart.unity
+    guid: 8a9ac1f6f365ff243bf004b2f86aa164
+  - enabled: 1
+    path: Assets/Scenes/CinemaPractice.unity
+    guid: 211074580953db045be0fcea22307e8e
+  - enabled: 1
+    path: Assets/Scenes/CinemaSilence.unity
+    guid: 08cfc3c894327c0448578208de847c38
+  - enabled: 1
+    path: Assets/Scenes/CinemaVolume.unity
+    guid: 67ec734f7f63a5a4da1ac584060c5779
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a7a7e0af5e414c34ba236287504fb0e5,
       type: 2}

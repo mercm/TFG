@@ -165,7 +165,7 @@ public class PracticeVolumeSoundLoudness : MonoBehaviour
         {
             //Pintar la raya verde entre los márgenes dependiendo de aux. Contar el tiempo que lo ha hecho bien.
             pointerMaterial.color = Color.green;
-            thresholdMaterial.color = Color.white;
+            thresholdMaterial.color = Color.green;
             correctSecCounter++;
             correctionText.text = "";
             float aux1 = (aux - lowerThreshold) / (upperThreshold - lowerThreshold);

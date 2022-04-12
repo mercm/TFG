@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonsConfig : MonoBehaviour
 {
+    public bool silenceB;
+    public bool volumeB;
     public Button silence;
     public Button volume;
     public Button play;
@@ -17,14 +20,16 @@ public class ButtonsConfig : MonoBehaviour
     public Button PL1;
     public Button PL2;
     public Button PL3;
-    public Button X;
+    //public Button X;
     public Button returnButton;
     public Text volumeText;
     public Text silenceText;
     public Text playText;
     public Text silenceInstructions;
     public Text volumeInstructions;
+    private SilenceCS Cs;
     public GameObject instructionsPanel;
+    public GameObject CSGO;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +46,7 @@ public class ButtonsConfig : MonoBehaviour
         PL1.gameObject.SetActive(false);
         PL2.gameObject.SetActive(false);
         PL3.gameObject.SetActive(false);
-        X.gameObject.SetActive(false);
+        //X.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
         volumeText.gameObject.SetActive(false);
         silenceText.gameObject.SetActive(false);
@@ -49,6 +54,11 @@ public class ButtonsConfig : MonoBehaviour
         silenceInstructions.gameObject.SetActive(false);
         volumeInstructions.gameObject.SetActive(false);
         instructionsPanel.gameObject.SetActive(false);
+
+        silenceB = false;
+        volumeB = false;
+
+        Cs = CSGO.GetComponent<SilenceCS>();
     }
 
     public void SilenceAction()
@@ -66,7 +76,7 @@ public class ButtonsConfig : MonoBehaviour
         PL1.gameObject.SetActive(false);
         PL2.gameObject.SetActive(false);
         PL3.gameObject.SetActive(false);
-        X.gameObject.SetActive(true);
+        //X.gameObject.SetActive(true);
         returnButton.gameObject.SetActive(true);
         volumeText.gameObject.SetActive(false);
         silenceText.gameObject.SetActive(true);
@@ -91,7 +101,7 @@ public class ButtonsConfig : MonoBehaviour
         PL1.gameObject.SetActive(false);
         PL2.gameObject.SetActive(false);
         PL3.gameObject.SetActive(false);
-        X.gameObject.SetActive(true);
+        //X.gameObject.SetActive(true);
         returnButton.gameObject.SetActive(true);
         volumeText.gameObject.SetActive(true);
         silenceText.gameObject.SetActive(false);
@@ -116,7 +126,7 @@ public class ButtonsConfig : MonoBehaviour
         PL1.gameObject.SetActive(false);
         PL2.gameObject.SetActive(false);
         PL3.gameObject.SetActive(false);
-        X.gameObject.SetActive(false);
+        //X.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
         volumeText.gameObject.SetActive(false);
         silenceText.gameObject.SetActive(false);
@@ -124,11 +134,70 @@ public class ButtonsConfig : MonoBehaviour
         silenceInstructions.gameObject.SetActive(false);
         volumeInstructions.gameObject.SetActive(false);
         instructionsPanel.gameObject.SetActive(false);
+
+        silenceB = false;
+        volumeB = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!silenceB && !volumeB && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SilenceAction();
+            silenceB = true;
+        }
+        else if (!volumeB && !silenceB && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            VolumeAction();
+            volumeB = true;
+        }
+        else if (silenceB)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Cs.ChangeSceneSLv1();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Cs.ChangeSceneSLv2();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Cs.ChangeSceneSLv3();
+            }
+        }
+        else if (volumeB)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Cs.ChangeSceneVLv1();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Cs.ChangeSceneVLv2();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Cs.ChangeSceneVLv3();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Cs.ChangeSceneP();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        //if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            //X.gameObject.SetActive(false);
+            silenceInstructions.gameObject.SetActive(false);
+            volumeInstructions.gameObject.SetActive(false);
+            instructionsPanel.gameObject.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //else if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            ReturnAction();
+        }
     }
 }

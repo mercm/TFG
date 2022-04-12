@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class VolumeManager : MonoBehaviour
@@ -13,8 +14,9 @@ public class VolumeManager : MonoBehaviour
     public TextMeshPro speechText;
     public TextMeshPro correctionsText;
     public Text resultsText;//Results Text
-    public Button again;//Restart the game
-    public Button returnButton;
+    private bool spacePressed;
+    //public Button again;//Restart the game
+    //public Button returnButton;
     public GameObject panel;
 
     //private bool started;
@@ -26,6 +28,7 @@ public class VolumeManager : MonoBehaviour
     private float percentage;//Percentage of correct seconds in the game
 
     public GameObject VolumeSoundLoudnessGO;
+    public GameObject VolumePreparationGO;
 
 
     //Sound
@@ -48,7 +51,7 @@ public class VolumeManager : MonoBehaviour
         resultsText.gameObject.SetActive(false);
         //Results.gameObject.SetActive(false);
         VolumeSoundLoudnessGO.gameObject.SetActive(false);
-        again.gameObject.SetActive(false);
+        //again.gameObject.SetActive(false);
 
         this.gameObject.SetActive(false);
     }
@@ -58,6 +61,7 @@ public class VolumeManager : MonoBehaviour
         countDown = 4;
         countDownText.text = "" + (int)countDown;
         correctionsText.text = "";
+        spacePressed = false;
 
         countDownText.gameObject.SetActive(true);
         speechText.gameObject.SetActive(true);
@@ -86,9 +90,11 @@ public class VolumeManager : MonoBehaviour
             countDownText.gameObject.SetActive(false);
             VolumeSoundLoudnessGO.gameObject.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
+        //if (OVRInput.GetDown(OVRInput.Button.One))
         {
             //started = false;
+            spacePressed = true;
 
             VolumeSoundLoudnessGO.gameObject.SetActive(false);
             //SoundLoudness.collect = false;
@@ -123,9 +129,21 @@ public class VolumeManager : MonoBehaviour
             panel.gameObject.SetActive(true);
             resultsText.text = "You have used the correct volume the " + percentage + "% of the time!";
             resultsText.gameObject.SetActive(true);
-            again.gameObject.SetActive(true);
-            returnButton.gameObject.SetActive(true);
+            //again.gameObject.SetActive(true);
+            //returnButton.gameObject.SetActive(true);
             this.gameObject.SetActive(false);
+        }
+        else if (spacePressed && Input.GetKeyDown(KeyCode.Space))//Restart the game
+        //else if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            VolumePreparationGO.gameObject.SetActive(true);
+            this.gameObject.SetActive(false);
+            //playAgainButton.gameObject.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            SceneManager.LoadScene("CinemaStart");
         }
     }
 

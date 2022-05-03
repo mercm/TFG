@@ -132,13 +132,15 @@ public class VolumeManager : MonoBehaviour
                 resultsText.gameObject.SetActive(true);
                 //again.gameObject.SetActive(true);
                 //returnButton.gameObject.SetActive(true);
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
             }
             else if (OVRInput.GetDown(OVRInput.Button.One)) //Restart the game
             {
                 VolumePreparationGO.gameObject.SetActive(true);
+                resultsText.gameObject.SetActive(false);
                 this.gameObject.SetActive(false);
                 //playAgainButton.gameObject.SetActive(false);
+                spacePressed = false;
             }
             if (OVRInput.GetDown(OVRInput.Button.Two))
             {
@@ -187,13 +189,15 @@ public class VolumeManager : MonoBehaviour
                 resultsText.gameObject.SetActive(true);
                 //again.gameObject.SetActive(true);
                 //returnButton.gameObject.SetActive(true);
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
             }
             else if (Input.GetKeyDown(KeyCode.Space))//Restart the game
             {
                 VolumePreparationGO.gameObject.SetActive(true);
+                resultsText.gameObject.SetActive(false);
                 this.gameObject.SetActive(false);
                 //playAgainButton.gameObject.SetActive(false);
+                spacePressed = false;
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {

@@ -18,6 +18,7 @@ public class Preparation : MonoBehaviour
 
     private int level;
     private bool spacePressed;
+    private bool audioPlaying;
     private int choosenSpeech;
     public static int silencesNeeded;
     public static int longSilencesNeeded;
@@ -131,6 +132,7 @@ public class Preparation : MonoBehaviour
     {
         choosenSpeech = -1;
         spacePressed = false;
+        audioPlaying = false;
         //returnButton.gameObject.SetActive(false);//Seguro?
         audioButton.gameObject.SetActive(false);
 
@@ -276,6 +278,16 @@ public class Preparation : MonoBehaviour
                 audio.Stop();
                 audioButton.gameObject.SetActive(false);
                 this.gameObject.SetActive(false);
+            }
+            else if (!audioPlaying && OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && spacePressed && (level == 1 || level == 2))// Button.SecondaryThumbstick
+            {
+                audio.Play();
+                audioPlaying = true;
+            }
+            else if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && audioPlaying)// Button.SecondaryThumbstick
+            {
+                audio.Stop();
+                audioPlaying = false;
             }
             if (OVRInput.GetDown(OVRInput.Button.Two))
             {

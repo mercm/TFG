@@ -94,7 +94,8 @@ public class PracticeVolumePreparation : MonoBehaviour
             }
             else if (OVRInput.GetDown(OVRInput.Button.One))
             {
-                VolumeManager.speech = speech;
+                Debug.Log("Speech prep: " + speech);
+                PracticeVolumeManager.speech = speech;
                 //VolumeManager.neededSilences = neededSilences;
                 panel.gameObject.SetActive(false);
                 //speechPanel.gameObject.SetActive(true);
@@ -118,7 +119,7 @@ public class PracticeVolumePreparation : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
-                VolumeManager.speech = speech;
+                PracticeVolumeManager.speech = speech;
                 //VolumeManager.neededSilences = neededSilences;
                 panel.gameObject.SetActive(false);
                 //speechPanel.gameObject.SetActive(true);

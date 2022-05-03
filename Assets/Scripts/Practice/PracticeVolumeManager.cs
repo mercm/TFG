@@ -62,6 +62,7 @@ public class PracticeVolumeManager : MonoBehaviour
     private void OnEnable()
     {
         speechText.text = speech;
+        Debug.Log("Speech manager: " + speechText.text);
         countDown = 4;
         countDownText.text = "" + (int)countDown;
         correctionsText.text = "";

@@ -13,7 +13,8 @@ public class PracticeVolumeManager : MonoBehaviour
     public Text countDownText;//Countdown to start Text
     private int points;
     public static string speech = "";
-    public TextMeshPro speechText;
+    //public TextMeshPro speechText;
+    public Text speechText;
     public TextMeshPro correctionsText;
     public TextMeshPro timerText;//Ascendent timer Text
     //public Text resultsText;//Results Text

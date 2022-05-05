@@ -52,33 +52,37 @@ public class PracticeResults : MonoBehaviour
     {
         if (!resultsReady)
         {
-            resultsText.text = "Calculating the results. Please, wait...";
+            resultsText.text = "Calculando los resultados. Espera, por favor...";//"Calculating the results. Please, wait...";
         }
         else
         {
             //again.gameObject.SetActive(true);
 
-            if (PracticeVolumePreparation.silencesNeeded == PracticeSoundLoudness.silenceCounter)
+            if (Preparation.silencesNeeded == SoundLoudness.silenceCounter)
             {
-                resultsText.text = "Great job! You did the exact number of silences for this speech! \n\n";
+                resultsText.text = "¡Buen trabajo! Has hecho el número correcto de silencios para este texto\n\n";
+                //"Great job! You did the exact number of silences for this speech! \n\n";
             }
             else
             {
-                resultsText.text = "You need a little more practice. You did " + PracticeSoundLoudness.silenceCounter +
-                    " silences and the speech needed " + PracticeVolumePreparation.silencesNeeded + ". \n\n";
+                resultsText.text = "Necesitas un poco más práctica. Has hecho " + SoundLoudness.silenceCounter + " silencios y el texto necesitaba " + Preparation.silencesNeeded + ". \n\n";
+                //"You need a little more practice. You did " + SoundLoudness.silenceCounter +
+                //" silences and the speech needed " + Preparation.silencesNeeded + ". \n\n";
             }
 
-            if (PracticeVolumePreparation.longSilencesNeeded == PracticeSoundLoudness.longSilenceCounter)
+            if (Preparation.longSilencesNeeded == SoundLoudness.longSilenceCounter)
             {
-                resultsText.text += "Excellent! You did the necessary long silences! \n\n\n";
+                resultsText.text += "¡Excelente! Has hecho la cantidad de silencios largos necesarios\n\n";//"Excellent! You did the necessary long silences! \n\n\n";
             }
             else
             {
-                resultsText.text += "You need to get more confident. You did " + PracticeSoundLoudness.longSilenceCounter +
-                    " and this speech needed " + PracticeVolumePreparation.longSilencesNeeded + ". \n\n\n";
+                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + SoundLoudness.longSilenceCounter + " silencios y el texto necesitaba "
+                    + Preparation.longSilencesNeeded + ". \n\n";
+                //"You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
+                //" and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
             }
 
-            resultsText.text += "You have made " + manager.GetPoints() + " silences points!\n\n\n";
+            resultsText.text += "Has hecho " + manager.GetPoints() + " puntos de 30!\n\n"; //"You have made " + manager.getPoints() + " points!";
             //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
 
             //Give the volume results
@@ -106,7 +110,7 @@ public class PracticeResults : MonoBehaviour
             {
                 percentage = 0;
             }
-            resultsText.text += "You have used the correct volume the " + percentage + "% of the time!";
+            resultsText.text += "Has utilizado el volumen correcto el " + percentage + "% del tiempo!";//"You have used the correct volume the " + percentage + "% of the time!";
         }
         if (OVRManager.isHmdPresent)// headset connected
         {

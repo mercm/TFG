@@ -75,6 +75,9 @@ public class PracticeVolumeSoundLoudness : MonoBehaviour
     {
         collect = true;
         //correctionText.gameObject.SetActive(true);
+
+        pointerMaterial.color = Color.white;
+        thresholdMaterial.color = Color.white;
     }
     private void OnDisable()
     {

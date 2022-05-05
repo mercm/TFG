@@ -48,16 +48,14 @@ public class PracticeVolumePreparation : MonoBehaviour
         silencesNeeded = 4;
         longSilencesNeeded = 1;
         Manager.speech = "";
-        speech = @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con
-            la mayor esperanza en el futuro de España.
-
-            Una nación forjada a lo largo de siglos de Historia por el trabajo compartido de millones de
-            personas de todos los lugares de nuestro territorio y sin cuya participación no puede entenderse el curso de la Humanidad.";
-        kwordNeeded.Add("consciente de la responsabilidad");
-        kwordNeeded.Add("y con la mayor esperanza");
-        kwordNeeded.Add("Una nación forjada");
-        kwordNeeded.Add("por el trabajo compartido");
-        kwordNeeded.Add("y sin cuya participación");
+        speech = @"Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente. 
+            No era un camino muy ancho, ni muy transitado. No parecía que condujera a ninguna parte, como pasa con algunos caminos. El posadero inspiró el aire 
+            otoñal y miró alrededor, inquieto, como si esperase que sucediera algo.";
+        kwordNeeded.Add("No era un camino");
+        kwordNeeded.Add("ni muy transitado");
+        kwordNeeded.Add("No parecía que");
+        kwordNeeded.Add("El posadero");
+        kwordNeeded.Add("inquieto");
 
         volumeSL.SetThresholds(upperThreshold, lowerThreshold);
         /*float height = (upperThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y) / MAX_VOLUME;
@@ -72,8 +70,10 @@ public class PracticeVolumePreparation : MonoBehaviour
     {
         //returnButton.gameObject.SetActive(true);
         preparationText.text =
-        "Welcome! It is time to practice every thing you learnt. You are going to do a speech in a medium scenario with 4 silences between 0.7 and 1.4 seconds" +
-        "and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
+        "¡Bienvenido! Es momento de practicar todo lo que has aprendido. Vas a hacer un discurso en un escenario MEDIANO (para las primeras 10 filas del cine) con 4 silencios de entre 0.7 y 1.4 segundos " +
+        "y 2 silencios largos de entre 1.4 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+        //"Welcome! It is time to practice every thing you learnt. You are going to do a speech in a medium scenario with 4 silences between 0.7 and 1.4 seconds" +
+        //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
 
         //neededSilences = 20;
 
@@ -89,7 +89,7 @@ public class PracticeVolumePreparation : MonoBehaviour
         {
             if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
             {
-                preparationText.text = speech + "\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
+                preparationText.text = speech + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego"; //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
                 spacePressed = true;
             }
             else if (OVRInput.GetDown(OVRInput.Button.One))
@@ -114,7 +114,7 @@ public class PracticeVolumePreparation : MonoBehaviour
         {
             if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
             {
-                preparationText.text = speech + "\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
+                preparationText.text = speech + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego"; //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
                 spacePressed = true;
             }
             else if (Input.GetKeyDown(KeyCode.Space))

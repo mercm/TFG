@@ -50,7 +50,7 @@ public class Results : MonoBehaviour
 
         if (!resultsReady)
         {
-            resultsText.text = "Calculating the results. Please, wait...";
+            resultsText.text = "Calculando los resultados. Espera, por favor...";//"Calculating the results. Please, wait...";
         }
         else
         {
@@ -58,25 +58,29 @@ public class Results : MonoBehaviour
 
             if (Preparation.silencesNeeded == SoundLoudness.silenceCounter)
             {
-                resultsText.text = "Great job! You did the exact number of silences for this speech! \n\n";
+                resultsText.text = "¡Buen trabajo! Has hecho el número correcto de silencios para este texto\n\n";
+                //"Great job! You did the exact number of silences for this speech! \n\n";
             }
             else
             {
-                resultsText.text = "You need a little more practice. You did " + SoundLoudness.silenceCounter +
-                    " silences and the speech needed " + Preparation.silencesNeeded + ". \n\n";
+                resultsText.text = "Necesitas un poco más práctica. Has hecho " + SoundLoudness.silenceCounter + " silencios y el texto necesitaba " + Preparation.silencesNeeded + ". \n\n";
+                //"You need a little more practice. You did " + SoundLoudness.silenceCounter +
+                //" silences and the speech needed " + Preparation.silencesNeeded + ". \n\n";
             }
 
             if (Preparation.longSilencesNeeded == SoundLoudness.longSilenceCounter)
             {
-                resultsText.text += "Excellent! You did the necessary long silences! \n\n\n";
+                resultsText.text += "¡Excelente! Has hecho la cantidad de silencios largos necesarios\n\n";//"Excellent! You did the necessary long silences! \n\n\n";
             }
             else
             {
-                resultsText.text += "You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
-                    " and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
+                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + SoundLoudness.longSilenceCounter + " silencios y el texto necesitaba "
+                    + Preparation.longSilencesNeeded + ". \n\n";
+                //"You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
+                //" and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
             }
 
-            resultsText.text += "You have made " + manager.getPoints() + " points!";
+            resultsText.text += "Has hecho " + manager.GetPoints() + " puntos de 30!"; //"You have made " + manager.getPoints() + " points!";
             //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
         }
         if (OVRManager.isHmdPresent)// headset connected

@@ -25,6 +25,7 @@ public class Preparation : MonoBehaviour
     public static List<string> kwordNeeded = new List<string>();
     public Button returnButton;
     public Button audioButton;
+    public Text audioText;
     public AudioSource audio;
 
     //public GameObject SoundLoudness;
@@ -87,29 +88,59 @@ public class Preparation : MonoBehaviour
         {
 
             speeches[6] =
-                @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, (//) consciente de la responsabilidad que comporta (//) y con 
-            la mayor esperanza en el futuro de España. (///)
+                "Pues bien, (//) ese amuleto valía un cubo lleno de reales de oro, (///) pero para compensar a Táborlin por su generosidad, el calderero se lo "+
+            "vendió por solo un penique de hierro, (//) un penique de cobre (//) y un penique de plata. (///) Era negro como una noche de invierno (//) y estaba frío "+ 
+            "como el hielo, (//) pero mientras lo llevara colgado del cuello, Táborlin estaría a salvo de todas las cosas malignas.(///) Demonios y demás.";
+            /*   @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, (//) consciente de la responsabilidad que comporta (//) y con 
+           la mayor esperanza en el futuro de España. (///)
 
-            Una nación forjada a lo largo de siglos de Historia (//) por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio 
-            (//) y sin cuya participación no puede entenderse el curso de la Humanidad.";
+           Una nación forjada a lo largo de siglos de Historia (//) por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio 
+           (//) y sin cuya participación no puede entenderse el curso de la Humanidad.";*/
 
             preparationText.text =
-           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
-           "and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 5 silencios entre 0.7 y 1.4 segundos (representados con //) " +
+            "y 3 silencios largos entre 1.4 y 2.1 segundos (representados con ///). \n\nPresiona A para leer el discurso.";
+            //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
+            //"and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
         }
-        else if (level == 2 || level == 3)
+        else if (level == 2)
         {
 
             speeches[6] =
-                @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con 
+                @"Carter apretó los labios dibujando una fina línea. Estiró un brazo y tiró del extremo de la manta ensangrentada. Lo que había dentro rodó 
+            sobre sí mismo una vez y se enganchó en la tela. Carter dio otro tirón y se oyó un fuerte ruido, como si hubiera vaciado un saco de guijarros 
+            encima de la mesa.
+            Era una araña negra como el carbón y del tamaño de una rueda de carro.";
+            /*    @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con 
             la mayor esperanza en el futuro de España.
 
             Una nación forjada a lo largo de siglos de Historia por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio 
-            y sin cuya participación no puede entenderse el curso de la Humanidad.";
+            y sin cuya participación no puede entenderse el curso de la Humanidad.";*/
 
             preparationText.text =
-           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
-           "and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 6 silencios de entre 0.7 y 1.4 segundos " +
+            "y 2 silencios largos de entre 1.4 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+            //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
+            //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
+        }
+        else if ( level == 3)
+        {
+
+            speeches[6] =
+                @"Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente. 
+            No era un camino muy ancho, ni muy transitado. No parecía que condujera a ninguna parte, como pasa con algunos caminos. El posadero inspiró el aire 
+            otoñal y miró alrededor, inquieto, como si esperase que sucediera algo.";
+            /*    @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con 
+            la mayor esperanza en el futuro de España.
+
+            Una nación forjada a lo largo de siglos de Historia por el trabajo compartido de millones de personas de todos los lugares de nuestro territorio 
+            y sin cuya participación no puede entenderse el curso de la Humanidad.";*/
+            
+            preparationText.text =
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 4 silencios de entre 0.7 y 1.4 segundos " +
+            "y 2 silencios largos de entre 1.4 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+            //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
+            //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
         }
         else
         {
@@ -135,19 +166,24 @@ public class Preparation : MonoBehaviour
         audioPlaying = false;
         //returnButton.gameObject.SetActive(false);//Seguro?
         audioButton.gameObject.SetActive(false);
+        audioText.gameObject.SetActive(false);
 
         Manager.speech = "";
         if(level == 1)
         {
             preparationText.text =
-           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
-           "and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
+            "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas hacer 4 silencios entre 0.7 y 1.4 segundos (representados con //) " +
+            "y 1 silencio largo entre 1.4 y 2.1 segundos (representados con ///). \n\nPresiona A para leer el discurso.";
+           //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
+           //"and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
         }
         else if (level == 2 || level == 3)
         {
             preparationText.text =
-           "Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
-           "and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Los silencios duran entre 0.7 y 1.4 segundos " +
+            "y los silencios largos entre 1.4 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+            //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
+           //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
         }
         
         /*preparationText.text =
@@ -255,16 +291,50 @@ public class Preparation : MonoBehaviour
                 silencesNeeded = 4;
                 longSilencesNeeded = 1;
                 kwordNeeded.Clear();
-                kwordNeeded.Add("consciente de la responsabilidad");
+
+                if(level == 1)
+                {
+                    kwordNeeded.Add("ese amuleto valía");
+                    kwordNeeded.Add("pero para compensar");
+                    kwordNeeded.Add("un penique de cobre");
+                    kwordNeeded.Add("un penique de plata");
+                    kwordNeeded.Add("Era negro");
+                    kwordNeeded.Add("y estaba frío");
+                    kwordNeeded.Add("pero mientras");
+                    kwordNeeded.Add("Demonios y demás");
+                }
+                else if (level == 2)
+                {
+                    kwordNeeded.Add("Estiró un brazo");
+                    kwordNeeded.Add("Lo que había dentro");
+                    kwordNeeded.Add("y se enganchó");
+                    kwordNeeded.Add("Carter dio otro");
+                    kwordNeeded.Add("como si hubiera");
+                    kwordNeeded.Add("como si hubiera");
+                    kwordNeeded.Add("Era una araña");
+                    kwordNeeded.Add("y del tamaño");
+                }
+                else if (level == 3)
+                {
+                    kwordNeeded.Add("No era un camino");
+                    kwordNeeded.Add("ni muy transitado");
+                    kwordNeeded.Add("No parecía que");
+                    kwordNeeded.Add("El posadero");
+                    kwordNeeded.Add("inquieto");
+                }
+
+                /*kwordNeeded.Add("consciente de la responsabilidad");
                 kwordNeeded.Add("y con la mayor esperanza");
                 kwordNeeded.Add("Una nación forjada");
                 kwordNeeded.Add("por el trabajo compartido");
-                kwordNeeded.Add("y sin cuya participación");
-                preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
+                kwordNeeded.Add("y sin cuya participación");*/
+                preparationText.text = speeches[choosenSpeech] + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
+                    //"\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
                 spacePressed = true;
                 if (level == 1 || level == 2)
                 {
                     audioButton.gameObject.SetActive(true);
+                    audioText.gameObject.SetActive(true);
                 }
             }
             else if (OVRInput.GetDown(OVRInput.Button.One))
@@ -277,6 +347,7 @@ public class Preparation : MonoBehaviour
                 //returnButton.gameObject.SetActive(false);
                 audio.Stop();
                 audioButton.gameObject.SetActive(false);
+                audioText.gameObject.SetActive(false);
                 this.gameObject.SetActive(false);
             }
             else if (!audioPlaying && OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && spacePressed && (level == 1 || level == 2))// Button.SecondaryThumbstick
@@ -302,16 +373,19 @@ public class Preparation : MonoBehaviour
                 silencesNeeded = 4;
                 longSilencesNeeded = 1;
                 kwordNeeded.Clear();
-                kwordNeeded.Add("consciente de la responsabilidad");
+
+                /*kwordNeeded.Add("consciente de la responsabilidad");
                 kwordNeeded.Add("y con la mayor esperanza");
                 kwordNeeded.Add("Una nación forjada");
                 kwordNeeded.Add("por el trabajo compartido");
-                kwordNeeded.Add("y sin cuya participación");
-                preparationText.text = speeches[choosenSpeech] + "\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
+                kwordNeeded.Add("y sin cuya participación");*/
+                preparationText.text = speeches[choosenSpeech] + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
+                //"\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
                 spacePressed = true;
                 if (level == 1 || level == 2)
                 {
                     audioButton.gameObject.SetActive(true);
+                    audioText.gameObject.SetActive(true);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
@@ -324,6 +398,7 @@ public class Preparation : MonoBehaviour
                 //returnButton.gameObject.SetActive(false);
                 audio.Stop();
                 audioButton.gameObject.SetActive(false);
+                audioText.gameObject.SetActive(false);
                 this.gameObject.SetActive(false);
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))

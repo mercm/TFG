@@ -16,6 +16,7 @@ public class Manager : MonoBehaviour
     public Text countDownText;//Countdown to start Text
     public static string speech = "";
     public TextMeshPro speechText;//Speech Text
+    //public Text speechText;//Speech Text
     private Dictation dictation;
     private Recognizer recognizer;
 
@@ -87,7 +88,7 @@ public class Manager : MonoBehaviour
         points += pt;
     }
 
-    public int getPoints()
+    public int GetPoints()
     {
         return points;
     }

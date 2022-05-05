@@ -74,7 +74,7 @@ public class ButtonsConfig : MonoBehaviour
         SL1.gameObject.SetActive(true);
         SL2.gameObject.SetActive(true);
         SL3.gameObject.SetActive(true);
-        PL.gameObject.SetActive(true);
+        PL.gameObject.SetActive(false);
         SL1.interactable = false;
         SL2.interactable = false;
         SL3.interactable = false;
@@ -250,11 +250,12 @@ public class ButtonsConfig : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Space)) //Deactivate instructions
             {
-                X.gameObject.SetActive(false);
+                CloseInstructions();
+                /*X.gameObject.SetActive(false);
                 silenceInstructions.gameObject.SetActive(false);
                 volumeInstructions.gameObject.SetActive(false);
                 playInstructions.gameObject.SetActive(false);
-                instructionsPanel.gameObject.SetActive(false);
+                instructionsPanel.gameObject.SetActive(false);*/
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {

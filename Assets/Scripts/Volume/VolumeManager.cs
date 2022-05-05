@@ -128,7 +128,7 @@ public class VolumeManager : MonoBehaviour
                 speechText.gameObject.SetActive(false);
                 correctionsText.gameObject.SetActive(false);
                 panel.gameObject.SetActive(true);
-                resultsText.text = "You have used the correct volume the " + percentage + "% of the time!";
+                resultsText.text = "Has utilizado el volumen correcto el " + percentage + "% del tiempo!";//"You have used the correct volume the " + percentage + "% of the time!";
                 resultsText.gameObject.SetActive(true);
                 //again.gameObject.SetActive(true);
                 //returnButton.gameObject.SetActive(true);
@@ -185,7 +185,7 @@ public class VolumeManager : MonoBehaviour
                 speechText.gameObject.SetActive(false);
                 correctionsText.gameObject.SetActive(false);
                 panel.gameObject.SetActive(true);
-                resultsText.text = "You have used the correct volume the " + percentage + "% of the time!";
+                resultsText.text = "Has utilizado el volumen correcto el " + percentage + "% del tiempo!";//"You have used the correct volume the " + percentage + "% of the time!";
                 resultsText.gameObject.SetActive(true);
                 //again.gameObject.SetActive(true);
                 //returnButton.gameObject.SetActive(true);

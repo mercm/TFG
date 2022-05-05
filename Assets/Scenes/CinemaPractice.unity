@@ -1499,6 +1499,7 @@ MonoBehaviour:
   bottomPointerGO: {fileID: 1164267985}
   upperThresholdGO: {fileID: 419494417}
   lowerThresholdGO: {fileID: 458300031}
+  TimerGO: {fileID: 248987626}
 --- !u!4 &981940100
 Transform:
   m_ObjectHideFlags: 0

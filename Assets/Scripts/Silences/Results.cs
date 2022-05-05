@@ -80,7 +80,71 @@ public class Results : MonoBehaviour
                 //" and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
             }
 
-            resultsText.text += "Has hecho " + manager.GetPoints() + " puntos de 30!"; //"You have made " + manager.getPoints() + " points!";
+            int points = manager.GetPoints() < 0 ? 0 : manager.GetPoints();
+            string auxResult = "";
+            if (PlayerPrefs.GetInt("Level") == 1)
+            {
+                if (points <= 5)
+                {
+                    auxResult = "Aún tienes mucho que mejorar.";
+                }
+                else if (points > 5 && points <= 15)
+                {
+                    auxResult = "Vas por buen camino.";
+                }
+                else if (points > 15 && points <= 30)
+                {
+                    auxResult = "¡Excelente! No se te da nada mal.";
+                }
+                else if (points > 30 && points <= 40)
+                {
+                    auxResult = "¡Perfecto! Has dado en el clavo.";
+                }
+            }
+            else if (PlayerPrefs.GetInt("Level") == 2)
+            {
+                if (points <= 5)
+                {
+                    auxResult = "Aún tienes mucho que mejorar.";
+                }
+                else if (points > 5 && points <= 18)
+                {
+                    auxResult = "Vas por buen camino.";
+                }
+                else if (points > 18 && points <= 25)
+                {
+                    auxResult = "¡Excelente! No se te da nada mal.";
+                }
+                else if (points > 25 && points <= 35)
+                {
+                    auxResult = "¡Perfecto! Has dado en el clavo.";
+                }
+            }
+            else if (PlayerPrefs.GetInt("Level") == 3)
+            {
+                if (points <= 5)
+                {
+                    auxResult = "Aún tienes mucho que mejorar.";
+                }
+                else if (points > 5 && points <= 10)
+                {
+                    auxResult = "Vas por buen camino.";
+                }
+                else if (points > 10 && points <= 17)
+                {
+                    auxResult = "¡Excelente! No se te da nada mal.";
+                }
+                else if (points > 17 && points <= 25)
+                {
+                    auxResult = "¡Perfecto! Has dado en el clavo.";
+                }
+            }
+            else
+            {
+                Debug.LogError("Problems with level number.");
+            }
+
+            resultsText.text += "Has hecho " + points + " puntos. " + auxResult; //"You have made " + manager.getPoints() + " points!";
             //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
         }
         if (OVRManager.isHmdPresent)// headset connected

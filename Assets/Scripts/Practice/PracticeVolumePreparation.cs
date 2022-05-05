@@ -33,18 +33,21 @@ public class PracticeVolumePreparation : MonoBehaviour
     public GameObject bottomPointerGO;
     public GameObject upperThresholdGO;
     public GameObject lowerThresholdGO;
+    public GameObject TimerGO;
     //public GameObject speechPanel;
     private PracticeVolumeSoundLoudness volumeSL;
+
 
     // Start is called before the first frame update
     void Start()
     {
         panel.gameObject.SetActive(true);
+        TimerGO.gameObject.SetActive(true);
         volumeSL = VolumeSoundLoudnessGO.GetComponent<PracticeVolumeSoundLoudness>();
         
         
-        upperThreshold = 3.5f;
-        lowerThreshold = 0.5f;
+        upperThreshold = 4.0f;
+        lowerThreshold = 2.0f;
         silencesNeeded = 4;
         longSilencesNeeded = 1;
         Manager.speech = "";
@@ -70,8 +73,8 @@ public class PracticeVolumePreparation : MonoBehaviour
     {
         //returnButton.gameObject.SetActive(true);
         preparationText.text =
-        "¡Bienvenido! Es momento de practicar todo lo que has aprendido. Vas a hacer un discurso en un escenario MEDIANO (para las primeras 10 filas del cine) con 4 silencios de entre 0.7 y 1.4 segundos " +
-        "y 2 silencios largos de entre 1.4 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+        "¡Bienvenido! Es momento de practicar todo lo que has aprendido. Vas a hacer un discurso en un escenario MEDIANO (para las primeras 10 filas del cine) con 4 silencios de entre 0.6 y 1.1 segundos " +
+        "y 2 silencios largos de entre 1.1 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
         //"Welcome! It is time to practice every thing you learnt. You are going to do a speech in a medium scenario with 4 silences between 0.7 and 1.4 seconds" +
         //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
 
@@ -89,7 +92,7 @@ public class PracticeVolumePreparation : MonoBehaviour
         {
             if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
             {
-                preparationText.text = speech + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego"; //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
+                preparationText.text = speech + "\n\nPresiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego"; //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
                 spacePressed = true;
             }
             else if (OVRInput.GetDown(OVRInput.Button.One))
@@ -114,7 +117,7 @@ public class PracticeVolumePreparation : MonoBehaviour
         {
             if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
             {
-                preparationText.text = speech + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego"; //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
+                preparationText.text = speech + "\n\nPresiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego"; //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
                 spacePressed = true;
             }
             else if (Input.GetKeyDown(KeyCode.Space))

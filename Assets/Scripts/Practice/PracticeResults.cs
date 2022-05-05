@@ -82,7 +82,27 @@ public class PracticeResults : MonoBehaviour
                 //" and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
             }
 
-            resultsText.text += "Has hecho " + manager.GetPoints() + " puntos de 30!\n\n"; //"You have made " + manager.getPoints() + " points!";
+            int points = manager.GetPoints() < 0 ? 0 : manager.GetPoints();
+            string auxResult = "";
+            if (points <= 5)
+            {
+                auxResult = "Aún tienes mucho que mejorar.";
+            }
+            else if (points > 5 && points <= 10)
+            {
+                auxResult = "Vas por buen camino.";
+            }
+            else if (points > 10 && points <= 17)
+            {
+                auxResult = "¡Excelente! No se te da nada mal.";
+            }
+            else if (points > 17 && points <= 25)
+            {
+                auxResult = "¡Perfecto! Has dado en el clavo.";
+            }
+
+            resultsText.text += "Has hecho " + points + " puntos. " + auxResult + "\n\n";
+            //resultsText.text += "Has hecho " + manager.GetPoints() + " puntos de 30!\n\n"; //"You have made " + manager.getPoints() + " points!";
             //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
 
             //Give the volume results

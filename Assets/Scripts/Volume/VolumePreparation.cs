@@ -50,7 +50,7 @@ public class VolumePreparation : MonoBehaviour
             "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a small scenario so remember not to shout.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
-            upperThreshold = 3.5f;
+            upperThreshold = 2.5f;
             lowerThreshold = 0.5f;
         }
         else if(level == 2)
@@ -60,8 +60,8 @@ public class VolumePreparation : MonoBehaviour
             "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a medium scenario so remember to raise the volume a bit.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
-            upperThreshold = 5.0f;
-            lowerThreshold = 3.0f;
+            upperThreshold = 4.0f;
+            lowerThreshold = 2.0f;
         }
         else if(level == 3)
         {
@@ -71,7 +71,7 @@ public class VolumePreparation : MonoBehaviour
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a big scenario so remember to raise the volume but try not to shout.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
             upperThreshold = 6.0f;
-            lowerThreshold = 5.0f;
+            lowerThreshold = 3.0f;
         }
         /*else
         {
@@ -93,9 +93,9 @@ public class VolumePreparation : MonoBehaviour
         //returnButton.gameObject.SetActive(true);
 
         Manager.speech = "";
-        speech = @"Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente. 
-            No era un camino muy ancho, ni muy transitado. No parecía que condujera a ninguna parte, como pasa con algunos caminos. El posadero inspiró el aire 
-            otoñal y miró alrededor, inquieto, como si esperase que sucediera algo.";
+        speech = "Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente. "+
+            "No era un camino muy ancho, ni muy transitado. No parecía que condujera a ninguna parte, como pasa con algunos caminos. El posadero inspiró el aire "+
+            "otoñal y miró alrededor, inquieto, como si esperase que sucediera algo.";
         //neededSilences = 20;
 
         if (level == 1)
@@ -144,7 +144,7 @@ public class VolumePreparation : MonoBehaviour
         {
             if (!spacePressed && OVRInput.GetDown(OVRInput.Button.One))
             {
-                preparationText.text = speech + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
+                preparationText.text = speech + "\n\nPresiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
                 //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
                 spacePressed = true;
             }
@@ -169,7 +169,7 @@ public class VolumePreparation : MonoBehaviour
         {
             if (!spacePressed && Input.GetKeyDown(KeyCode.Space))
             {
-                preparationText.text = speech + "Presiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
+                preparationText.text = speech + "\n\nPresiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
                 //"\n\nPress SPACE when you are ready to present. Press SPACE again to finish the game.";
                 spacePressed = true;
             }

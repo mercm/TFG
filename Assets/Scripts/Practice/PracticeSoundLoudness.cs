@@ -147,14 +147,14 @@ public class PracticeSoundLoudness : MonoBehaviour
         {
 
             //Debug.Log(secCounter);
-            if (secCounter >= 0.7 && secCounter <= 1.4)
+            if (secCounter >= 0.6 && secCounter <= 1.1)
             {
                 silenceCounter++;
                 //dictation.addSilence();
 
                 silence4kw++;
             }
-            else if (secCounter > 1.4 && secCounter <= 2.1)
+            else if (secCounter > 1.1 && secCounter <= 2.1)
             {
                 longSilenceCounter++;
                 //dictation.addLongSilence();

@@ -11,7 +11,8 @@ public class VolumeManager : MonoBehaviour
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
     public static string speech = "";
-    public TextMeshPro speechText;
+    //public TextMeshPro speechText;
+    public Text speechText;
     public TextMeshPro correctionsText;
     public Text resultsText;//Results Text
     private bool spacePressed;

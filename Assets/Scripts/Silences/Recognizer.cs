@@ -42,18 +42,21 @@ public class Recognizer : MonoBehaviour
                     //manager.setPoints(manager.categorypts.perfect);
                     manager.setPoints(5);
                     Debug.Log("5 points");
+                    Debug.Log("5: "+kw);
                 }
                 //if player did more than 1 silence before de keyword
                 else if (SoundLoudness.silence4kw > 1)
                 {
-                    manager.setPoints(1);
-                    Debug.Log("1 points");
+                    manager.setPoints(3);
+                    Debug.Log("3 points");
+                    Debug.Log("3: " + kw);
                 }
                 //if playes did not do any silence before the keyword
                 else
                 {
-                    manager.setPoints(-2);
-                    Debug.Log("-2 points");
+                    manager.setPoints(-1);
+                    Debug.Log("-1 points");
+                    Debug.Log("-1: " + kw);
                 }
                 SoundLoudness.silence4kw = 0;
                 //manager.setPoints(5);

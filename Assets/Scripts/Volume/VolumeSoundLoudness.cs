@@ -12,7 +12,7 @@ public class VolumeSoundLoudness : MonoBehaviour
     public static float step = 0.5f;//half a second
     public static float upperThreshold;//Upper threshold 
     public static float lowerThreshold;//Lower threshold
-    public static float silenceThreshold = 0.4f;//Calculate value depending on microphone and place
+    public static float silenceThreshold = 0.5f;//Calculate value depending on microphone and place
 
     public Material pointerMaterial;
     public Material thresholdMaterial;

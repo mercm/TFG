@@ -15,8 +15,8 @@ public class Manager : MonoBehaviour
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
     public static string speech = "";
-    public TextMeshPro speechText;//Speech Text
-    //public Text speechText;//Speech Text
+    //public TextMeshPro speechText;//Speech Text
+    public Text speechText;//Speech Text
     private Dictation dictation;
     private Recognizer recognizer;
 

@@ -48,9 +48,9 @@ public class PracticeVolumePreparation : MonoBehaviour
         silencesNeeded = 4;
         longSilencesNeeded = 1;
         Manager.speech = "";
-        speech = @"Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente. 
-            No era un camino muy ancho, ni muy transitado. No parecía que condujera a ninguna parte, como pasa con algunos caminos. El posadero inspiró el aire 
-            otoñal y miró alrededor, inquieto, como si esperase que sucediera algo.";
+        speech = "Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente. "+ 
+            "No era un camino muy ancho, ni muy transitado. No parecía que condujera a ninguna parte, como pasa con algunos caminos. El posadero inspiró el aire "+ 
+            "otoñal y miró alrededor, inquieto, como si esperase que sucediera algo.";
         kwordNeeded.Add("No era un camino");
         kwordNeeded.Add("ni muy transitado");
         kwordNeeded.Add("No parecía que");
@@ -94,7 +94,7 @@ public class PracticeVolumePreparation : MonoBehaviour
             }
             else if (OVRInput.GetDown(OVRInput.Button.One))
             {
-                Debug.Log("Speech prep: " + speech);
+                //Debug.Log("Speech prep: " + speech);
                 PracticeVolumeManager.speech = speech;
                 //VolumeManager.neededSilences = neededSilences;
                 panel.gameObject.SetActive(false);

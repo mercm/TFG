@@ -33,6 +33,7 @@ public class VolumePreparation : MonoBehaviour
     public GameObject lowerThresholdGO;
     //public GameObject speechPanel;
     private VolumeSoundLoudness volumeSL;
+    public Text levelText;
 
     // Start is called before the first frame update
     void Start()
@@ -45,35 +46,39 @@ public class VolumePreparation : MonoBehaviour
             preparationText.text =
             "¡Bienvenido! Es momento de practicar el volumen de un discurso. Vas a hablar en un escenario PEQUEÑO (para las primeras 2 filas del cine), así que, recuerda no gritar. \n\n" +
             "Las barritas que tienes a la izquierda del texto te indicarán si hablas muy alto, muy bajo o al volumen correcto.\n\n"+
-            "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
+            "Presiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a small scenario so remember not to shout.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
             /*upperThreshold = 2.5f;
             lowerThreshold = 0.5f;*/
             upperThreshold = 3.0f;
             lowerThreshold = 0.5f;
+            levelText.text = "Nivel 1";
         }
         else if(level == 2)
         {
             preparationText.text =
             "¡Bienvenido! Es momento de practicar el volumen de un discurso. Vas a hablar en un escenario MEDIANO (para las primeras 4 filas del cine), así que, recuerda levantar un poco el volumen de tu voz. \n\n" +
             "Las barritas que tienes a la izquierda del texto te indicarán si hablas muy alto, muy bajo o al volumen correcto.\n\n" +
-            "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
+            "Presiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a medium scenario so remember to raise the volume a bit.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
             upperThreshold = 4.5f;//4.0
             lowerThreshold = 2.5f;//2.0
+
+            levelText.text = "Nivel 2";
         }
         else if(level == 3)
         {
             preparationText.text =
             "¡Bienvenido! Es momento de practicar el volumen de un discurso. Vas a hablar en un escenario GRANDE (para las primeras 6 filas del cine), así que, recuerda elevar la voz lo suficiente. \n\n" +
             "Las barritas que tienes a la izquierda del texto te indicarán si hablas muy alto, muy bajo o al volumen correcto.\n\n" +
-            "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
+            "Presiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a big scenario so remember to raise the volume but try not to shout.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
             upperThreshold = 6.5f;//6.0
             lowerThreshold = 4.5f;//3.0
+            levelText.text = "Nivel 3";
         }
         /*else
         {
@@ -107,7 +112,7 @@ public class VolumePreparation : MonoBehaviour
             preparationText.text =
             "¡Bienvenido! Es momento de practicar el volumen de un discurso. Vas a hablar en un escenario PEQUEÑO (para las primeras 2 filas del cine), así que, recuerda no gritar. \n\n" +
             "Las barritas que tienes a la izquierda del texto te indicarán si hablas muy alto, muy bajo o al volumen correcto.\n\n" +
-            "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
+            "Presiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a SMALL scenario (for the firs 4 rows) so remember not to shout.\n\n" +
             //"Press A to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
          
@@ -117,7 +122,7 @@ public class VolumePreparation : MonoBehaviour
             preparationText.text =
             "¡Bienvenido! Es momento de practicar el volumen de un discurso. Vas a hablar en un escenario MEDIANO (para las primeras 4 filas del cine), así que, recuerda levantar un poco el volumen de tu voz. \n\n" +
             "Las barritas que tienes a la izquierda del texto te indicarán si hablas muy alto, muy bajo o al volumen correcto.\n\n" +
-            "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
+            "Presiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a medium scenario so remember to raise the volume a bit.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
             
@@ -127,7 +132,7 @@ public class VolumePreparation : MonoBehaviour
             preparationText.text =
             "¡Bienvenido! Es momento de practicar el volumen de un discurso. Vas a hablar en un escenario GRANDE (para las primeras 6 filas del cine), así que, recuerda elevar la voz lo suficiente. \n\n" +
             "Las barritas que tienes a la izquierda del texto te indicarán si hablas muy alto, muy bajo o al volumen correcto.\n\n" +
-            "Presiona A para ver el texto del discurso. Podrás verlo durante del juego, por lo que no es necesario que lo memorices";
+            "Presiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the volume of your speech. You are going to speak in a big scenario so remember to raise the volume but try not to shout.\n\n" +
             //"Press SPACE to see the speech. You will be able to see it during the game so it's not necessary to memorize it.";
             

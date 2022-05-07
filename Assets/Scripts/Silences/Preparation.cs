@@ -28,6 +28,7 @@ public class Preparation : MonoBehaviour
     private AudioSource audio;
     public AudioSource audioLv1;
     public AudioSource audioLv2;
+    public Text levelText;
 
     //public GameObject SoundLoudness;
     public GameObject ManagerGO;
@@ -68,10 +69,12 @@ public class Preparation : MonoBehaviour
             audio = audioLv1;
             silencesNeeded = 4;
             longSilencesNeeded = 3;
+            levelText.text = "Nivel 1";
 
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 4 silencios entre 0.6 y 1.0 segundos (representados con //) " +
-            "y 3 silencios largos entre 1.1 y 2.1 segundos (representados con ///). \n\nPresiona A para leer el discurso.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste necesitas 4 silencios de entre 0.6 y 1.0 segundos (representados con //) " +
+            "y 3 silencios largos entre 1.1 y 2.1 segundos (representados con ///)."+
+            "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
             //"and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
         }
@@ -106,10 +109,12 @@ public class Preparation : MonoBehaviour
             audio = audioLv2;
             silencesNeeded = 5;
             longSilencesNeeded = 2;
+            levelText.text = "Nivel 2";
 
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 5 silencios de entre 0.6 y 1.1 segundos " +
-            "y 2 silencios largos de entre 1.1 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste necesitas 5 silencios de entre 0.6 y 1.1 segundos " +
+            "y 2 silencios largos de entre 1.1 y 2.1 segundos."+
+            "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
             //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
         }
@@ -140,10 +145,12 @@ public class Preparation : MonoBehaviour
             totalPoints = 25;
             silencesNeeded = 4;
             longSilencesNeeded = 1;
+            levelText.text = "Nivel 3";
 
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 4 silencios de entre 0.6 y 1.0 segundos " +
-            "y 2 silencios largos de entre 1.1 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste, necesitas 4 silencios de entre 0.6 y 1.0 segundos " +
+            "y 2 silencios largos de entre 1.1 y 2.1 segundos." +
+            "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
             //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
         }
@@ -172,8 +179,8 @@ public class Preparation : MonoBehaviour
         //returnButton.gameObject.SetActive(false);//Seguro?
         audioButton.gameObject.SetActive(false);
         audioText.gameObject.SetActive(false);
-        silencesNeeded = 4;
-        longSilencesNeeded = 1;
+        //silencesNeeded = 4;
+        //longSilencesNeeded = 1;
         //timerText.text = "0";
         //kwordNeeded.Clear();
 
@@ -181,24 +188,27 @@ public class Preparation : MonoBehaviour
         if (level == 1)
         {
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 5 silencios entre 0.6 y 1.1 segundos (representados con //) " +
-            "y 3 silencios largos entre 1.1 y 2.1 segundos (representados con ///). \n\nPresiona A para leer el discurso.";
+          "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste necesitas 4 silencios de entre 0.6 y 1.0 segundos (representados con //) " +
+           "y 3 silencios largos entre 1.1 y 2.1 segundos (representados con ///)." +
+           "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
             //"and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
         }
         else if (level == 2)
         {
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 6 silencios de entre 0.6 y 1.1 segundos " +
-            "y 2 silencios largos de entre 1.1 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste necesitas 5 silencios de entre 0.6 y 1.1 segundos " +
+            "y 2 silencios largos de entre 1.1 y 2.1 segundos." +
+            "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
             //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
         }
         else if (level == 3)
         {
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 4 silencios de entre 0.6 y 1.1 segundos " +
-            "y 2 silencios largos de entre 1.1 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste, necesitas 4 silencios de entre 0.6 y 1.0 segundos " +
+            "y 2 silencios largos de entre 1.1 y 2.1 segundos." +
+            "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
             //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
         }

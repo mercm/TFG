@@ -1764,6 +1764,7 @@ MonoBehaviour:
   audioText: {fileID: 2072290309}
   audioLv1: {fileID: 1024490719}
   audioLv2: {fileID: 675661021}
+  levelText: {fileID: 1024317109}
   ManagerGO: {fileID: 315722674}
   TimerGO: {fileID: 714842792}
 --- !u!1 &929755150
@@ -1937,7 +1938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1024317108
 RectTransform:
   m_ObjectHideFlags: 0

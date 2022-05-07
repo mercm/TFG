@@ -76,8 +76,8 @@ public class PracticeVolumeSoundLoudness : MonoBehaviour
         collect = true;
         //correctionText.gameObject.SetActive(true);
 
-        pointerMaterial.color = Color.white;
-        thresholdMaterial.color = Color.white;
+        pointerMaterial.color = Color.black;
+        thresholdMaterial.color = Color.black;
     }
     private void OnDisable()
     {
@@ -167,7 +167,6 @@ public class PracticeVolumeSoundLoudness : MonoBehaviour
         if (aux <= upperThreshold && aux >= lowerThreshold)//Correct volume
         {
             //Pintar la raya verde entre los márgenes dependiendo de aux. Contar el tiempo que lo ha hecho bien.
-            pointerMaterial.color = Color.green;
             thresholdMaterial.color = Color.green;
             correctSecCounter++;
             correctionText.text = "";
@@ -178,26 +177,26 @@ public class PracticeVolumeSoundLoudness : MonoBehaviour
         else if(aux > upperThreshold) //Incorrect volume (too loud)
         {
             //Puntar la raya roja por encima de las marcas. Mandar mensaje "lower the volume"
-            pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
             upIncorrectSecCounter++;
             correctionText.text = "Lower down the volume";
-            float aux2 = (aux - upperThreshold) / (MAX_VOLUME - upperThreshold);
-            float height = aux2 * (topPointerGO.transform.position.y - upperThresholdGO.transform.position.y) + upperThresholdGO.transform.position.y;
+            //float aux2 = (aux - upperThreshold) / (MAX_VOLUME - upperThreshold);
+            float height = aux * (topPointerGO.transform.position.y - upperThresholdGO.transform.position.y) + upperThresholdGO.transform.position.y;
+            height = height > topPointerGO.transform.position.y ? topPointerGO.transform.position.y : height;
             pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
         else //Incorrect volume (too low)
         {
             //Puntar la raya roja por encima de las marcas. Mandar mensaje "raise the volume"
-            pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
             if (aux < lowerThreshold && aux > silenceThreshold)//Solo se cuenta negativo si no se ha hecho un silencio sino que se ha hablado bajo
             {
                 lowIncorrectSecCounter++;
             }
             correctionText.text = "Raise up the volume";
-            float aux3 = (aux - lowerThreshold) / lowerThreshold;
-            float height = aux3 * (lowerThresholdGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+            //float aux3 = (aux - lowerThreshold) / lowerThreshold;
+            float height = aux * (lowerThresholdGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+            height = height < bottomPointerGO.transform.position.y ? bottomPointerGO.transform.position.y : height;
             pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
 

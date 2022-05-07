@@ -58,7 +58,8 @@ public class VolumeSoundLoudness : MonoBehaviour
         //upperThresholdGO.transform.position = new Vector3(upperThresholdGO.transform.position.x, height, upperThresholdGO.transform.position.z);
         //height = lowerThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
         //lowerThresholdGO.transform.position = new Vector3(lowerThresholdGO.transform.position.x, height, lowerThresholdGO.transform.position.z);
-        float height = ((upperThreshold + lowerThreshold) / 2) * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+        //float height = ((upperThreshold + lowerThreshold) / 2) * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+        float height = (upperThresholdGO.transform.position.y - lowerThresholdGO.transform.position.y) / 2;
         pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         //correctionText.gameObject.SetActive(false);
         //this.gameObject.SetActive(false);
@@ -75,6 +76,11 @@ public class VolumeSoundLoudness : MonoBehaviour
     {
         collect = true;
         //correctionText.gameObject.SetActive(true);
+        float height = (upperThresholdGO.transform.position.y - lowerThresholdGO.transform.position.y) / 2; 
+        pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
+
+        pointerMaterial.color = Color.black;
+        thresholdMaterial.color = Color.black;
     }
     private void OnDisable()
     {
@@ -164,7 +170,7 @@ public class VolumeSoundLoudness : MonoBehaviour
         if (aux <= upperThreshold && aux >= lowerThreshold)//Correct volume
         {
             //Pintar la raya verde entre los márgenes dependiendo de aux. Contar el tiempo que lo ha hecho bien.
-            pointerMaterial.color = Color.green;
+            //pointerMaterial.color = Color.green;
             thresholdMaterial.color = Color.green;
             correctSecCounter++;
             correctionText.text = "";
@@ -175,29 +181,34 @@ public class VolumeSoundLoudness : MonoBehaviour
         else if(aux > upperThreshold) //Incorrect volume (too loud)
         {
             //Puntar la raya roja por encima de las marcas. Mandar mensaje "lower the volume"
-            pointerMaterial.color = Color.red;
+            //pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
             upIncorrectSecCounter++;
             correctionText.text = "Lower down the volume";
-            float aux2 = (aux - upperThreshold) / (MAX_VOLUME - upperThreshold);
-            float height = aux2 * (topPointerGO.transform.position.y - upperThresholdGO.transform.position.y) + upperThresholdGO.transform.position.y;
+            //float aux2 = (aux - upperThreshold) / (MAX_VOLUME - upperThreshold);
+            float height = aux * (topPointerGO.transform.position.y - upperThresholdGO.transform.position.y) + upperThresholdGO.transform.position.y;
+            //float height = aux2 * (topPointerGO.transform.position.y - upperThresholdGO.transform.position.y) + upperThresholdGO.transform.position.y;
+            height = height > topPointerGO.transform.position.y ? topPointerGO.transform.position.y : height;
             pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
         else
         {
             //Puntar la raya roja por encima de las marcas. Mandar mensaje "raise the volume"
-            pointerMaterial.color = Color.red;
+            //pointerMaterial.color = Color.red;
             thresholdMaterial.color = Color.red;
             if (aux < lowerThreshold && aux > silenceThreshold)//Solo se cuenta negativo si no se ha hecho un silencio sino que se ha hablado bajo
             {
                 lowIncorrectSecCounter++;
             }
             correctionText.text = "Raise up the volume";
-            float aux3 = (aux - lowerThreshold) / lowerThreshold;
-            float height = aux3 * (lowerThresholdGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+            //float aux3 = (aux - lowerThreshold) / lowerThreshold;
+            float height = aux * (lowerThresholdGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y;
+            //float height = aux3 * (lowerThresholdGO.transform.position.y - bottomPointerGO.transform.position.y);
+            height = height < bottomPointerGO.transform.position.y ? bottomPointerGO.transform.position.y : height;
             pointerGO.transform.position = new Vector3(pointerGO.transform.position.x, height, pointerGO.transform.position.z);
         }
 
+        Debug.Log("UpperThreshold: " + upperThreshold + ". \nLowerThreshold: " + lowerThreshold);
         Debug.Log("volume: " + aux);
     }
 }

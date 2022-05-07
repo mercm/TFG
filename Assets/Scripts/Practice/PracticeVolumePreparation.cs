@@ -59,6 +59,7 @@ public class PracticeVolumePreparation : MonoBehaviour
         kwordNeeded.Add("No parecía que");
         kwordNeeded.Add("El posadero");
         kwordNeeded.Add("inquieto");
+        kwordNeeded.Add("como si esperase");
 
         volumeSL.SetThresholds(upperThreshold, lowerThreshold);
         /*float height = (upperThreshold * (topPointerGO.transform.position.y - bottomPointerGO.transform.position.y) + bottomPointerGO.transform.position.y) / MAX_VOLUME;
@@ -73,8 +74,10 @@ public class PracticeVolumePreparation : MonoBehaviour
     {
         //returnButton.gameObject.SetActive(true);
         preparationText.text =
-        "¡Bienvenido! Es momento de practicar todo lo que has aprendido. Vas a hacer un discurso en un escenario MEDIANO (para las primeras 10 filas del cine) con 4 silencios de entre 0.6 y 1.1 segundos " +
-        "y 2 silencios largos de entre 1.1 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+        "¡Bienvenido! Es momento de practicar todo lo que has aprendido. Vas a hacer un discurso en un escenario MEDIANO (para las primeras 4 filas del cine) con 4 silencios de entre 0.6 y 1.1 segundos " +
+        "y 2 silencios largos de entre 1.1 y 2.1 segundos. " +
+        "Las barritas que tienes a la izquierda del texto te indicarán si hablas muy alto, muy bajo o al volumen correcto.\n\n" +
+        "\n\nPresiona A para leer el discurso.";
         //"Welcome! It is time to practice every thing you learnt. You are going to do a speech in a medium scenario with 4 silences between 0.7 and 1.4 seconds" +
         //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
 

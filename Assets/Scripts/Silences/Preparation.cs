@@ -36,8 +36,6 @@ public class Preparation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        silencesNeeded = 4;
-        longSilencesNeeded = 1;
         //kwordNeeded.Clear();
 
         panel.gameObject.SetActive(true);
@@ -68,26 +66,28 @@ public class Preparation : MonoBehaviour
 
             totalPoints = 40;
             audio = audioLv1;
+            silencesNeeded = 4;
+            longSilencesNeeded = 3;
 
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 5 silencios entre 0.7 y 1.4 segundos (representados con //) " +
-            "y 3 silencios largos entre 1.4 y 2.1 segundos (representados con ///). \n\nPresiona A para leer el discurso.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 4 silencios entre 0.6 y 1.0 segundos (representados con //) " +
+            "y 3 silencios largos entre 1.1 y 2.1 segundos (representados con ///). \n\nPresiona A para leer el discurso.";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds (represented with //) " +
             //"and 1 long silence between 1.4 and 2.1 seconds (represented with ///). \n\nPress SPACE to read and practice the speech.";
         }
         else if (level == 2)
         {
 
-            /*speech =
+            speech =
                 "Carter apretó los labios dibujando una fina línea. Estiró un brazo y tiró del extremo de la manta ensangrentada. Lo que había dentro rodó "+ 
             "sobre sí mismo una vez y se enganchó en la tela. Carter dio otro tirón y se oyó un fuerte ruido, como si hubiera vaciado un saco de guijarros "+
             "encima de la mesa.\n"+
-            "Era una araña negra como el carbón y del tamaño de una rueda de carro.";*/
-            speech =
+            "Era una araña negra como el carbón y del tamaño de una rueda de carro.";
+            /*speech =
                 "Carter apretó los labios dibujando una fina línea. (//)Estiró un brazo y tiró del extremo de la manta ensangrentada.(//) Lo que había dentro rodó " +
             "sobre sí mismo una vez(//) y se enganchó en la tela.(///) Carter dio otro tirón y se oyó un fuerte ruido,(//) como si hubiera vaciado un saco de guijarros " +
             "encima de la mesa.\n(///)" +
-            "Era una araña negra como el carbón(//) y del tamaño de una rueda de carro.";
+            "Era una araña negra como el carbón(//) y del tamaño de una rueda de carro.";*/     
             /*    @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con 
             la mayor esperanza en el futuro de España.
 
@@ -104,10 +104,12 @@ public class Preparation : MonoBehaviour
 
             totalPoints = 40;
             audio = audioLv2;
+            silencesNeeded = 5;
+            longSilencesNeeded = 2;
 
             preparationText.text =
-           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 5 silencios de entre 0.7 y 1.4 segundos " +
-            "y 2 silencios largos de entre 1.4 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 5 silencios de entre 0.6 y 1.1 segundos " +
+            "y 2 silencios largos de entre 1.1 y 2.1 segundos. \n\nPresiona A para leer el discurso.";
             //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
             //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
         }
@@ -118,6 +120,10 @@ public class Preparation : MonoBehaviour
                 "Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente. "+
             "No era un camino muy ancho, ni muy transitado. No parecía que condujera a ninguna parte, como pasa con algunos caminos. El posadero inspiró el aire "+
             "otoñal y miró alrededor, inquieto, como si esperase que sucediera algo.";
+            /*speech =
+                "Retazos de luz procedentes de las ventanas de la posada se proyectaban sobre el camino de tierra y las puertas de la herrería de enfrente.(//) " +
+            "No era un camino muy ancho, (//) ni muy transitado.(//) No parecía que condujera a ninguna parte, como pasa con algunos caminos.(///) El posadero inspiró el aire " +
+            "otoñal y miró alrededor,(//) inquieto,(//) como si esperase que sucediera algo.";*/
             /*    @"Inicio mi reinado con una profunda emoción por el honor que supone asumir la Corona, consciente de la responsabilidad que comporta y con 
             la mayor esperanza en el futuro de España.
 
@@ -129,8 +135,11 @@ public class Preparation : MonoBehaviour
             kwordNeeded.Add("No parecía que");
             kwordNeeded.Add("El posadero");
             kwordNeeded.Add("inquieto");
+            kwordNeeded.Add("como si esperase");
 
             totalPoints = 25;
+            silencesNeeded = 4;
+            longSilencesNeeded = 1;
 
             preparationText.text =
            "¡Bienvenido! Es momento de practicar los silencios de un discurso. Necesitas 4 silencios de entre 0.6 y 1.0 segundos " +

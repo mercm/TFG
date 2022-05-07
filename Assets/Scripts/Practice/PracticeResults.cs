@@ -76,7 +76,7 @@ public class PracticeResults : MonoBehaviour
             }
             else
             {
-                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + SoundLoudness.longSilenceCounter + " silencios y el texto necesitaba "
+                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + SoundLoudness.longSilenceCounter + " silencios largos y el texto necesitaba "
                     + Preparation.longSilencesNeeded + ". \n\n";
                 //"You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
                 //" and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";

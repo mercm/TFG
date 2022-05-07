@@ -132,6 +132,12 @@ public class Manager : MonoBehaviour
                 {
                     timerText.text = "" + (int)timer;
                 }
+
+                if (OVRInput.GetDown(OVRInput.Button.Two))
+                //if (OVRInput.GetDown(OVRInput.Button.Two))
+                {
+                    SceneManager.LoadScene("CinemaStart");
+                }
             }
             else
             {
@@ -149,16 +155,17 @@ public class Manager : MonoBehaviour
                 {
                     timerText.text = "" + (int)timer;
                 }
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                //if (OVRInput.GetDown(OVRInput.Button.Two))
+                {
+                    SceneManager.LoadScene("CinemaStart");
+                }
             }
                 
             //   Debug.Log(timer);
         }
         //}
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //if (OVRInput.GetDown(OVRInput.Button.Two))
-        {
-            SceneManager.LoadScene("CinemaStart");
-        }
     }
 
     //Sound

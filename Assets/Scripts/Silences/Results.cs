@@ -74,7 +74,7 @@ public class Results : MonoBehaviour
             }
             else
             {
-                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + SoundLoudness.longSilenceCounter + " silencios y el texto necesitaba "
+                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + SoundLoudness.longSilenceCounter + " silencios largos y el texto necesitaba "
                     + Preparation.longSilencesNeeded + ". \n\n";
                 //"You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
                 //" and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";
@@ -111,11 +111,11 @@ public class Results : MonoBehaviour
                 {
                     auxResult = "Vas por buen camino.";
                 }
-                else if (points > 18 && points <= 25)
+                else if (points > 18 && points <= 27)
                 {
                     auxResult = "¡Excelente! No se te da nada mal.";
                 }
-                else if (points > 25 && points <= 35)
+                else if (points > 27 && points <= 35)
                 {
                     auxResult = "¡Perfecto! Has dado en el clavo.";
                 }
@@ -126,15 +126,15 @@ public class Results : MonoBehaviour
                 {
                     auxResult = "Aún tienes mucho que mejorar.";
                 }
-                else if (points > 5 && points <= 10)
+                else if (points > 5 && points <= 13)
                 {
                     auxResult = "Vas por buen camino.";
                 }
-                else if (points > 10 && points <= 17)
+                else if (points > 13 && points <= 22)
                 {
                     auxResult = "¡Excelente! No se te da nada mal.";
                 }
-                else if (points > 17 && points <= 25)
+                else if (points > 22 && points <= 30)
                 {
                     auxResult = "¡Perfecto! Has dado en el clavo.";
                 }

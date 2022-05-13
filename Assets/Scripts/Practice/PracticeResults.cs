@@ -65,7 +65,7 @@ public class PracticeResults : MonoBehaviour
             }
             else
             {
-                resultsText.text = "Necesitas un poco más práctica. Has hecho " + SoundLoudness.silenceCounter + " silencios y el texto necesitaba " + Preparation.silencesNeeded + ". \n\n";
+                resultsText.text = "Necesitas un poco más práctica. Has hecho " + PracticeSoundLoudness.silenceCounter + " silencios y el texto necesitaba " + Preparation.silencesNeeded + ". \n\n";
                 //"You need a little more practice. You did " + SoundLoudness.silenceCounter +
                 //" silences and the speech needed " + Preparation.silencesNeeded + ". \n\n";
             }
@@ -76,7 +76,7 @@ public class PracticeResults : MonoBehaviour
             }
             else
             {
-                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + SoundLoudness.longSilenceCounter + " silencios largos y el texto necesitaba "
+                resultsText.text += "Necesitas un poco más de confianza. Has hecho " + PracticeSoundLoudness.longSilenceCounter + " silencios largos y el texto necesitaba "
                     + Preparation.longSilencesNeeded + ". \n\n";
                 //"You need to get more confident. You did " + SoundLoudness.longSilenceCounter +
                 //" and this speech needed " + Preparation.longSilencesNeeded + ". \n\n\n";

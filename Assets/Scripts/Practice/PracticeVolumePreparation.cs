@@ -46,8 +46,8 @@ public class PracticeVolumePreparation : MonoBehaviour
         volumeSL = VolumeSoundLoudnessGO.GetComponent<PracticeVolumeSoundLoudness>();
         
         
-        upperThreshold = 4.0f;
-        lowerThreshold = 2.0f;
+        upperThreshold = 11.0f;
+        lowerThreshold = 3.0f;
         silencesNeeded = 4;
         longSilencesNeeded = 1;
         Manager.speech = "";

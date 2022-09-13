@@ -109,14 +109,20 @@ public class Preparation : MonoBehaviour
             audio = audioLv2;
             silencesNeeded = 5;
             longSilencesNeeded = 2;
-            levelText.text = "Nivel 2";
 
+            //levelText.text = "Nivel 2";
+            levelText.text = "Level 2";
+
+            /*preparationText.text =
+           "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste necesitas 5 silencios de entre 0.6 y 1.1 segundos " +
+            "y 2 silencios largos de entre 1.1 y 2.1 segundos."+
+            "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices.";*/
             preparationText.text =
            "¡Bienvenido! Es momento de practicar los silencios de un discurso. Para éste necesitas 5 silencios de entre 0.6 y 1.1 segundos " +
             "y 2 silencios largos de entre 1.1 y 2.1 segundos."+
             "\n\nPresiona A para ver el texto del discurso. Podrás verlo mientras presentas, por lo que no es necesario que lo memorices";
-            //"Welcome! It is time to practice the silences of your speech. \n\nYou need to do 4 silences between 0.7 and 1.4 seconds " +
-            //"and 1 long silence between 1.4 and 2.1 seconds. \n\nPress SPACE to read and practice the speech.";
+            //"Welcome! It is time to practice silences in an speech. \n\nFor this one, you need to do 5 silences between 0.6 and 1.1 seconds " +
+            //"and 2 long silence between 1.1 and 2.1 seconds. \n\nPress A to read and practice the speech. It will be visible while you present so it's not necessary to memorize it.";
         }
         else if ( level == 3)
         {
@@ -275,8 +281,8 @@ public class Preparation : MonoBehaviour
                 silencesNeeded = 4;
                 longSilencesNeeded = 1;
 
-                preparationText.text = speech + "\n\nPresiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
-                //"\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
+                preparationText.text = speech + //"\n\nPresiona A cuando estés listo para presentar. Una vez estés jugando, presiona A otra vez para parar el juego";
+                "\n\n\nPress SPACE when you are ready to present.  Press SPACE again to finish the game.";
                 spacePressed = true;
                 if (level == 1 || level == 2)
                 {

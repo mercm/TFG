@@ -9,12 +9,9 @@ public class Results : MonoBehaviour
 {
 
     public Text resultsText;
-    //public Button returnButton;
-    //public Button playAgainButton;
     public GameObject preparation;
     public GameObject panel;
     private bool resultsReady;
-    //public Button again;//Restart the game
     private Manager manager;
     public GameObject ManagerGO;
 
@@ -24,18 +21,11 @@ public class Results : MonoBehaviour
         resultsReady = false;
         manager = ManagerGO.GetComponent<Manager>();
         resultsText.gameObject.SetActive(false);
-        //again.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
-    /*public void setReady(bool ready)
-    {
-        resultsReady = ready;
-    }*/
     void OnEnable()
     {
         resultsText.gameObject.SetActive(true);
-        //returnButton.gameObject.SetActive(true);
-        //playAgainButton.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
         resultsReady = true;
     }
@@ -54,8 +44,6 @@ public class Results : MonoBehaviour
         }
         else
         {
-            //again.gameObject.SetActive(true);
-
             if (Preparation.silencesNeeded == SoundLoudness.silenceCounter)
             {
                 resultsText.text = "¡Buen trabajo! Has hecho el número correcto de silencios para este texto\n\n";
@@ -144,8 +132,7 @@ public class Results : MonoBehaviour
                 Debug.LogError("Problems with level number.");
             }
 
-            resultsText.text += "Has hecho " + points + " puntos. " + auxResult; //"You have made " + manager.getPoints() + " points!";
-            //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
+            resultsText.text += "Has hecho " + points + " puntos. " + auxResult; //"You made " + points + " points. " + auxResult;;
         }
         if (OVRManager.isHmdPresent)// headset connected
         {

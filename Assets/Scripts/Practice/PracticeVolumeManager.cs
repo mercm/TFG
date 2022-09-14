@@ -7,54 +7,29 @@ using UnityEngine.UI;
 
 public class PracticeVolumeManager : MonoBehaviour
 {
-    //public static DataManager instance = null;
     private float timer;//Ascencent timer
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
     private int points;
     public static string speech = "";
-    //public TextMeshPro speechText;
     public Text speechText;
     public TextMeshPro correctionsText;
     public TextMeshPro timerText;//Ascendent timer Text
-    //public Text resultsText;//Results Text
-    //public Button again;//Restart the game
-    //public Button returnButton;
 
     private PracticeRecognizer recognizer;
 
     public GameObject panel;
     public GameObject RecognizerGO;
-
-    //private bool started;
-
-    //public static int neededSilences;//Seconds of silences the next need to be correct
     
     public GameObject SoundLoudnessGO;
     public GameObject resultsGO;
 
-
-    //Sound
-    //List<float> Sound;
-
-    /*void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        Sound = new List<float>();
-    }*/
-
     // Start is called before the first frame update
     private void Start()
     {
-        //started = false;
-
         countDownText.gameObject.SetActive(false);
         speechText.gameObject.SetActive(false);
-        //resultsText.gameObject.SetActive(false);
-        //Results.gameObject.SetActive(false);
         SoundLoudnessGO.gameObject.SetActive(false);
-        //again.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         recognizer = RecognizerGO.GetComponent<PracticeRecognizer>();
 
@@ -77,13 +52,6 @@ public class PracticeVolumeManager : MonoBehaviour
         timerText.gameObject.SetActive(true);
     }
 
-    /*public void SetStart()
-    {
-        //started = true;
-        timerText.gameObject.SetActive(true);
-        countDownText.gameObject.SetActive(true);
-    }*/
-
     public void SetPoints(int pt)
     {
         points += pt;
@@ -97,8 +65,6 @@ public class PracticeVolumeManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // if (started)
-        // {
         if (countDown > 1 && countDown <= 4)
         {
             countDown -= Time.deltaTime;
@@ -119,9 +85,6 @@ public class PracticeVolumeManager : MonoBehaviour
                 resultsGO.gameObject.SetActive(true);
                 timerText.gameObject.SetActive(false);
                 speechText.gameObject.SetActive(false);
-                //resultsText.gameObject.SetActive(true);
-                //again.gameObject.SetActive(true);
-                //returnButton.gameObject.SetActive(true);
                 correctionsText.gameObject.SetActive(false);
                 panel.gameObject.SetActive(true);
                 recognizer.DisableRecognizer();
@@ -133,7 +96,6 @@ public class PracticeVolumeManager : MonoBehaviour
             {
                 timer += Time.deltaTime;
                 timerText.text = "" + (int)timer;
-                //   Debug.Log(timer);
             }
             if (OVRInput.GetDown(OVRInput.Button.Two))
             {
@@ -148,9 +110,6 @@ public class PracticeVolumeManager : MonoBehaviour
                 resultsGO.gameObject.SetActive(true);
                 timerText.gameObject.SetActive(false);
                 speechText.gameObject.SetActive(false);
-                //resultsText.gameObject.SetActive(true);
-                //again.gameObject.SetActive(true);
-                //returnButton.gameObject.SetActive(true);
                 correctionsText.gameObject.SetActive(false);
                 panel.gameObject.SetActive(true);
                 recognizer.DisableRecognizer();
@@ -162,7 +121,6 @@ public class PracticeVolumeManager : MonoBehaviour
             {
                 timer += Time.deltaTime;
                 timerText.text = "" + (int)timer;
-                //   Debug.Log(timer);
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {

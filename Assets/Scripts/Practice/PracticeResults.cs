@@ -9,7 +9,6 @@ public class PracticeResults : MonoBehaviour
 {
 
     public Text resultsText;
-    //public Button returnButton;
     private int correctSecs;//Correct seconds the user has done in the game
     private int upIncorrectSecs;//Incorrect upper volume seconds the user has done in the game
     private int lowIncorrectSecs;//Incorrect lower volume seconds the user has done in the game
@@ -17,7 +16,6 @@ public class PracticeResults : MonoBehaviour
     public GameObject preparationGO;
     public GameObject panel;
     private bool resultsReady;
-    //public Button again;//Restart the game
     private PracticeVolumeManager manager;
     public GameObject ManagerGO;
     public GameObject PreparationGO;
@@ -28,17 +26,11 @@ public class PracticeResults : MonoBehaviour
         resultsReady = false;
         manager = ManagerGO.GetComponent<PracticeVolumeManager>();
         resultsText.gameObject.SetActive(false);
-        //again.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
     }
-    /*public void setReady(bool ready)
-    {
-        resultsReady = ready;
-    }*/
     void OnEnable()
     {
         resultsText.gameObject.SetActive(true);
-        //returnButton.gameObject.SetActive(true);
         panel.gameObject.SetActive(true);
         resultsReady = true;
     }
@@ -56,7 +48,6 @@ public class PracticeResults : MonoBehaviour
         }
         else
         {
-            //again.gameObject.SetActive(true);
 
             if (Preparation.silencesNeeded == SoundLoudness.silenceCounter)
             {
@@ -102,23 +93,12 @@ public class PracticeResults : MonoBehaviour
             }
 
             resultsText.text += "Has hecho " + points + " puntos. " + auxResult + "\n\n";
-            //resultsText.text += "Has hecho " + manager.GetPoints() + " puntos de 30!\n\n"; //"You have made " + manager.getPoints() + " points!";
-            //resultsText.text += "Press space to practice again.";//Cambiar por botón PlayAgain
 
             //Give the volume results
             correctSecs = PracticeVolumeSoundLoudness.correctSecCounter;
             upIncorrectSecs = PracticeVolumeSoundLoudness.upIncorrectSecCounter;
             lowIncorrectSecs = PracticeVolumeSoundLoudness.lowIncorrectSecCounter;
 
-            /*if (lowIncorrectSecs <= neededSilences)
-            {
-                lowIncorrectSecs = 0;
-            }
-            else
-            {
-                lowIncorrectSecs = lowIncorrectSecs - neededSilences;
-
-            }*/
             if (correctSecs + upIncorrectSecs + lowIncorrectSecs != 0)
             {
                 float total = correctSecs + upIncorrectSecs + lowIncorrectSecs;

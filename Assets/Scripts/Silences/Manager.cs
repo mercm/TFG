@@ -8,14 +8,11 @@ using static OVRInput;
 
 public class Manager : MonoBehaviour
 {
-    //public static DataManager instance = null;
-
     private float timer;//Ascencent timer
     public TextMeshPro timerText;//Ascendent timer Text
     private float countDown;//Countdown to start
     public Text countDownText;//Countdown to start Text
     public static string speech = "";
-    //public TextMeshPro speechText;//Speech Text
     public Text speechText;//Speech Text
     private Dictation dictation;
     private Recognizer recognizer;
@@ -23,37 +20,20 @@ public class Manager : MonoBehaviour
     private bool stop;
 
     public GameObject resultsGO;
-    //public GameObject Preparation;
     public GameObject SoundLoudnessGO;
     public GameObject DictationGO;
     public GameObject RecognizerGO;
 
     private int points;
-    //enum CategoryPts {Perfect = 5, Good = 1, Bad = -2};
-
-
-    //Sound
-    //List<float> Sound;
-
-    /*void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        Sound = new List<float>();
-    }*/
 
     // Start is called before the first frame update
     private void Start()
     {
-        //started = false;
-
         countDownText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         speechText.gameObject.SetActive(false);
         dictation = DictationGO.GetComponent<Dictation>();
         recognizer = RecognizerGO.GetComponent<Recognizer>();
-        //Results.gameObject.SetActive(false);
-        //SoundLoudnessGO.gameObject.SetActive(false);
 
         this.gameObject.SetActive(false);
     }
@@ -71,12 +51,6 @@ public class Manager : MonoBehaviour
         countDownText.gameObject.SetActive(true);
         speechText.gameObject.SetActive(true);
     }
-    /*public void SetStart()
-    {
-        //started = true;
-        timerText.gameObject.SetActive(true);
-        countDownText.gameObject.SetActive(true);
-    }*/
 
     public void setStop(bool set)
     {
@@ -96,8 +70,6 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // if (started)
-        // {
         if (countDown > 1 && countDown <= 4)
         {
             countDown -= Time.deltaTime;
@@ -107,9 +79,7 @@ public class Manager : MonoBehaviour
         {
             countDown = 0;
             countDownText.gameObject.SetActive(false);
-            //speechText.gameObject.SetActive(true);
             SoundLoudnessGO.gameObject.SetActive(true);
-            //dictation.enableDictation();
             recognizer.enableRecognizer();
         }
         else
@@ -125,7 +95,6 @@ public class Manager : MonoBehaviour
                     SoundLoudnessGO.gameObject.SetActive(false);
                     resultsGO.gameObject.SetActive(true);
                     recognizer.disableRecognizer();
-                    //SoundLoudness.collect = false;
                     this.gameObject.SetActive(false);
                 }
                 else
@@ -134,7 +103,6 @@ public class Manager : MonoBehaviour
                 }
 
                 if (OVRInput.GetDown(OVRInput.Button.Two))
-                //if (OVRInput.GetDown(OVRInput.Button.Two))
                 {
                     SceneManager.LoadScene("CinemaStart");
                 }
@@ -148,7 +116,6 @@ public class Manager : MonoBehaviour
                     SoundLoudnessGO.gameObject.SetActive(false);
                     resultsGO.gameObject.SetActive(true);
                     recognizer.disableRecognizer();
-                    //SoundLoudness.collect = false;
                     this.gameObject.SetActive(false);
                 }
                 else
@@ -157,24 +124,10 @@ public class Manager : MonoBehaviour
                 }
 
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
-                //if (OVRInput.GetDown(OVRInput.Button.Two))
                 {
                     SceneManager.LoadScene("CinemaStart");
                 }
             }
-                
-            //   Debug.Log(timer);
         }
-        //}
     }
-
-    //Sound
-    /* public void AddSound(float x)
-     {
-         if (!finished && started)
-         {
-             Sound.Add(x);
-             Debug.Log("added!");
-         }
-     }*/
 }

@@ -28,37 +28,27 @@ public class Dictation : MonoBehaviour
     void Start()
     {
         dictationRecognizer = new DictationRecognizer();
-        dictationRecognizer.InitialSilenceTimeoutSeconds = 7f;//Pensar si este valor tiene sentido
-        dictationRecognizer.AutoSilenceTimeoutSeconds = 3.5f;//Pensar si este valor tiene sentido
+        dictationRecognizer.InitialSilenceTimeoutSeconds = 7f;
+        dictationRecognizer.AutoSilenceTimeoutSeconds = 3.5f;
 
         dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
         dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
         dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
         dictationRecognizer.DictationError += DictationRecognizer_DictationError;
-
-        //enable = false;
-        //finish = false;
-
-        //results = ResultsGO.GetComponent<Results>();
+        
         manager = ManagerGO.GetComponent<Manager>();
-
-        //PhraseRecognitionSystem.Shutdown();//Lo necesito?
-        //dictationRecognizer.Start();
     }
 
     //In this method we manage the output text
     private void DictationRecognizer_DictationResult(string text, ConfidenceLevel confidence)
     {
-        //dictationRecognizer.Start();
         resultText += " " + text + " " + silenceAuxText;
         silenceAuxText = "";
     }
 
     private void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
     {
-        //results.setReady(true);
         manager.setStop(true);
-        //dictationRecognizer.Stop(); //A LO MEJOR HAY QUE DESCOMENTARLO PARA QUE FUNCIONE BIEN
         StreamWriter outputFile = new StreamWriter(@"C:\Users\esthe\Documents\Universidad\TFG\Repo\TFG\Assets\Outputs\output.txt");
         outputFile.WriteLine(resultText);
         outputFile.Close();
@@ -88,20 +78,14 @@ public class Dictation : MonoBehaviour
 
     public void enableDictation()
     {
-       // PhraseRecognitionSystem.Shutdown();//Lo necesito?
         dictationRecognizer.Start();
-        //enable = true;
-        //finish = false;
         resultText = "";
         silenceAuxText = "";
-        //countDown = 5;
     }
 
     public void addSilence()
     {
         silenceAuxText += " // ";
-        //dictationRecognizer.Stop();
-        //dictationRecognizer.Start();
     }
 
     public void addLongSilence()
@@ -113,27 +97,5 @@ public class Dictation : MonoBehaviour
     void Update()
     {
         UnityEngine.Debug.Log("DICTATOR STATUS: " + dictationRecognizer.Status);
-        /*if (enable && Input.GetKeyDown(KeyCode.Space))
-        {
-            enable = false;
-            finish = true;
-        }
-        if (finish)//To make sure all the text has been written
-        {
-            if (countDown <= 0)
-            {
-                results.setReady(true);
-                dictationRecognizer.Stop();
-                StreamWriter outputFile = new StreamWriter(@"C:\Users\esthe\Documents\Universidad\TFG\Repo\TFG\Assets\Outputs\output.txt");
-                outputFile.WriteLine(resultText);
-                outputFile.Close();
-                finish = false;
-                //PhraseRecognitionSystem.Restart();
-            }
-            else
-            {
-                countDown -= Time.deltaTime;
-            }
-        }*/
     }
 }

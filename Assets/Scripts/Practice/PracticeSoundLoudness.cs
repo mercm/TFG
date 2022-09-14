@@ -26,27 +26,12 @@ public class PracticeSoundLoudness : MonoBehaviour
     public Text silencesText;
     public Text longSilencesText;
 
-    //private Dictation dictation;
-
     public GameObject ResultsGO;
-    //public GameObject DictationGO;
-    //public GameObject PreparationGO;
-
-    //mic initialization
 
     void Start()
     {
-        //Results.gameObject.SetActive(false);
-
         results = new List<float>();
-        //dictation = DictationGO.GetComponent<Dictation>();
-        //collect = true;
-        //this.gameObject.SetActive(false);
     }
-    /*public void changeCollecting(bool change)
-    {
-        collect = change;
-    }*/
     void OnDisable()
     {
         collect = false;
@@ -81,8 +66,6 @@ public class PracticeSoundLoudness : MonoBehaviour
         if (micPosition < 0) return 0;
         MicrophoneManager.AudioClip.GetData(waveData, micPosition);
 
-        //Normalize(waveData);
-
         //Root Mean Square value calculation
         float rmsvalue = 0.0f;
         for (int i = 0; i < _sampleWindow; i++)
@@ -90,8 +73,6 @@ public class PracticeSoundLoudness : MonoBehaviour
             rmsvalue += waveData[i] * waveData[i];
         }
         rmsvalue = Mathf.Sqrt(rmsvalue / _sampleWindow);//Value between 0 and 1 which indicates the loudness of the sound
-
-        //float decibels = 20 * Mathf.Log10(rmsvalue / 0.01f);
 
         return rmsvalue;
     }
@@ -116,7 +97,6 @@ public class PracticeSoundLoudness : MonoBehaviour
         }
         float aux = -100f;
         UpdateSilencesTexts();
-        //Destroy(Preparation);
         if (Time.realtimeSinceStartup - actTime > step)
         {
             aux = getLoudness();
@@ -129,9 +109,6 @@ public class PracticeSoundLoudness : MonoBehaviour
             {
                 CheckSilences(aux);
             }
-            //results.Add(aux);
-            //Debug.Log(aux);
-            //if (DataManager.instance != null) DataManager.instance.AddSound(aux);
             actTime = Time.realtimeSinceStartup;
         }
     }
@@ -141,23 +118,18 @@ public class PracticeSoundLoudness : MonoBehaviour
         if (aux <= silenceThreshold)//if the user is in silence
         {
             secCounter += 0.5f;//mid seconds counter
-            //Debug.Log(secCounter);
         }
         else//if the user starts talking again
         {
-
-            //Debug.Log(secCounter);
             if (secCounter >= 0.6 && secCounter <= 1.1)
             {
                 silenceCounter++;
-                //dictation.addSilence();
 
                 silence4kw++;
             }
             else if (secCounter > 1.1 && secCounter <= 2.1)
             {
                 longSilenceCounter++;
-                //dictation.addLongSilence();
                 silence4kw++;
             }
             UpdateSilencesTexts();

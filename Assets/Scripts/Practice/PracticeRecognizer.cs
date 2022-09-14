@@ -9,7 +9,6 @@ public class PracticeRecognizer : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer;
     Dictionary<string, Action> keywords;// = new Dictionary<string, System.Action>();
-    //Dictionary<string, Action> keywords = new Dictionary<string, Action>();
     private PracticeVolumeManager manager;
     public GameObject ManagerGO;
 
@@ -32,14 +31,12 @@ public class PracticeRecognizer : MonoBehaviour
 
         foreach (string kw in PracticeVolumePreparation.kwordNeeded)
         {
-            //keywords.Add(kw, Function);
             keywords.Add(kw, () =>
             {
                 //action to be performed when this keyword is spoken
                 //if player did a silence before de keyword
                 if (PracticeSoundLoudness.silence4kw == 1)
                 {
-                    //manager.setPoints(manager.categorypts.perfect);
                     manager.SetPoints(5);
                     Debug.Log("5 points");
                 }
@@ -56,7 +53,6 @@ public class PracticeRecognizer : MonoBehaviour
                     Debug.Log("-2 points");
                 }
                 PracticeSoundLoudness.silence4kw = 0;
-                //manager.setPoints(5);
             });
         }
         if (keywordRecognizer != null)
@@ -72,7 +68,6 @@ public class PracticeRecognizer : MonoBehaviour
     {
         System.Action keywordAction;
         // if the keyword recognized is in our dictionary, call that Action.
-        //Debug.Log("He detectado " + args.text);
         if (keywords.TryGetValue(args.text, out keywordAction))
         {
             keywordAction.Invoke();
@@ -83,11 +78,5 @@ public class PracticeRecognizer : MonoBehaviour
     private void Function()
     {
         manager.SetPoints(5);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -3561,7 +3561,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Presiona el gatillo para empezar/parar el audio
+  m_Text: Presiona gatillo/0 para empezar y parar el audio
 --- !u!222 &2072290310
 CanvasRenderer:
   m_ObjectHideFlags: 0

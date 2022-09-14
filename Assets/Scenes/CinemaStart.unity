@@ -1292,7 +1292,6 @@ MonoBehaviour:
   SL2: {fileID: 209064603}
   SL3: {fileID: 1415023951}
   PL: {fileID: 2072424339}
-  X: {fileID: 2018958404}
   returnButton: {fileID: 822946342}
   volumeText: {fileID: 1544837346}
   silenceText: {fileID: 954532958}

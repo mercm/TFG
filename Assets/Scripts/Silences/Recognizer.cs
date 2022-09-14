@@ -8,8 +8,7 @@ using System;
 public class Recognizer : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer;
-    Dictionary<string, Action> keywords;// = new Dictionary<string, System.Action>();
-    //Dictionary<string, Action> keywords = new Dictionary<string, Action>();
+    Dictionary<string, Action> keywords;
     private Manager manager;
     public GameObject ManagerGO;
 
@@ -32,14 +31,12 @@ public class Recognizer : MonoBehaviour
 
         foreach (string kw in Preparation.kwordNeeded)
         {
-            //keywords.Add(kw, Function);
             keywords.Add(kw, () =>
             {
                 //action to be performed when this keyword is spoken
                 //if player did a silence before de keyword
                 if (SoundLoudness.silence4kw == 1)
                 {
-                    //manager.setPoints(manager.categorypts.perfect);
                     manager.setPoints(5);
                     Debug.Log("5 points");
                     Debug.Log("5: "+kw);
@@ -59,7 +56,6 @@ public class Recognizer : MonoBehaviour
                     Debug.Log("-1: " + kw);
                 }
                 SoundLoudness.silence4kw = 0;
-                //manager.setPoints(5);
             });
         }
         if (keywordRecognizer != null)
@@ -75,7 +71,6 @@ public class Recognizer : MonoBehaviour
     {
         System.Action keywordAction;
         // if the keyword recognized is in our dictionary, call that Action.
-        //Debug.Log("He detectado " + args.text);
         if (keywords.TryGetValue(args.text, out keywordAction))
         {
             keywordAction.Invoke();
@@ -86,11 +81,5 @@ public class Recognizer : MonoBehaviour
     private void Function()
     {
         manager.setPoints(5);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

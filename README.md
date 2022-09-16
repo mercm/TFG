@@ -1,1 +1,2 @@
-# TFG
+This is the applications from my grade final project: Gamified applications to improve volume and silences use in verbal communication (Aplicaciones gamificadas para la mejora del uso del volumen y los silencios en la comunicación verbal).
+Talk&Play is a virtual reality videogame which teaches the correct use of voice volume and silences and helps with talking speed (as a collateral efect). As well, it raises awareness of the importance os this public speaking aspects and raises the player's self-confidence.
